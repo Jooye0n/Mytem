@@ -127,8 +127,8 @@ public class CreateActicity extends AppCompatActivity {
                     editTextPassword.setTextColor(Color.BLACK);
                     editTextPasswordCk.setTextColor(Color.BLACK);
                 } else {
-                    editTextPassword.setTextColor(Color.parseColor("#a11c1c"));
-                    editTextPasswordCk.setTextColor(Color.parseColor("#a11c1c"));
+                    editTextPassword.setTextColor(Color.parseColor("#9b1c1c"));
+                    editTextPasswordCk.setTextColor(Color.parseColor("#9b1c1c"));
                 }
             }
             @Override

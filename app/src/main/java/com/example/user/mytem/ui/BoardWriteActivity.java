@@ -16,7 +16,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,6 +44,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 import me.iwf.photopicker.PhotoPicker;
 
@@ -62,6 +65,8 @@ public class BoardWriteActivity extends AppCompatActivity {
     private PostModel postModel;
     private ActionBar actionBar;
     private TextView toolbarText;
+    private DecimalFormat decimalFormat = new DecimalFormat("#,###");
+    private String change;
 
     private String spinnerItem;
 
@@ -197,6 +202,27 @@ public class BoardWriteActivity extends AppCompatActivity {
             }
         });
     }
+
+    TextWatcher watcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            if(!TextUtils.isEmpty(charSequence.toString()) && !charSequence.toString().equals(change)){
+                change = decimalFormat.format(Double.parseDouble(charSequence.toString().replaceAll(",","")));
+                priceEditText.setText(change);
+                priceEditText.setSelection(change.length());
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    };
 
     public void onClickButton(View view ) {
         Log.v("알림", "다이얼로그 > 앨범선택 선택");
