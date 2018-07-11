@@ -1,0 +1,32 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_write"
+        android:icon="@drawable/plus"
+        android:iconTint="@color/colorWhite"
+        android:orderInCategory="100"
+        android:title="@string/write"
+        app:showAsAction="ifRoom" />
+
+    <!--<item-->
+        <!--android:id="@+id/menu_filter"-->
+        <!--android:icon="@drawable/filter"-->
+        <!--android:iconTint="@color/colorWhite"-->
+        <!--android:orderInCategory="0"-->
+        <!--android:title="@string/filter"-->
+        <!--android:visible="false"-->
+        <!--app:showAsAction="ifRoom" />-->
+
+    <item
+        android:id="@+id/menu_search"
+        android:icon="@drawable/magnifier"
+        android:iconTint="@color/colorWhite"
+        android:iconifiedByDefault="false"
+        android:orderInCategory="50"
+        android:title="@string/search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
+
+
+</menu>

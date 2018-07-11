@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_user"
+            android:icon="@drawable/user"
+            android:iconTint="@color/colorPrimaryDark"
+            android:title="@string/login_join" />
+        <item
+            android:id="@+id/nav_basket"
+            android:icon="@drawable/plus"
+            android:iconTint="@color/colorPrimaryDark"
+            android:title="basket" />
+        <item
+            android:id="@+id/nav_list"
+            android:icon="@drawable/notice"
+            android:iconTint="@color/colorPrimaryDark"
+            android:title="shopping list" />
+    </group>
+
+    <item android:title="user">
+        <menu>
+            <item
+                android:id="@+id/nav_setting"
+                android:icon="@drawable/setting"
+                android:iconTint="@color/colorPrimaryDark"
+                android:title="@string/setting" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/logout" />
+        </menu>
+    </item>
+
+</menu>
