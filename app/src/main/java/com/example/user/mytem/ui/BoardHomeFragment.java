@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BoardHomeFragment extends BoardCommonFragment implements ViewPager.OnPageChangeListener{
+public class BoardHomeFragment extends CommonTabFragment implements ViewPager.OnPageChangeListener{
 
     private RecyclerView recyclerView;
     private LinearLayout indicator;

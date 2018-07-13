@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.user.mytem.ui.DinamisFragment;
+import com.example.user.mytem.ui.HomeDinamisFragment;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class HomeFragmentAdapter extends FragmentStatePagerAdapter {
         String items = data.get(position);
 
 
-        DinamisFragment dinamisFragment = new DinamisFragment();
+        HomeDinamisFragment dinamisFragment = new HomeDinamisFragment();
         dinamisFragment.setDetail(items);
         fragment = dinamisFragment;
 

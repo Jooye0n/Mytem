@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.example.user.mytem.R;
 
-public class VersionDialogFragment extends DialogFragment {
+public class SettingVersionDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog( Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_version_dialog,null);

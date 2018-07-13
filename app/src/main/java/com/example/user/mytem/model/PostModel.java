@@ -38,15 +38,15 @@ public class PostModel {
 
         });
     }
-
-    public void writePost( String postType, String url, String title, String contents, int number, int price, String detail) {
+// String title, int number, int price, int price2, int priceA, int priceB, String contents, String url, String detail
+    public void writePost( String postType, String url, String title, String contents, int number, int price, int price2, int priceA, int priceB,  String detail) {
         databaseReference.child(postType).
-                push().setValue(Post.newPost(title, number, price, contents, url, detail));
+                push().setValue(Post.newPost(title, number, price, price2, priceA, priceB, contents, url, detail));
     }//post형태의 객체를 등록
 
-    public void correctPost( String postType, String url, String title, String contents, String postKey, int number, int price, String detail) {
+    public void correctPost( String postType, String url, String title, String contents, String postKey, int number, int price, int price2, int priceA, int priceB, String detail) {
         databaseReference.child(postType).
-                child(postKey).setValue(Post.newPost(title, number, price, contents, url, detail));
+                child(postKey).setValue(Post.newPost(title, number, price, price2, priceA, priceB, contents, url, detail));
 
     }//수정
 

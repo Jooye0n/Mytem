@@ -26,7 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 
 
-public abstract class BoardCommonFragment extends Fragment {
+public abstract class CommonTabFragment extends Fragment {
     private RecyclerView recyclerView;
     private ProgressDialog progressDialog;
 
@@ -102,7 +102,7 @@ public abstract class BoardCommonFragment extends Fragment {
             intent.putExtra("CURRENT_BOARD_TAB", BoardTabFragment.getCurrentTab()-1);
             startActivity(intent); }
 //        } else if(item.getItemId() == R.id.menu_filter) {
-//            Intent intent = new Intent(getActivity(), FilterActivity.class);
+//            Intent intent = new Intent(getActivity(), BoardFilterActivity.class);
 //            startActivity(intent);
 //        }
 

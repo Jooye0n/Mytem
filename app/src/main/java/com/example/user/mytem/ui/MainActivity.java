@@ -16,14 +16,13 @@ import android.widget.Toast;
 
 import com.example.user.mytem.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActionBar actionBar;
     private TextView navHeaderTextView;
-    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    //private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     private BackPressCloseHandler backPressCloseHandler;
 
@@ -75,25 +74,38 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_user) {
+        if (id == R.id.nav_user) {//로그인
             android.app.FragmentManager fragmentManager = getFragmentManager();
             LoginDialogFragment dialog = new LoginDialogFragment();
             dialog.show(fragmentManager, "LoginDialogFragment");
-        } else if (id == R.id.nav_basket) {
-            Intent intent = new Intent(this, CartActicity.class);
+            //결과 받는 인텐드 보내서 로그인 성공시 navHeaderTextView에 로그인한 user정보 업데이트
+
+        } else if (id == R.id.nav_basket) {//장바구니
+            Intent intent = new Intent(this, NavCartActicity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_list) {
-
-        } else if (id == R.id.nav_setting) {
-            Intent intent = new Intent(this,SettingActivity.class);
+        } else if (id == R.id.nav_list) {//구매목록
+            Intent intent = new Intent(this, NavShopListActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_logout) {
-            FirebaseAuth.getInstance().signOut();
-            Toast.makeText(this, "로그아웃 되었습니다.",
-                    Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_setting) {//세팅
+            Intent intent = new Intent(this,NavSettingActivity.class);
+            startActivity(intent);
 
+        } else if (id == R.id.nav_logout) {//로그아웃
+            FirebaseAuth user = FirebaseAuth.getInstance();
+            if(user!=null) {///로그인 된 상태라면 //확인절차
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(this, "로그아웃 되었습니다.",
+                        Toast.LENGTH_SHORT).show();
+            }
+        } else if (id == R.id.nav_customer_management) {
+            Intent intent = new Intent(this,NavCustomerActivity.class);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_manager_management) {
+            Intent intent = new Intent(this,NavManagerActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

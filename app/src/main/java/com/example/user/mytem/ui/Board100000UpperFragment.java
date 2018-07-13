@@ -3,7 +3,7 @@ package com.example.user.mytem.ui;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class Board100000UpperFragment extends BoardCommonFragment {
+public class Board100000UpperFragment extends CommonTabFragment {
 
     public Board100000UpperFragment() {}
 

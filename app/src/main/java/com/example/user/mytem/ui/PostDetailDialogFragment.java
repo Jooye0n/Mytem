@@ -15,11 +15,12 @@ import android.widget.TextView;
 import com.example.user.mytem.R;
 
 
-public class DetailDialogFragment extends DialogFragment {
+public class PostDetailDialogFragment extends DialogFragment {
     private Button request;
     private Button cart;
     private Button buy;
     private TextView detailTextView;
+    private TextView titleTextView;
     private ImageButton cancel;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -28,6 +29,7 @@ public class DetailDialogFragment extends DialogFragment {
         super.onCreate(savedInstanceState);
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_commet_dialog,null);
 
+        titleTextView = view.findViewById(R.id.common_detail_title);
         detailTextView = view.findViewById(R.id.comment_detail_text);
         request = view.findViewById(R.id.btn_request);
         buy = view.findViewById(R.id.btn_buy);
@@ -35,8 +37,11 @@ public class DetailDialogFragment extends DialogFragment {
         cancel = view.findViewById(R.id.btn_cancel);
 
         String detail = getArguments().getString("POST_DATAIL");
+        String title = getArguments().getString("POST_TITLE");
 
         detailTextView.setText(detail);
+        titleTextView.setText(title);
+
         request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick( View view ) {

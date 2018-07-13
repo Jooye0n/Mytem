@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.user.mytem.R;
 
-public class DinamisFragment extends Fragment {
+public class HomeDinamisFragment extends Fragment {
 
     private TextView tvDetailFragment;
     private String detail;

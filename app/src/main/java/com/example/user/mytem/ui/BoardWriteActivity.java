@@ -50,14 +50,19 @@ import me.iwf.photopicker.PhotoPicker;
 
 public class BoardWriteActivity extends AppCompatActivity {
 
+    //firebase
     private FirebaseAuth mAuth;
     private FirebaseStorage storage;
 
+    //UI
     private EditText titleEditText;
     private EditText contentsEditText;
     private Spinner board_spinner;
     private EditText numEditText;
     private EditText priceEditText;
+    private EditText price2EditText;
+    private EditText priceAEditText;
+    private EditText priceBEditText;
     private EditText detailEditText;
     private int currentPosition;
     private boolean rewrite;
@@ -119,6 +124,9 @@ public class BoardWriteActivity extends AppCompatActivity {
         String reWriteDetail = getIntent().getExtras().getString("BOARD_DETAIL");
         int reWriteNum = getIntent().getExtras().getInt("BOARD_NUM");
         int reWritePrice = getIntent().getExtras().getInt("BOARD_PRICE");
+        int reWritePrice2 = getIntent().getExtras().getInt("BOARD_PRICE2");
+        int reWritePriceA = getIntent().getExtras().getInt("BOARD_PRICEA");
+        int reWritePriceB = getIntent().getExtras().getInt("BOARD_PRICEB");
 
         inputimg = findViewById(R.id.inputimg);
 
@@ -126,6 +134,9 @@ public class BoardWriteActivity extends AppCompatActivity {
         contentsEditText = (EditText) findViewById(R.id.board_write_content_edit_text);
         numEditText = (EditText) findViewById(R.id.board_write_num_edit_text);
         priceEditText = (EditText) findViewById(R.id.board_write_price_edit_text);
+        price2EditText = findViewById(R.id.board_write_price2_edit_text);
+        priceAEditText = findViewById(R.id.board_write_priceA_edit_text);
+        priceBEditText = findViewById(R.id.board_write_priceB_edit_text);
         detailEditText = (EditText) findViewById(R.id.board_write_detail_edit_text);
         ImageButton writeButton = (ImageButton) findViewById(R.id.board_write_finish);
         ImageButton closeButton = (ImageButton) findViewById(R.id.board_write_close_button);
@@ -152,6 +163,9 @@ public class BoardWriteActivity extends AppCompatActivity {
             board_spinner.setVisibility(View.GONE);
             detailEditText.setText(reWriteDetail);
             priceEditText.setText(String.valueOf(reWritePrice));
+            price2EditText.setText(String.valueOf(reWritePrice2));
+            priceAEditText.setText(String.valueOf(reWritePriceA));
+            priceBEditText.setText(String.valueOf(reWritePriceB));
             numEditText.setText(String.valueOf(reWriteNum));
             rewrite = true;
 
@@ -481,12 +495,12 @@ public class BoardWriteActivity extends AppCompatActivity {
         if (rewrite) {//게시글 수정
             postModel.correctPost(setPriceRange(Integer.parseInt(priceEditText.getText().toString())),"url", titleEditText.getText().toString(), contentsEditText.getText().toString(),
                     postKey, Integer.parseInt(numEditText.getText().toString()),
-                    Integer.parseInt(priceEditText.getText().toString()), detailEditText.getText().toString());
+                    Integer.parseInt(priceEditText.getText().toString()), Integer.parseInt(price2EditText.getText().toString()),Integer.parseInt(priceAEditText.getText().toString()),Integer.parseInt(priceBEditText.getText().toString()),detailEditText.getText().toString());
 
         } else//게시글 등록
             postModel.writePost(setPriceRange(Integer.parseInt(priceEditText.getText().toString())), "url",titleEditText.getText().toString(),
                     contentsEditText.getText().toString(), Integer.parseInt(numEditText.getText().toString()),
-                    Integer.parseInt(priceEditText.getText().toString()),detailEditText.getText().toString());
+                    Integer.parseInt(priceEditText.getText().toString()), Integer.parseInt(price2EditText.getText().toString()),Integer.parseInt(priceAEditText.getText().toString()),Integer.parseInt(priceBEditText.getText().toString()),detailEditText.getText().toString());
     }
 
 }

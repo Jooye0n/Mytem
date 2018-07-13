@@ -3,20 +3,19 @@ package com.example.user.mytem.ui;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-
-public class BoardBestFragment extends CommonTabFragment {
-
-    public BoardBestFragment() {}
+public class CustomerAFragment extends CommonTabFragment {
 
     @Override
     public DatabaseReference getRef() {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        return databaseReference.child("Best");
+        return databaseReference.child("AUser");
     }
 
     @Override
     public String getPostType() {
-        return "Best";
+        return "AUser";
     }
 
+    public CustomerAFragment() {
+    }
 }

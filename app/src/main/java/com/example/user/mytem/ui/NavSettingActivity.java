@@ -11,7 +11,7 @@ import android.widget.Button;
 
 import com.example.user.mytem.R;
 
-public class SettingActivity extends AppCompatActivity {
+public class NavSettingActivity extends AppCompatActivity {
 
     private ActionBar actionBar;
 
@@ -51,7 +51,7 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {//버전정보
                 android.app.FragmentManager fragmentManager = getFragmentManager();
-                VersionDialogFragment dialog = new VersionDialogFragment();
+                SettingVersionDialogFragment dialog = new SettingVersionDialogFragment();
                 dialog.show(fragmentManager, "abc");
             }
         });

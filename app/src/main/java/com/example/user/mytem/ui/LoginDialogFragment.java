@@ -17,7 +17,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.user.mytem.R;
-import com.example.user.mytem.singleton.User;
+import com.example.user.mytem.singleton.CUser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -32,7 +32,7 @@ public class LoginDialogFragment extends DialogFragment {
     private Button create;
     private FirebaseAuth mAuth;
     private ProgressDialog progressDialog;
-    private User user;
+    //private CUser user;
 
     private static final String TAG = "LoginActivity";
 
@@ -170,8 +170,10 @@ public class LoginDialogFragment extends DialogFragment {
 //            mStatusTextView.setText(getString(R.string.emailpassword_status_fmt,
 //                    user.getEmail(), user.isEmailVerified()));
 //            mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
-            dismiss();
+
+           // dismiss();
 //            findViewById(R.id.verify_email_button).setEnabled(!user.isEmailVerified());
+
         } else {//로그인 실패시의 UI업데이트
 //            mStatusTextView.setText(R.string.signed_out);
 //            mDetailTextView.setText(null);
@@ -189,8 +191,5 @@ public class LoginDialogFragment extends DialogFragment {
     private void hideProgressDialog() {
             progressDialog.dismiss();
     }
-    //Toast.makeText(getActivity(), "이미 로그인 상태입니다.",
-    //                Toast.LENGTH_SHORT).show();
-
 
 }

@@ -11,28 +11,43 @@
             android:iconTint="@color/colorPrimaryDark"
             android:title="@string/login_join" />
         <item
-            android:id="@+id/nav_basket"
-            android:icon="@drawable/plus"
+            android:id="@+id/nav_setting"
+            android:icon="@drawable/setting"
             android:iconTint="@color/colorPrimaryDark"
-            android:title="basket" />
-        <item
-            android:id="@+id/nav_list"
-            android:icon="@drawable/notice"
-            android:iconTint="@color/colorPrimaryDark"
-            android:title="shopping list" />
+            android:title="@string/setting" />
     </group>
 
     <item android:title="user">
         <menu>
             <item
-                android:id="@+id/nav_setting"
-                android:icon="@drawable/setting"
+                android:id="@+id/nav_basket"
+                android:icon="@drawable/plus"
                 android:iconTint="@color/colorPrimaryDark"
-                android:title="@string/setting" />
+                android:title="장바구니" />
+            <item
+                android:id="@+id/nav_list"
+                android:icon="@drawable/notice"
+                android:iconTint="@color/colorPrimaryDark"
+                android:title="구매목록" />
+
+            <item
+                android:id="@+id/nav_customer_management"
+                android:iconTint="@color/colorPrimaryDark"
+                android:icon="@drawable/list"
+                android:title="@string/customerlist"
+                />
+
+            <item
+                android:id="@+id/nav_manager_management"
+                android:iconTint="@color/colorPrimaryDark"
+                android:icon="@drawable/manager"
+                android:title="@string/managerlist"
+                />
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_menu_send"
                 android:title="@string/logout" />
+
         </menu>
     </item>
 

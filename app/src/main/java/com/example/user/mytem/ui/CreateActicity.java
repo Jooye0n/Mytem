@@ -21,7 +21,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.user.mytem.R;
-import com.example.user.mytem.model.UserModel;
+import com.example.user.mytem.model.CUserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -33,7 +33,6 @@ public class CreateActicity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
 
     private EditText editTextName;
-    private EditText editTextId;
     private EditText editTextPassword;
     private EditText editTextPasswordCk;
     private EditText editTextRRN;
@@ -43,14 +42,14 @@ public class CreateActicity extends AppCompatActivity {
     private Button btnCreate;
     private Button btnDoubleCk;
 
-    private UserModel userModel;
+    private CUserModel userModel;//회원 가입은 전부 CUser
     private FirebaseAuth mAuth;
 
 
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create);
+        setContentView(R.layout.activity_create_customer);
 
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
@@ -58,12 +57,11 @@ public class CreateActicity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        userModel = new UserModel();
+        userModel = new CUserModel();
         mAuth = FirebaseAuth.getInstance();
 
         btnDoubleCk = findViewById(R.id.btn_doubleck);
         editTextName = findViewById(R.id.name);
-        editTextId = findViewById(R.id.id);
         editTextPassword = findViewById(R.id.password);
         btnCreate = findViewById(R.id.btn_login);
         editTextPasswordCk = findViewById(R.id.password_ck);
@@ -89,11 +87,12 @@ public class CreateActicity extends AppCompatActivity {
             @Override
             public void onClick( View view ) {
 
-                if (!TextUtils.isEmpty(editTextId.getText().toString())) {
+                if (!TextUtils.isEmpty(editTextEmail.getText().toString())) {
                     final ProgressDialog progressDialog = new ProgressDialog(CreateActicity.this, R.style.AlertDialogCustom);
                     progressDialog.setMessage("확인중...");
                     progressDialog.show();
 
+                    //다시
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         public void run() {
@@ -105,8 +104,8 @@ public class CreateActicity extends AppCompatActivity {
 
 
                 }  else {
-                editTextId.setError("아이디를 입력해주세요\n");
-                editTextId.requestFocus();
+                    editTextEmail.setError("아이디를 입력해주세요\n");
+                    editTextEmail.requestFocus();
             }
             }
         });
@@ -222,10 +221,6 @@ public class CreateActicity extends AppCompatActivity {
             editTextName.requestFocus();
             editTextName.setError("이름을 입력해주세요\n");
             return true;
-        } else if (TextUtils.isEmpty(editTextId.getText().toString())) {
-            editTextId.setError("아이디를 입력해주세요\n");
-            editTextId.requestFocus();
-            return true;
         } else if (TextUtils.isEmpty(editTextRRN.getText().toString())) {
             editTextRRN.setError("주민등록번호를 입력해주세요\n");
             editTextRRN.requestFocus();
@@ -262,13 +257,13 @@ public class CreateActicity extends AppCompatActivity {
         Log.v("로그", "샌드");
 
         if (isValidEmail(editTextEmail.getText().toString()) && isValidPasswd(editTextPassword.getText().toString())) {
-            userModel.createUser(editTextId.getText().toString(), editTextName.getText().toString(),
+            userModel.createUser(editTextName.getText().toString(),
                     editTextPassword.getText().toString(), editTextEmail.getText().toString(),
                     editTextPhone.getText().toString(), editTextRRN.getText().toString(),
                     editTextRRN2.getText().toString());
 
 
-            mAuth.createUserWithEmailAndPassword(editTextId.getText().toString(), editTextPassword.getText().toString())
+            mAuth.createUserWithEmailAndPassword(editTextEmail.getText().toString(), editTextPassword.getText().toString())
                     .addOnCompleteListener(new OnCompleteListener <AuthResult>() {
                         @Override
                         public void onComplete( @NonNull Task <AuthResult> task ) {
@@ -285,7 +280,7 @@ public class CreateActicity extends AppCompatActivity {
                         }
                     });
 
-            Toast.makeText(getApplicationContext(), "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getApplicationContext(), "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(CreateActicity.this,
                     "정보 사항을 다시 확인하세요",

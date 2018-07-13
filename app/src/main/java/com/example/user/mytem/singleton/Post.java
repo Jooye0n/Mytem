@@ -4,7 +4,10 @@ public class Post {
 
     private String title;//제품명
     private String contents;//상세설명
-    private int price;//첫 게시 가격
+    private int price;//일반소비자가
+    private int price2;//일반소비자가
+    private int priceA;//일반소비자가
+    private int priceB;//일반소비자가
     private String url;//사진
     private int number;//재고
     private String AuthorUid = "관리자";
@@ -26,8 +29,16 @@ public class Post {
         return price;
     }
 
-    public String getUrl() {
-        return url;
+    public int getPrice2() {
+        return price2;
+    }
+
+    public int getPriceA() {
+        return priceA;
+    }
+
+    public int getPriceB() {
+        return priceB;
     }
 
     public int getNumber() {
@@ -43,13 +54,16 @@ public class Post {
     }
 
 
-    public Post( String title, int number, int price, String contents, String url, String detail) {
+    public Post( String title, int number, int price, int price2, int priceA, int priceB, String contents, String url, String detail) {
        // this.author = author;
         this.title = title;
         this.contents = contents;
         this.number = number;
         this.url = url;
         this.price = price;
+        this.price2 = price2;
+        this.priceA = priceA;
+        this.priceB = priceB;
         this.detail = detail;
     }
 
@@ -60,8 +74,8 @@ public class Post {
 //        return dateFormat.format(date);
 //    }
 
-    public static Post newPost( String title, int number, int price, String contents, String url, String detail) {
-        return new Post(title, number, price, contents, url, detail);
+    public static Post newPost( String title, int number, int price, int price2, int priceA, int priceB, String contents, String url, String detail) {
+        return new Post(title, number, price, price2, priceA, priceB, contents, url, detail);
     }
 
 

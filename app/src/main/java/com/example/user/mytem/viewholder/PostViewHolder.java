@@ -21,7 +21,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.user.mytem.R;
 import com.example.user.mytem.ui.BoardTabFragment;
 import com.example.user.mytem.ui.BoardWriteActivity;
-import com.example.user.mytem.ui.DetailDialogFragment;
+import com.example.user.mytem.ui.PostDetailDialogFragment;
 import com.example.user.mytem.singleton.Post;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -38,7 +38,10 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     private TextView titleTextView;
     private TextView contentsTextView;
     static private ImageView urlImageView;
-    private TextView priceTextView;//게시가격
+    private TextView priceTextView;//일반소비자
+    private TextView price2TextView;
+    private TextView priceATextView;
+    private TextView priceBTextView;
     private TextView numberTextView;//재고
 
     private ImageView dropdownButton;
@@ -56,7 +59,10 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         titleTextView = (TextView) itemView.findViewById(R.id.post_title_text_view);
         contentsTextView = (TextView) itemView.findViewById(R.id.post_contents_text_view);
         numberTextView = (TextView) itemView.findViewById(R.id.post_comment_number);//재고
-        priceTextView = (TextView) itemView.findViewById(R.id.price_textView1);//게시가격
+        priceTextView = (TextView) itemView.findViewById(R.id.price_textView1);//소비자가
+        price2TextView = (TextView) itemView.findViewById(R.id.price_textView2);
+        priceATextView = itemView.findViewById(R.id.price_textView3);
+        priceBTextView = itemView.findViewById(R.id.price_textView4);
         dropdownButton = (ImageView) itemView.findViewById(R.id.dropdown_button);//수정삭제
         urlImageView = itemView.findViewById(R.id.imageButton);//사진
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -108,6 +114,9 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
                             intent.putExtra("BOARD_DETAIL",post.getDetail());
                             intent.putExtra("BOARD_NUM",post.getNumber());
                             intent.putExtra("BOARD_PRICE",post.getPrice());
+                            intent.putExtra("BOARD_PRICE2", post.getPrice2());
+                            intent.putExtra("BOARD_PRICEA", post.getPriceA());
+                            intent.putExtra("BOARD_PRICEB", post.getPriceB());
                             context.startActivity(intent);
                         }
                         return true;
@@ -127,8 +136,9 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
         Bundle arguments = new Bundle();
         arguments.putString("POST_DATAIL", detail);
+        arguments.putString("POST_TITLE",post.getTitle());
 
-        DetailDialogFragment dialog = new DetailDialogFragment();
+        PostDetailDialogFragment dialog = new PostDetailDialogFragment();
         dialog.setArguments(arguments);
 
         dialog.show(fragmentManager, "POST_DATAIL");
@@ -139,6 +149,9 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         post = model;
         numberTextView.setText(String.valueOf(model.getNumber()));
         priceTextView.setText(String.valueOf(model.getPrice()));
+        price2TextView.setText(String.valueOf(model.getPrice2()));
+        priceATextView.setText(String.valueOf(model.getPriceA()));
+        priceBTextView.setText(String.valueOf(model.getPriceB()));
         this.dataRefKey = postKey;
         this.postType = postType;
         this.detail = model.getDetail();
