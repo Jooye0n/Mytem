@@ -21,6 +21,25 @@ public class PostModel {
         this.onDataChangedListener = listener;
     }
 
+    public PostModel() {
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("임시").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (onDataChangedListener != null) {
+                    onDataChangedListener.onDataChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+        });
+
+    }
+
     public PostModel(String postType) {
         databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child(postType).addValueEventListener(new ValueEventListener() {

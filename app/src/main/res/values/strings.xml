@@ -22,7 +22,7 @@
     <string name="create">회원가입</string>
     <string name="name_h">이름 입력</string>
     <string name="id_h">아이디 입력</string>
-    <string name="pw_h">4자리 이상 입력</string>
+    <string name="pw_h">6자리 이상 입력</string>
     <string name="pwck_h">비밀번호 한번 더 입력</string>
     <string name="rrn_h">앞의 7자리만 입력</string>
     <string name="phone_h">핸드폰 번호 입력</string>

@@ -61,15 +61,15 @@ public class CreateActicity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         btnDoubleCk = findViewById(R.id.btn_doubleck);
-        editTextName = findViewById(R.id.name);
-        editTextPassword = findViewById(R.id.password);
-        btnCreate = findViewById(R.id.btn_login);
-        editTextPasswordCk = findViewById(R.id.password_ck);
+        editTextName = findViewById(R.id.nameM);
+        editTextPassword = findViewById(R.id.passwordM);
+        btnCreate = findViewById(R.id.btn_createM);
+        editTextPasswordCk = findViewById(R.id.passwordM_ck);
         editTextRRN = findViewById(R.id.rrn);
         editTextRRN2 = findViewById(R.id.rrn2);
         btnDoubleCk = findViewById(R.id.btn_doubleck);
-        editTextEmail = findViewById(R.id.email);
-        editTextPhone = findViewById(R.id.phone);
+        editTextEmail = findViewById(R.id.emailM);
+        editTextPhone = findViewById(R.id.phoneM);
 
 
         btnCreate.setOnClickListener(new View.OnClickListener() {
@@ -126,8 +126,8 @@ public class CreateActicity extends AppCompatActivity {
                     editTextPassword.setTextColor(Color.BLACK);
                     editTextPasswordCk.setTextColor(Color.BLACK);
                 } else {
-                    editTextPassword.setTextColor(Color.parseColor("#9b1c1c"));
-                    editTextPasswordCk.setTextColor(Color.parseColor("#9b1c1c"));
+                    editTextPassword.setTextColor(Color.parseColor("#b42424"));
+                    editTextPasswordCk.setTextColor(Color.parseColor("#b42424"));
                 }
             }
             @Override
@@ -165,27 +165,6 @@ public class CreateActicity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
-                    }
-                });
-
-        mAuth.signInWithEmailAndPassword(editTextEmail.getText().toString(), editTextPassword.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(CreateActicity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
-
-                        // ...
                     }
                 });
     }

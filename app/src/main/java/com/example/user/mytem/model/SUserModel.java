@@ -2,12 +2,19 @@ package com.example.user.mytem.model;
 
 import android.util.Log;
 
+import com.example.user.mytem.R;
 import com.example.user.mytem.singleton.CUser;
+import com.example.user.mytem.singleton.Post;
 import com.example.user.mytem.singleton.SUser;
+import com.example.user.mytem.ui.ManagerWriteActivity;
+import com.example.user.mytem.viewholder.ManagerPostViewHolder;
+import com.example.user.mytem.viewholder.PostViewHolder;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -16,6 +23,12 @@ import java.util.List;
 public class SUserModel {
     private DatabaseReference databaseReference;
     private List<SUser> mUsers = new ArrayList<>();
+    private String postType = "SUser";
+    private OnDataChangedListener onDataChangedListener;
+
+    public void setOnDataChangedListener(OnDataChangedListener listener) {
+        this.onDataChangedListener = listener;
+    }
 
 
     public void addUserModel( SUser user) {
@@ -49,10 +62,31 @@ public class SUserModel {
 
     }
 
-
-    public void createUser(String name, String position, String email, String phone, String pw) {
-        Log.v("로그cccc","로그");
-        databaseReference.child("SUser").
+    // String title, int number, int price, int price2, int priceA, int priceB, String contents, String url, String detail
+    public void writePost(String name, String position, String email, String phone, String pw) {
+        databaseReference.child(postType).
                 push().setValue(SUser.newSUer(name, position, email, phone, pw));
+    }//post형태의 객체를 등록
+
+    public void correctPost(String name, String position, String email, String phone, String pw, String postKey) {
+        databaseReference.child(postType).
+                child(postKey).setValue(SUser.newSUer(name, position, email, phone, pw));
+
+    }//수정
+
+    //원하는 데이터를 얻기 위해 데이터베이스에 정보를 요청(Request)하는 것=쿼리
+    public FirebaseRecyclerAdapter setAdapter( Query query, final String postType) {
+
+        FirebaseRecyclerAdapter<SUser, ManagerPostViewHolder> adapter = new FirebaseRecyclerAdapter<SUser, ManagerPostViewHolder>(SUser.class, R.layout.list_item_manager,
+                ManagerPostViewHolder.class, query) {
+            @Override
+            protected void populateViewHolder( ManagerPostViewHolder viewHolder, SUser model, int position ) {
+                DatabaseReference postRef = getRef(position);//postion에 해당하는 ref를 가져와서
+                String postKey = postRef.getKey();//key를 찾은후
+                viewHolder.bindPost(model, postKey);//post를 하나씩 할당
+            }
+
+        };
+        return adapter;
     }
 }

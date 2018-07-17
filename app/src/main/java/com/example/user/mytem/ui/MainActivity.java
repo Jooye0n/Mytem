@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.user.mytem.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction().add(R.id.fragment_board_container, new BoardTabFragment()).commit();
+        fm.beginTransaction().add(R.id.fragment_board_container, new BoardTabFragment()).commit();//지금 있는 메인의 fragment에 새로운 BoardTabfragment추가한다.
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -94,9 +95,10 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_logout) {//로그아웃
             FirebaseAuth user = FirebaseAuth.getInstance();
-            if(user!=null) {///로그인 된 상태라면 //확인절차
+            FirebaseUser user1 = user.getCurrentUser();
+            if(user1!=null) {///로그인 된 상태라면 //확인절차
                 FirebaseAuth.getInstance().signOut();
-                Toast.makeText(this, "로그아웃 되었습니다.",
+                Toast.makeText(this,user1.getEmail()+"님이 로그아웃 되었습니다.",
                         Toast.LENGTH_SHORT).show();
             }
         } else if (id == R.id.nav_customer_management) {

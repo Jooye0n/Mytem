@@ -154,7 +154,9 @@ public class BoardWriteActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         board_spinner.setAdapter(adapter);
 
-        postModel = new PostModel((String) board_spinner.getSelectedItem());
+       //postModel = new PostModel((String) board_spinner.getSelectedItem());
+       // postModel = new PostModel(setPriceRange(Integer.parseInt(priceEditText.getText().toString())));
+        postModel = new PostModel();
 
 
         if (reWriteContents != null && reWriteTitle != null) {
@@ -181,24 +183,24 @@ public class BoardWriteActivity extends AppCompatActivity {
                 UploadTask uploadTask;
                 if(photoURI!=null){
 
-                    StorageReference riversRef = storageRef.child("albumImages/"+photoURI.getLastPathSegment());
+                    //StorageReference riversRef = storageRef.child("albumImages/"+photoURI.getLastPathSegment());
                     photo = true;
-                    uploadTask = riversRef.putFile(photoURI);
+                   // uploadTask = riversRef.putFile(photoURI);
                     // temp_uri = uploadTask.getSnapshot().getDownloadUrl();
                     // Register observers to listen for when the download is done or if it fails
-                    uploadTask.addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception exception) {
-                            // Handle unsuccessful uploads
-                        }
-                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-                            //temp_uri = taskSnapshot.getDownloadUrl();
-                            //Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                        }
-                    });
+//                    uploadTask.addOnFailureListener(new OnFailureListener() {
+//                        @Override
+//                        public void onFailure(@NonNull Exception exception) {
+//                            // Handle unsuccessful uploads
+//                        }
+//                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                        @Override
+//                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                            // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+//                            //temp_uri = taskSnapshot.getDownloadUrl();
+//                            //Uri downloadUrl = taskSnapshot.getDownloadUrl();
+//                        }
+//                    });
                 }
                 else{
                     photo = false;
@@ -300,9 +302,9 @@ public class BoardWriteActivity extends AppCompatActivity {
 //            return;
 //        }
         Intent intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
-        String url = "tmp_" + String.valueOf(System.currentTimeMillis()) + "jpg";//바꿔야될듯 -> 확인하기(파일명 시간아니다)
-        photoURI = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), url));
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+        //String url = "tmp_" + String.valueOf(System.currentTimeMillis()) + "jpg";//바꿔야될듯 -> 확인하기(파일명 시간아니다)
+       // photoURI = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), url));
+        //intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
         startActivityForResult(intent, FROM_CAMERA);
     }
 
@@ -391,7 +393,6 @@ public class BoardWriteActivity extends AppCompatActivity {
                         //1. 사진을 storage에 저장하고 그 url을 알아내야함
                         String filename = titleEditText.getText().toString();
                         StorageReference storageRef = storage.getReferenceFromUrl("gs://mytem-c93ac.appspot.com").child("albumImages/" + filename+".jpg");
-
                         UploadTask uploadTask;
 
                         Uri file = null;
@@ -402,6 +403,7 @@ public class BoardWriteActivity extends AppCompatActivity {
                             //앨범선택
                             file = photoURI;
                         }
+
                         uploadTask = storageRef.putFile(file);
                         final ProgressDialog progressDialog = new ProgressDialog(BoardWriteActivity.this,R.style.AlertDialogCustom);
                         progressDialog.setMessage("업로드중...");
@@ -492,7 +494,7 @@ public class BoardWriteActivity extends AppCompatActivity {
 
 
     public void sendPost() {
-        if (rewrite) {//게시글 수정
+        if (rewrite) {//게시글 수정->사진수정 추가해야한다.
             postModel.correctPost(setPriceRange(Integer.parseInt(priceEditText.getText().toString())),"url", titleEditText.getText().toString(), contentsEditText.getText().toString(),
                     postKey, Integer.parseInt(numEditText.getText().toString()),
                     Integer.parseInt(priceEditText.getText().toString()), Integer.parseInt(price2EditText.getText().toString()),Integer.parseInt(priceAEditText.getText().toString()),Integer.parseInt(priceBEditText.getText().toString()),detailEditText.getText().toString());

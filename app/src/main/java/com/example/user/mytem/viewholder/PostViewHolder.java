@@ -61,8 +61,8 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         numberTextView = (TextView) itemView.findViewById(R.id.post_comment_number);//재고
         priceTextView = (TextView) itemView.findViewById(R.id.price_textView1);//소비자가
         price2TextView = (TextView) itemView.findViewById(R.id.price_textView2);
-        priceATextView = itemView.findViewById(R.id.price_textView3);
-        priceBTextView = itemView.findViewById(R.id.price_textView4);
+        priceATextView = itemView.findViewById(R.id.price_textView4);
+        priceBTextView = itemView.findViewById(R.id.price_textView3);
         dropdownButton = (ImageView) itemView.findViewById(R.id.dropdown_button);//수정삭제
         urlImageView = itemView.findViewById(R.id.imageButton);//사진
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -92,12 +92,12 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
                                 desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
-                                        // File deleted successfully
+                                        Log.v("사진삭제성공",titleTextView.getText().toString()+".jpg");
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception exception) {
-                                        // Uh-oh, an error occurred!
+                                        Log.v("사진삭제실패",titleTextView.getText().toString()+".jpg");
                                     }
                                 });
 
@@ -167,15 +167,11 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         //FirebaseDatabase database = FirebaseDatabase.getInstance();
         //DatabaseReference mDatabase = database.getReference();
 
-                // image loading
-                StorageReference mStorageRef;
-                mStorageRef = FirebaseStorage.getInstance().getReference().child("albumImages/" +titleTextView.getText().toString()+ ".jpg");
-                Log.v("로그",titleTextView.getText().toString());//정상출력됨
-                Glide   .with(context)
-                        .using(new FirebaseImageLoader())
-                        .load(mStorageRef)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .into(urlImageView);//error발생
+        // image loading
+        StorageReference mStorageRef;
+        mStorageRef = FirebaseStorage.getInstance().getReference().child("albumImages/" +titleTextView.getText().toString()+ ".jpg");
+        Log.v("로그",titleTextView.getText().toString());//정상출력됨
+        Glide.with(context).using(new FirebaseImageLoader()).load(mStorageRef).diskCacheStrategy(DiskCacheStrategy.ALL).into(urlImageView);
 
 
 

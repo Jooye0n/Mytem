@@ -16,10 +16,15 @@ import java.util.List;
 public class CUserModel {
     private DatabaseReference databaseReference;
     private List<CUser> mUsers = new ArrayList <>();
+    private OnDataChangedListener onDataChangedListener;
 
 
     public void addUserModel( CUser user) {
         mUsers.add(user);
+    }
+
+    public void setOnDataChangedListener(OnDataChangedListener listener) {
+        this.onDataChangedListener = listener;
     }
 
     public CUserModel() {
@@ -48,6 +53,24 @@ public class CUserModel {
             }
         });
 
+    }
+
+    public CUserModel(String postType) {
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child(postType).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (onDataChangedListener != null) {
+                    onDataChangedListener.onDataChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+        });
     }
 
 

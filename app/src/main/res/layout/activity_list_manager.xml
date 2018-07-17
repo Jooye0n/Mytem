@@ -5,7 +5,10 @@
     android:id="@+id/popup_window"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout2"
         android:layout_width="match_parent"
@@ -31,16 +34,12 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/comment_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="499dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout2"
-        tools:ignore="MissingConstraints" />
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/board_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#f1f1f1" />
 
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

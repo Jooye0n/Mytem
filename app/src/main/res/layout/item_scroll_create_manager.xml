@@ -21,22 +21,24 @@
             android:text="@string/email"
             android:textColor="@color/colorDark"
             android:textSize="18sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/email"
+            app:layout_constraintBaseline_toBaselineOf="@+id/emailM"
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/emailM"
             android:layout_width="193dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="24dp"
             android:ems="10"
             android:hint="@string/email_h"
             android:inputType="textEmailAddress"
             android:textColor="@color/colorDark"
             android:textColorHint="@color/colorAccent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_doubleckM"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/textView12"
-            app:layout_constraintTop_toBottomOf="@+id/name2" />
+            app:layout_constraintTop_toBottomOf="@+id/levelM" />
 
         <TextView
             android:id="@+id/textView8"
@@ -46,7 +48,7 @@
             android:text="직급"
             android:textColor="@color/colorDark"
             android:textSize="18sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/name2"
+            app:layout_constraintBaseline_toBaselineOf="@+id/levelM"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -57,7 +59,7 @@
             android:text="@string/phone"
             android:textColor="@color/colorDark"
             android:textSize="18sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/phone"
+            app:layout_constraintBaseline_toBaselineOf="@+id/phoneM"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -68,7 +70,7 @@
             android:text="@string/pwck"
             android:textColor="@color/colorDark"
             android:textSize="18sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/password_ck"
+            app:layout_constraintBaseline_toBaselineOf="@+id/passwordM_ck"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -79,7 +81,7 @@
             android:text="@string/name"
             android:textColor="@color/colorDark"
             android:textSize="18sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/name"
+            app:layout_constraintBaseline_toBaselineOf="@+id/nameM"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -90,11 +92,11 @@
             android:text="@string/pw"
             android:textColor="@color/colorDark"
             android:textSize="18sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/password"
+            app:layout_constraintBaseline_toBaselineOf="@+id/passwordM"
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
-            android:id="@+id/name2"
+            android:id="@+id/levelM"
             android:layout_width="193dp"
             android:layout_height="42dp"
             android:layout_marginEnd="52dp"
@@ -108,10 +110,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.918"
             app:layout_constraintStart_toEndOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
+            app:layout_constraintTop_toBottomOf="@+id/nameM" />
 
         <EditText
-            android:id="@+id/name"
+            android:id="@+id/nameM"
             android:layout_width="193dp"
             android:layout_height="42dp"
             android:layout_marginEnd="40dp"
@@ -128,7 +130,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/passwordM"
             android:layout_width="193dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="40dp"
@@ -141,10 +143,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.698"
             app:layout_constraintStart_toEndOf="@+id/textView7"
-            app:layout_constraintTop_toBottomOf="@+id/email" />
+            app:layout_constraintTop_toBottomOf="@+id/emailM" />
 
         <EditText
-            android:id="@+id/password_ck"
+            android:id="@+id/passwordM_ck"
             android:layout_width="193dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="40dp"
@@ -157,10 +159,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.75"
             app:layout_constraintStart_toEndOf="@+id/textView9"
-            app:layout_constraintTop_toBottomOf="@+id/password" />
+            app:layout_constraintTop_toBottomOf="@+id/passwordM" />
 
         <EditText
-            android:id="@+id/phone"
+            android:id="@+id/phoneM"
             android:layout_width="193dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="40dp"
@@ -174,10 +176,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.718"
             app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/password_ck" />
+            app:layout_constraintTop_toBottomOf="@+id/passwordM_ck" />
 
         <Button
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_createM"
             android:layout_width="103dp"
             android:layout_height="44dp"
             android:layout_marginBottom="20dp"
@@ -187,17 +189,17 @@
             android:text="@string/join"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phone"
+            app:layout_constraintTop_toBottomOf="@+id/phoneM"
             app:layout_constraintVertical_bias="0.0"
             tools:ignore="MissingConstraints" />
 
         <Button
-            android:id="@+id/btn_doubleck"
+            android:id="@+id/btn_doubleckM"
             android:layout_width="52dp"
             android:layout_height="53dp"
             android:layout_marginTop="152dp"
             android:text="@string/doubleck"
-            app:layout_constraintStart_toEndOf="@+id/email"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>

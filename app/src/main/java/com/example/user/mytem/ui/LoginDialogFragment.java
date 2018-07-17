@@ -17,7 +17,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.user.mytem.R;
-import com.example.user.mytem.singleton.CUser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -50,8 +49,8 @@ public class LoginDialogFragment extends DialogFragment {
 
 
         id = view.findViewById(R.id.id);
-        pw = view.findViewById(R.id.password);
-        login = view.findViewById(R.id.btn_login);
+        pw = view.findViewById(R.id.passwordM);
+        login = view.findViewById(R.id.btn_createM);
         create = view.findViewById(R.id.btn_request);
 
 
@@ -171,7 +170,8 @@ public class LoginDialogFragment extends DialogFragment {
 //                    user.getEmail(), user.isEmailVerified()));
 //            mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
 
-           // dismiss();
+            dismiss();
+            Toast.makeText(getActivity(), user.getEmail()+"님이 로그인 되었습니다.", Toast.LENGTH_SHORT).show();
 //            findViewById(R.id.verify_email_button).setEnabled(!user.isEmailVerified());
 
         } else {//로그인 실패시의 UI업데이트

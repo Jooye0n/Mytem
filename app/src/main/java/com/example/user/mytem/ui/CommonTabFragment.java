@@ -64,7 +64,7 @@ public abstract class CommonTabFragment extends Fragment {
         searchView.setQueryHint("제목으로 검색");
 
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {//검색 기능
             @Override
             public boolean onQueryTextSubmit(String s) {
                 Query query = getRef().orderByChild("title").startAt(s).endAt(s + "\uf8ff");
