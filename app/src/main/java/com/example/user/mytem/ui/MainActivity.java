@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity
 
     private ActionBar actionBar;
     private TextView navHeaderTextView;
-    //private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     private BackPressCloseHandler backPressCloseHandler;
 
@@ -31,9 +30,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        navHeaderTextView = findViewById(R.id.nav_sub_header);
-        //navHeaderTextView.setText(user.getDisplayName());
 
+        navHeaderTextView = findViewById(R.id.nav_sub_header);
 
         final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -100,6 +98,7 @@ public class MainActivity extends AppCompatActivity
                 FirebaseAuth.getInstance().signOut();
                 Toast.makeText(this,user1.getEmail()+"님이 로그아웃 되었습니다.",
                         Toast.LENGTH_SHORT).show();
+
             }
         } else if (id == R.id.nav_customer_management) {
             Intent intent = new Intent(this,NavCustomerActivity.class);

@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.mytem.R;
@@ -166,13 +167,18 @@ public class LoginDialogFragment extends DialogFragment {
     private void updateUI(FirebaseUser user) {
         hideProgressDialog();
         if (user != null) {//로그인 성공 후의 UI업데이트
-//            mStatusTextView.setText(getString(R.string.emailpassword_status_fmt,
-//                    user.getEmail(), user.isEmailVerified()));
-//            mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
 
-            dismiss();
+            dismiss();//로그인 다이얼로그 사라지기
             Toast.makeText(getActivity(), user.getEmail()+"님이 로그인 되었습니다.", Toast.LENGTH_SHORT).show();
-//            findViewById(R.id.verify_email_button).setEnabled(!user.isEmailVerified());
+
+            //private FirebaseAuth mAuth;
+            mAuth = FirebaseAuth.getInstance();
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+
+            TextView navHeaderTextView = getActivity().findViewById(R.id.nav_sub_header);
+            navHeaderTextView.setText(currentUser.getEmail());//네비게이션 바의 헤더 부분 로그인 완료 시 UIupdate
+            TextView navHead = getActivity().findViewById(R.id.nav_sub_header2);
+            navHead.setText(currentUser.getDisplayName()+"님");
 
         } else {//로그인 실패시의 UI업데이트
 //            mStatusTextView.setText(R.string.signed_out);

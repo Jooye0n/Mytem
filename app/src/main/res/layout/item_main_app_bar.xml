@@ -9,14 +9,16 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:elevation="0dp"
+        android:background="@null">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_alignParentTop="true"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:theme="@style/AppTheme.NoActionBar"
             app:elevation="0dp">
 
             <TextView
@@ -24,8 +26,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/campton_lightdemo"
+                android:layout_gravity="center"
                 android:text="@string/app_name"
-                android:textSize="20sp"
+                android:textSize="25dp"
                 android:textStyle="bold" />
 
         </android.support.v7.widget.Toolbar>

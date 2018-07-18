@@ -21,13 +21,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
+
 public class BoardHomeFragment extends CommonTabFragment implements ViewPager.OnPageChangeListener{
 
     private RecyclerView recyclerView;
     private LinearLayout indicator;
     private int mDotCount;
     private LinearLayout[] mDots;
-    private ViewPager viewPager;
+    private AutoScrollViewPager viewPager;
     private List<String> listItem = new ArrayList<>();
     private HomeFragmentAdapter homeFragmentAdapter;
 
@@ -47,8 +49,10 @@ public class BoardHomeFragment extends CommonTabFragment implements ViewPager.On
         recyclerView.setLayoutManager(linearLayoutManager);
 
         indicator = (LinearLayout) view.findViewById(R.id.indicators);
-        viewPager = (ViewPager) view.findViewById(R.id.viewPager_itemList);
+        viewPager = (AutoScrollViewPager) view.findViewById(R.id.viewPager_itemList);
 
+        viewPager.setInterval(3000); // 페이지 넘어갈 시간 간격 설정
+        viewPager.startAutoScroll(); //Auto Scroll 시작
         setData(getContext());
 
         return view;

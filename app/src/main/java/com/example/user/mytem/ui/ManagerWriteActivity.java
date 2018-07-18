@@ -64,6 +64,11 @@ public class ManagerWriteActivity extends AppCompatActivity {
         actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true); //커스터마이징 하기 위해 필요
         actionBar.setDisplayShowTitleEnabled(false);
+        try {
+            rewrite = getIntent().getExtras().getBoolean("POST_REWRITE");
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
 
         editTextName = findViewById(R.id.nameM);
         editTextPostion = findViewById(R.id.levelM);
@@ -76,7 +81,7 @@ public class ManagerWriteActivity extends AppCompatActivity {
 
         sUserModel = new SUserModel();
         mAuth = FirebaseAuth.getInstance();
-        rewrite = getIntent().getExtras().getBoolean("POST_REWRITE");
+
 
         if (rewrite) {//수정하는경우
             editTextName.setText(getIntent().getExtras().getString("POST_NAME"));
@@ -86,7 +91,6 @@ public class ManagerWriteActivity extends AppCompatActivity {
             editTextPassword.setText(getIntent().getExtras().getString("POST_PW"));
             editTextPasswordCk.setText(getIntent().getExtras().getString("POST_PW"));
             postKey = getIntent().getExtras().getString("CORRECT_POST_KEY");
-            changeMan = true;
 
             editTextEmail.setTextColor(Color.parseColor("#a6a6a6"));
             editTextEmail.setFocusable(false);
@@ -99,7 +103,7 @@ public class ManagerWriteActivity extends AppCompatActivity {
             editTextPasswordCk.setFocusable(false);
             editTextPasswordCk.setClickable(false);//비밀번호도 변경 불가하다.
 
-            btnDoubleCk.setVisibility(View.GONE);
+            btnDoubleCk.setVisibility(View.INVISIBLE);
 
         }
 

@@ -7,7 +7,6 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/board_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#f1f1f1" />
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

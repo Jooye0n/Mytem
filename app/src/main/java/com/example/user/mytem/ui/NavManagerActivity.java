@@ -152,8 +152,8 @@ public class NavManagerActivity extends AppCompatActivity {
             }
             case R.id.menu_write: {
                 Intent intent = new Intent(this, ManagerWriteActivity.class);
-           //     intent.putExtra("CURRENT_BOARD_TAB", BoardTabFragment.getCurrentTab()-1);
-                startActivity(intent);
+                intent.putExtra("POST_REWRITE", false);
+                startActivity(intent);//getIntent().getExtras().getBoolean("POST_REWRITE")
             }
         }
         return super.onOptionsItemSelected(item);

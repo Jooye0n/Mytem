@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/popup_window"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/appBarLayout2"
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
-        app:elevation="0dp"
-        android:background="@null">
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:elevation="0dp">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -29,19 +25,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="관리자"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:fontFamily="@font/campton_lightdemo"
+                android:text="구매목록"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
 
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/board_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#ffffff" />
-
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/imageButton2"
+        android:layout_width="144dp"
+        android:layout_height="143dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="104dp"
+        android:background="@drawable/top_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        android:visibility="gone"/>
 </android.support.constraint.ConstraintLayout>
