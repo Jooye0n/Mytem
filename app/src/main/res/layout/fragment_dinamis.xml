@@ -5,16 +5,18 @@
     style="@style/AppTheme.NoActionBar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/holo_blue_light"
+    android:background="#ffffff"
     android:orientation="vertical">
 
     <ImageView
         android:id="@+id/imageView12345"
         android:layout_width="379dp"
         android:layout_height="252dp"
-        app:srcCompat="@drawable/home1"
-        tools:layout_editor_absoluteX="3dp"
-        tools:layout_editor_absoluteY="0dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/home1" />
 
     <TextView
         android:id="@+id/text_view_detail_fragment"
@@ -26,6 +28,7 @@
         android:textSize="18dp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="186dp"
-        tools:layout_editor_absoluteY="167dp" />
+        tools:layout_editor_absoluteY="167dp"
+        tools:ignore="MissingConstraints" />
 
 </android.support.constraint.ConstraintLayout>

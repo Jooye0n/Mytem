@@ -42,21 +42,21 @@
         app:layout_constraintTop_toBottomOf="@+id/id" />
 
     <Button
-        android:id="@+id/btn_createM"
+        android:id="@+id/btn_request"
         android:layout_width="103dp"
         android:layout_height="40dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="80dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/shape_round"
-        android:text="@string/login"
+        android:text="@string/join"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordM"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/btn_request"
+        android:id="@+id/btn_createM"
         android:layout_width="101dp"
         android:layout_height="41dp"
         android:layout_marginBottom="8dp"
@@ -64,11 +64,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/shape_round"
-        android:text="@string/join"
+        android:text="@string/LOGIN"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.275"
-        app:layout_constraintStart_toEndOf="@+id/btn_createM"
+        app:layout_constraintStart_toEndOf="@+id/btn_request"
         app:layout_constraintTop_toBottomOf="@+id/passwordM"
         app:layout_constraintVertical_bias="0.0" />
 

@@ -27,7 +27,7 @@ public class PostDetailDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_commet_dialog,null);
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_detail_dialog,null);
 
         titleTextView = view.findViewById(R.id.common_detail_title);
         detailTextView = view.findViewById(R.id.comment_detail_text);

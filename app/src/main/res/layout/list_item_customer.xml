@@ -4,15 +4,27 @@
     android:id="@+id/fragment_review_content"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="20dp"
-    android:background="@drawable/customreviewbg"
+    android:layout_marginBottom="5dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginTop="5dp"
+    android:background="@drawable/customreviewbg2"
     android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/customer_mail_btn"
+        android:layout_width="21dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/mail" />
 
     <TextView
         android:id="@+id/customer_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_height="15dp"
         android:layout_marginStart="10dp"
         android:text="user name"
         android:textSize="12sp"
@@ -21,16 +33,36 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/customer_email"
-        android:layout_width="158dp"
+        android:id="@+id/customer_phone"
+        android:layout_width="199dp"
         android:layout_height="15dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
+        android:text="user phone"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customer_email" />
+
+    <TextView
+        android:id="@+id/customer_email"
+        android:layout_width="199dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="10dp"
         android:text="user email"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/customer_name" />
+
+    <ImageView
+        android:id="@+id/customer_call_btn"
+        android:layout_width="22dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toStartOf="@+id/customer_mail_btn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/call" />
 
 
 

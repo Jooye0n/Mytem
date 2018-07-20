@@ -27,6 +27,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class CreateActicity extends AppCompatActivity {
 
@@ -57,7 +60,7 @@ public class CreateActicity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        userModel = new CUserModel();
+        userModel = new CUserModel("CUser");
         mAuth = FirebaseAuth.getInstance();
 
         btnDoubleCk = findViewById(R.id.btn_doubleck);
@@ -247,6 +250,13 @@ public class CreateActicity extends AppCompatActivity {
                         @Override
                         public void onComplete( @NonNull Task <AuthResult> task ) {
                             if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+
+                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                        .setDisplayName(editTextName.getText().toString()).build();
+                                user.updateProfile(profileUpdates);
+
+
                                 Log.d(TAG, "회원가입성공");
                                 Toast.makeText(CreateActicity.this, "회원가입성공.",
                                         Toast.LENGTH_SHORT).show();

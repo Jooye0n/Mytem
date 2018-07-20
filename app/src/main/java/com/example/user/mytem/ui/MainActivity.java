@@ -10,7 +10,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,8 +24,8 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActionBar actionBar;
-    private TextView navHeaderTextView;
-
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private TextView textView;
     private BackPressCloseHandler backPressCloseHandler;
 
     @Override
@@ -31,7 +33,17 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        navHeaderTextView = findViewById(R.id.nav_sub_header);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        View nav_header_view = navigationView.getHeaderView(0);
+
+        TextView nav_header_email_text = (TextView) nav_header_view.findViewById(R.id.nav_sub_header333);
+        TextView nav_header_name_text = (TextView) nav_header_view.findViewById(R.id.nav_sub_header2);
+
+        if(user != null) { //자동로그인 된 상태라면
+            nav_header_email_text.setText(user.getEmail());
+            nav_header_name_text.setText(user.getDisplayName());//표시해준다
+        }
 
         final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -50,9 +62,6 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fm = getSupportFragmentManager();
         fm.beginTransaction().add(R.id.fragment_board_container, new BoardTabFragment()).commit();//지금 있는 메인의 fragment에 새로운 BoardTabfragment추가한다.
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
         backPressCloseHandler = new BackPressCloseHandler(this);
     }
 
@@ -66,7 +75,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected( MenuItem item ) {
@@ -77,7 +85,6 @@ public class MainActivity extends AppCompatActivity
             android.app.FragmentManager fragmentManager = getFragmentManager();
             LoginDialogFragment dialog = new LoginDialogFragment();
             dialog.show(fragmentManager, "LoginDialogFragment");
-            //결과 받는 인텐드 보내서 로그인 성공시 navHeaderTextView에 로그인한 user정보 업데이트
 
         } else if (id == R.id.nav_basket) {//장바구니
             Intent intent = new Intent(this, NavCartActicity.class);
@@ -96,9 +103,15 @@ public class MainActivity extends AppCompatActivity
             FirebaseUser user1 = user.getCurrentUser();
             if(user1!=null) {///로그인 된 상태라면 //확인절차
                 FirebaseAuth.getInstance().signOut();
-                Toast.makeText(this,user1.getEmail()+"님이 로그아웃 되었습니다.",
-                        Toast.LENGTH_SHORT).show();
 
+                NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+                View nav_header_view = navigationView.getHeaderView(0);
+                TextView nav_header_email_text = (TextView) nav_header_view.findViewById(R.id.nav_sub_header333);
+                TextView nav_header_name_text = (TextView) nav_header_view.findViewById(R.id.nav_sub_header2);
+                nav_header_email_text.setText("로그인이 필요한 서비스입니다.");
+                nav_header_name_text.setText("");
+
+                Toast.makeText(this,user1.getEmail()+"님이 로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
             }
         } else if (id == R.id.nav_customer_management) {
             Intent intent = new Intent(this,NavCustomerActivity.class);

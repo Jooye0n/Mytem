@@ -102,6 +102,7 @@ public class LoginDialogFragment extends DialogFragment {
                                     //            mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
                                     Log.d(TAG, "signInWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
+                                    Toast.makeText(getActivity(), user.getEmail()+"님이 로그인 되었습니다.", Toast.LENGTH_SHORT).show();
                                     updateUI(user);//로그인 성공 후의 UI업데이트
                                 } else {
                                     // If sign in fails, display a message to the user.
@@ -109,6 +110,7 @@ public class LoginDialogFragment extends DialogFragment {
                                     pw.setText("");
                                     id.setText("");
                                     Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                    Toast.makeText(getActivity(), "입력 사항을 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
                                     Toast.makeText(getActivity(), "로그인 실패",
                                             Toast.LENGTH_SHORT).show();
                                     updateUI(null);//로그인 실패시의 UI업데이트
@@ -169,13 +171,12 @@ public class LoginDialogFragment extends DialogFragment {
         if (user != null) {//로그인 성공 후의 UI업데이트
 
             dismiss();//로그인 다이얼로그 사라지기
-            Toast.makeText(getActivity(), user.getEmail()+"님이 로그인 되었습니다.", Toast.LENGTH_SHORT).show();
 
             //private FirebaseAuth mAuth;
             mAuth = FirebaseAuth.getInstance();
             FirebaseUser currentUser = mAuth.getCurrentUser();
 
-            TextView navHeaderTextView = getActivity().findViewById(R.id.nav_sub_header);
+            TextView navHeaderTextView = getActivity().findViewById(R.id.nav_sub_header333);
             navHeaderTextView.setText(currentUser.getEmail());//네비게이션 바의 헤더 부분 로그인 완료 시 UIupdate
             TextView navHead = getActivity().findViewById(R.id.nav_sub_header2);
             navHead.setText(currentUser.getDisplayName()+"님");

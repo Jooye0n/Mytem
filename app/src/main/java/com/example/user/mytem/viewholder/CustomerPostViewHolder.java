@@ -5,82 +5,41 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.user.mytem.R;
-import com.example.user.mytem.singleton.SUser;
-import com.example.user.mytem.ui.ManagerWriteActivity;
+import com.example.user.mytem.singleton.CUser;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-
-public class ManagerPostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+public class CustomerPostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
     private ImageView call;
     private ImageView mail;
-    private ImageButton dropdownButton;
     private TextView name;
     private TextView email;
     private TextView phone;
-    private TextView place;
     private Context context;
     private DatabaseReference mDatabase;
-    private SUser user;
     private String dataRefKey;
-    private String postType = "SUser";
+    private CUser user;
 
-    public ManagerPostViewHolder( View itemView ) {
+    public CustomerPostViewHolder( View itemView ) {
         super(itemView);
         context = itemView.getContext();
+        call = itemView.findViewById(R.id.customer_call_btn);
+        mail = itemView.findViewById(R.id.customer_mail_btn);
 
-        call = itemView.findViewById(R.id.call);
-        mail = itemView.findViewById(R.id.mail);
-        dropdownButton = itemView.findViewById(R.id.dropdown_button2);
-        name = itemView.findViewById(R.id.postManName);
-        email = itemView.findViewById(R.id.postManEmail);
-        phone = itemView.findViewById(R.id.postManPhone);
-        place = itemView.findViewById(R.id.postManPlace);
+        phone = itemView.findViewById(R.id.customer_phone);
+        name = itemView.findViewById(R.id.customer_name);
+        email = itemView.findViewById(R.id.customer_email);
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
-        dropdownButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PopupMenu popup = new PopupMenu(context, dropdownButton);
-                popup.getMenuInflater()
-                        .inflate(R.menu.popup_menu, popup.getMenu());
-
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    public boolean onMenuItemClick(MenuItem item) {
-                        if (item.getItemId() == R.id.popup_delete) {//////////////////////////////////////////////////삭제
-                            mDatabase.child(postType).child(dataRefKey).removeValue();//firebase에서 삭제
-
-
-                        } else if (item.getItemId() == R.id.popup_rewrite) {///////////////////////////////////////////수정
-                            Intent intent = new Intent(context, ManagerWriteActivity.class);
-                            intent.putExtra("POST_NAME", user.getMname());
-                            intent.putExtra("POST_PLACE", user.getMposition());
-                            intent.putExtra("CORRECT_POST_KEY", dataRefKey);
-                            intent.putExtra("POST_PHONE",user.getMphone());
-                            intent.putExtra("POST_EMAIL",user.getMemail());
-                            intent.putExtra("POST_PW",user.getMpassword());
-                            intent.putExtra("POST_REWRITE",true);
-                            context.startActivity(intent);
-                        }
-                        return true;
-                    }
-                });
-                popup.show();
-            }
-        });
 
         call.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +68,7 @@ public class ManagerPostViewHolder extends RecyclerView.ViewHolder implements Vi
                     intent.putExtra(Intent.EXTRA_SUBJECT, name.getText().toString()+"에게 보내는 메일");
                     intent.setPackage("com.google.android.gm");
                     if (intent.resolveActivity(context.getPackageManager())!=null)
-                       context.startActivity(intent);
+                        context.startActivity(intent);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -135,17 +94,12 @@ public class ManagerPostViewHolder extends RecyclerView.ViewHolder implements Vi
 //        ((Activity) context).overridePendingTransition(R.anim.slide_up_anim, R.anim.no_change);
     }
 
-    public void bindPost( final SUser user, String postKey) {
+    public void bindPost( final CUser user, String postKey) {
         this.user = user;
-        name.setText(String.valueOf(user.getMname()));
-        place.setText(String.valueOf(user.getMposition()));
-        phone.setText(String.valueOf(user.getMphone()));
-        email.setText(String.valueOf(user.getMemail()));
+        name.setText(String.valueOf(user.getUserName()));
+        email.setText(String.valueOf(user.getUemail()));
+        phone.setText(String.valueOf(user.getphone()));
         this.dataRefKey = postKey;
 
-//        int visibility = Objects.equals(user.getAuthorUid(), "관리자") ?
-//                View.VISIBLE : View.GONE;//댓글 단 사람이 삭제하려는 사람과 같으면 보인다->지우기
-
-//        dropdownButton.setVisibility(visibility);
     }
 }

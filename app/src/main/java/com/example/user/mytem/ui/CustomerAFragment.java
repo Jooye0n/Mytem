@@ -3,7 +3,7 @@ package com.example.user.mytem.ui;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class CustomerAFragment extends CommonTabFragment {
+public class CustomerAFragment extends CustomerCommonTabFragment {
 
     @Override
     public DatabaseReference getRef() {

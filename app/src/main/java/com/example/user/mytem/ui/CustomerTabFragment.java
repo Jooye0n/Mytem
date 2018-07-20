@@ -26,23 +26,21 @@ public class CustomerTabFragment extends Fragment {
     @Override
     public View onCreateView( LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         currentTab=0;
-        View view = inflater.inflate(R.layout.activity_list_customer, container, false);
+        View view = inflater.inflate(R.layout.fragment_customer, container, false);
 //        ((BoardActivity) getActivity()).setToolbarTitle("Board");
 
 //        HorizontalScrollView scrollingView = view.findViewById(R.id.scroll_view);
 //        scrollingView.setHorizontalScrollBarEnabled(false);
 
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.board_tab);
+        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.customer_tab);
         tabLayout.setupWithViewPager(mViewPager);
 
         tabLayout.addTab(tabLayout.newTab().setText("A"));
         tabLayout.addTab(tabLayout.newTab().setText("B"));
         tabLayout.addTab(tabLayout.newTab().setText("C"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-        tabLayout.setVerticalScrollBarEnabled(false);
 
-        mViewPager = (ViewPager) view.findViewById(R.id.board_view_pager);
+        mViewPager = (ViewPager) view.findViewById(R.id.customer_view_pager);
         CustomerTabPageAdapter customerTabPageAdapter = new CustomerTabPageAdapter(getFragmentManager(), tabLayout.getTabCount());
         mViewPager.setAdapter(customerTabPageAdapter);
 

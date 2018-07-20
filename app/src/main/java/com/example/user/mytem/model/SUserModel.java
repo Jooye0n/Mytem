@@ -1,14 +1,8 @@
 package com.example.user.mytem.model;
 
-import android.util.Log;
-
 import com.example.user.mytem.R;
-import com.example.user.mytem.singleton.CUser;
-import com.example.user.mytem.singleton.Post;
 import com.example.user.mytem.singleton.SUser;
-import com.example.user.mytem.ui.ManagerWriteActivity;
 import com.example.user.mytem.viewholder.ManagerPostViewHolder;
-import com.example.user.mytem.viewholder.PostViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,7 +31,7 @@ public class SUserModel {
 
     public SUserModel() {
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("SUser").addValueEventListener(new ValueEventListener() {
+        databaseReference.child(postType).addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange( DataSnapshot dataSnapshot ) {
