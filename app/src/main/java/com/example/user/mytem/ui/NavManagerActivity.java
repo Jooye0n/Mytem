@@ -2,10 +2,8 @@ package com.example.user.mytem.ui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,24 +11,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
 
 import com.example.user.mytem.R;
-import com.example.user.mytem.model.CUserModel;
 import com.example.user.mytem.model.OnDataChangedListener;
-import com.example.user.mytem.model.PostModel;
 import com.example.user.mytem.model.SUserModel;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-import java.util.zip.Inflater;
 
 public class NavManagerActivity extends AppCompatActivity {
 
@@ -38,9 +28,6 @@ public class NavManagerActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private RecyclerView recyclerView;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-
-    private ImageView call;
-    private ImageView mail;
 
 
     @Override
@@ -68,9 +55,6 @@ public class NavManagerActivity extends AppCompatActivity {
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         setAdapter(databaseReference.child("SUser"));
-
-         call = findViewById(R.id.call);
-         mail = findViewById(R.id.mail);
 
     }
 
@@ -158,24 +142,4 @@ public class NavManagerActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-//    public void onclick(View view) {
-//        Intent intent = null;
-//        switch (view.getId()) {
-//            case R.id.call:
-//                get
-//                intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "01051826165"));
-//                //Log.i("전화1",""+phone);
-//                break;
-//
-//            case R.id.mail:
-//                break;
-//        }
-//        try {
-//           // Log.i("전화",""+phone);
-//            startActivity(intent);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 }

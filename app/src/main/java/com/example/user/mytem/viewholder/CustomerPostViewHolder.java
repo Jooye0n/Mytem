@@ -20,26 +20,22 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class CustomerPostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-    private ImageView call;
-    private ImageView mail;
     private TextView name;
     private TextView email;
     private TextView phone;
     private Context context;
-    private DatabaseReference mDatabase;
     private String dataRefKey;
     private CUser user;
 
     public CustomerPostViewHolder( View itemView ) {
         super(itemView);
         context = itemView.getContext();
-        call = itemView.findViewById(R.id.customer_call_btn);
-        mail = itemView.findViewById(R.id.customer_mail_btn);
+        ImageView call = itemView.findViewById(R.id.customer_call_btn);
+        ImageView mail = itemView.findViewById(R.id.customer_mail_btn);
 
         phone = itemView.findViewById(R.id.customer_phone);
         name = itemView.findViewById(R.id.customer_name);
         email = itemView.findViewById(R.id.customer_email);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         call.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,11 +90,11 @@ public class CustomerPostViewHolder extends RecyclerView.ViewHolder implements V
 //        ((Activity) context).overridePendingTransition(R.anim.slide_up_anim, R.anim.no_change);
     }
 
-    public void bindPost( final CUser user, String postKey) {
-        this.user = user;
-        name.setText(String.valueOf(user.getUserName()));
-        email.setText(String.valueOf(user.getUemail()));
-        phone.setText(String.valueOf(user.getphone()));
+    public void bindPost( final CUser cuser, String postKey) {
+        this.user = cuser;
+        name.setText(String.valueOf(cuser.getUserName()));
+        email.setText(String.valueOf(cuser.getUemail()));
+        phone.setText(String.valueOf(cuser.getUphone()));
         this.dataRefKey = postKey;
 
     }

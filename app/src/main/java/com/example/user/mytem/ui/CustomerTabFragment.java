@@ -27,10 +27,6 @@ public class CustomerTabFragment extends Fragment {
     public View onCreateView( LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         currentTab=0;
         View view = inflater.inflate(R.layout.fragment_customer, container, false);
-//        ((BoardActivity) getActivity()).setToolbarTitle("Board");
-
-//        HorizontalScrollView scrollingView = view.findViewById(R.id.scroll_view);
-//        scrollingView.setHorizontalScrollBarEnabled(false);
 
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.customer_tab);
         tabLayout.setupWithViewPager(mViewPager);

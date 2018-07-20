@@ -27,8 +27,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class CreateActicity extends AppCompatActivity {
@@ -60,7 +58,7 @@ public class CreateActicity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        userModel = new CUserModel("CUser");
+        userModel = new CUserModel();
         mAuth = FirebaseAuth.getInstance();
 
         btnDoubleCk = findViewById(R.id.btn_doubleck);
@@ -172,6 +170,14 @@ public class CreateActicity extends AppCompatActivity {
                 });
     }
 
+    public void sendPost() {//userName, upassword, uemail, uphone, urrn, urrn2)
+            userModel.createUser(editTextName.getText().toString(),
+                    editTextPassword.getText().toString(), editTextEmail.getText().toString(),
+                    editTextPhone.getText().toString(), editTextRRN.getText().toString(),
+                    editTextRRN2.getText().toString());
+            Log.v("sendPost", editTextPhone.getText().toString());
+    }
+
     private void updateUI( FirebaseUser user) {
         if (user != null) {
 //            login.setVisibility(View.VISIBLE);
@@ -239,10 +245,7 @@ public class CreateActicity extends AppCompatActivity {
         Log.v("로그", "샌드");
 
         if (isValidEmail(editTextEmail.getText().toString()) && isValidPasswd(editTextPassword.getText().toString())) {
-            userModel.createUser(editTextName.getText().toString(),
-                    editTextPassword.getText().toString(), editTextEmail.getText().toString(),
-                    editTextPhone.getText().toString(), editTextRRN.getText().toString(),
-                    editTextRRN2.getText().toString());
+            sendPost();
 
 
             mAuth.createUserWithEmailAndPassword(editTextEmail.getText().toString(), editTextPassword.getText().toString())
@@ -251,11 +254,9 @@ public class CreateActicity extends AppCompatActivity {
                         public void onComplete( @NonNull Task <AuthResult> task ) {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
-
                                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                         .setDisplayName(editTextName.getText().toString()).build();
-                                user.updateProfile(profileUpdates);
-
+                                user.updateProfile(profileUpdates);//이름추가
 
                                 Log.d(TAG, "회원가입성공");
                                 Toast.makeText(CreateActicity.this, "회원가입성공.",

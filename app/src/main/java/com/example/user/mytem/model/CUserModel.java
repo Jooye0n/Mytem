@@ -4,11 +4,8 @@ import android.util.Log;
 
 import com.example.user.mytem.R;
 import com.example.user.mytem.singleton.CUser;
-import com.example.user.mytem.singleton.Post;
 import com.example.user.mytem.singleton.SUser;
 import com.example.user.mytem.viewholder.CustomerPostViewHolder;
-import com.example.user.mytem.viewholder.ManagerPostViewHolder;
-import com.example.user.mytem.viewholder.PostViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,7 +42,7 @@ public class CUserModel {
 
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     String pw = ds.getValue(CUser.class).getUpassword();
-                    String phone = ds.getValue(CUser.class).getphone();
+                    String phone = ds.getValue(CUser.class).getUphone();
                     String rrn = ds.getValue(CUser.class).getUrrn();
                     String rrn2 = ds.getValue(CUser.class).getUrrn2();
                     String name = ds.getValue(CUser.class).getUserName();
@@ -72,6 +69,7 @@ public class CUserModel {
                 if (onDataChangedListener != null) {
                     onDataChangedListener.onDataChanged();
                 }
+
             }
 
             @Override

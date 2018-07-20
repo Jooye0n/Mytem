@@ -121,18 +121,8 @@ public class ManagerPostViewHolder extends RecyclerView.ViewHolder implements Vi
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public void onClick(View v) {//////등록된 상품 하나를 선택한 경우->할게없다
-//        android.app.FragmentManager fragmentManager = ((Activity) context).getFragmentManager();
-//
-//        Bundle arguments = new Bundle();
-//        arguments.putString("POST_DATAIL", detail);
-//        arguments.putString("POST_TITLE",post.getTitle());
-//
-//        PostDetailDialogFragment dialog = new PostDetailDialogFragment();
-//        dialog.setArguments(arguments);
-//
-//        dialog.show(fragmentManager, "POST_DATAIL");
-//        ((Activity) context).overridePendingTransition(R.anim.slide_up_anim, R.anim.no_change);
+    public void onClick(View v) {
+        //////등록된 상품 하나를 선택한 경우->할게없다
     }
 
     public void bindPost( final SUser user, String postKey) {

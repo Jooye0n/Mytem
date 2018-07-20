@@ -15,6 +15,7 @@ public class NavCustomerActivity extends AppCompatActivity {
 
     private ActionBar actionBar;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

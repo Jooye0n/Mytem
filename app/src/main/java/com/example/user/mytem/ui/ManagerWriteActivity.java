@@ -50,7 +50,6 @@ public class ManagerWriteActivity extends AppCompatActivity {
 
     private SUserModel sUserModel;
     private FirebaseAuth mAuth;
-    private Boolean changeMan = false;
 
     @Override
     protected void onCreate( @Nullable Bundle savedInstanceState ) {

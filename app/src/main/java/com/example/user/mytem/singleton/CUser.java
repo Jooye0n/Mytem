@@ -31,7 +31,7 @@ public class CUser {//일반 user
         return uemail;
     }
 
-    public String getphone() {
+    public String getUphone() {
         return uphone;
     }
 

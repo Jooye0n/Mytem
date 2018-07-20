@@ -1,9 +1,7 @@
 package com.example.user.mytem.ui;
 
 import android.app.ProgressDialog;
-import android.content.ClipData;
 import android.content.Intent;
-import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,7 +15,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.user.mytem.R;
 import com.example.user.mytem.model.OnDataChangedListener;

@@ -1,7 +1,6 @@
 package com.example.user.mytem.ui;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -62,7 +61,7 @@ public abstract class CustomerCommonTabFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {//검색 기능
             @Override
             public boolean onQueryTextSubmit(String s) {
-                Query query = getRef().orderByChild("title").startAt(s).endAt(s + "\uf8ff");
+                Query query = getRef().orderByChild("userName").startAt(s).endAt(s + "\uf8ff");
                 setAdapter(query);
                 return true;
             }
@@ -90,15 +89,6 @@ public abstract class CustomerCommonTabFragment extends Fragment {
                 });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-//        if(item.getItemId() == R.id.menu_filter) {
-//            Intent intent = new Intent(getActivity(), BoardFilterActivity.class);
-//            startActivity(intent);
-//        }
-
-        return true;
-    }
 
     public void setAdapter(Query query) {
         showProgressDialog();
@@ -106,9 +96,6 @@ public abstract class CustomerCommonTabFragment extends Fragment {
         userModel.setOnDataChangedListener(new OnDataChangedListener() {
             @Override
             public void onDataChanged() {
-//                recyclerView.getLayoutManager().scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
-//                새글 작성시 스크롤 최상단으로 이동
-
                 progressDialog.dismiss();
             }
         });

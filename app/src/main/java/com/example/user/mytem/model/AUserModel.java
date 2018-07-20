@@ -31,7 +31,7 @@ public class AUserModel extends BUserModel {
 
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     String pw = ds.getValue(AUser.class).getUpassword();
-                    String phone = ds.getValue(AUser.class).getphone();
+                    String phone = ds.getValue(AUser.class).getUphone();
                     String rrn = ds.getValue(AUser.class).getUrrn();
                     String rrn2 = ds.getValue(AUser.class).getUrrn2();
                     String name = ds.getValue(AUser.class).getUserName();
