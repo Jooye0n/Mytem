@@ -11,12 +11,20 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.user.mytem.R;
 import com.example.user.mytem.model.OnDataChangedListener;
 import com.example.user.mytem.model.SUserModel;
+import com.example.user.mytem.viewholder.PostViewHolder;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -56,10 +64,11 @@ public class NavManagerActivity extends AppCompatActivity {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         setAdapter(databaseReference.child("SUser"));
 
+
     }
 
     @Override
-    public boolean onCreateOptionsMenu( Menu menu ) {///////////////////////////////////////////////검색 제대로 다시 구현하기
+    public boolean onCreateOptionsMenu( Menu menu ) {
 
 
         getMenuInflater().inflate(R.menu.board_tool_menu, menu) ;//inflate(R.menu.board_tool_menu, menu);
@@ -74,7 +83,7 @@ public class NavManagerActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextSubmit(String s) {
-                Query query = databaseReference.child("SUser").orderByChild("name").startAt(s).endAt(s + "\uf8ff");
+                Query query = databaseReference.child("SUser").orderByChild("mname").startAt(s).endAt(s + "\uf8ff");
                 setAdapter(query);
                 return true;
             }

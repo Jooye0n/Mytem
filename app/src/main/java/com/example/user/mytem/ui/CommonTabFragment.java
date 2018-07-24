@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import com.example.user.mytem.R;
 import com.example.user.mytem.model.OnDataChangedListener;
 import com.example.user.mytem.model.PostModel;
+import com.example.user.mytem.viewholder.PostViewHolder;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 
@@ -26,6 +27,7 @@ import com.google.firebase.database.Query;
 public abstract class CommonTabFragment extends Fragment {
     private RecyclerView recyclerView;
     private ProgressDialog progressDialog;
+
 
     @Nullable
     @Override
@@ -64,7 +66,7 @@ public abstract class CommonTabFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {//검색 기능
             @Override
             public boolean onQueryTextSubmit(String s) {
-                Query query = getRef().orderByChild("title").startAt(s).endAt(s + "\uf8ff");
+                Query query = getRef().orderByChild("title").startAt(s).endAt(s + "\uf8ff");//입력한 문자열로 시작하는 title의 child만 list로 나열
                 setAdapter(query);
                 return true;
             }
@@ -111,7 +113,7 @@ public abstract class CommonTabFragment extends Fragment {
         PostModel postModel = new PostModel(getPostType());
         postModel.setOnDataChangedListener(new OnDataChangedListener() {
             @Override
-            public void onDataChanged() {
+            public void onDataChanged() {//바뀔때마다 불린다.
 //                recyclerView.getLayoutManager().scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
 //                새글 작성시 스크롤 최상단으로 이동
 

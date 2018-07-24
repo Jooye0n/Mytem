@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:elevation="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_alignParentTop="true"
+            android:theme="@style/AppTheme.NoActionBar"
+            >
+
+            <TextView
+                android:id="@+id/toolbartext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/campton_lightdemo"
+                android:text="마이페이지"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="286dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        tools:layout_editor_absoluteX="29dp"
+        tools:ignore="MissingConstraints">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="121dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/colorAccent"
+            android:background="@drawable/customreviewbg">
+
+            <ImageView
+                android:id="@+id/diamond"
+                android:layout_width="91dp"
+                android:layout_height="87dp"
+                android:layout_marginStart="@dimen/start_margin_16dp"
+                android:layout_marginTop="@dimen/start_margin_16dp"
+                android:background="@drawable/nonselected_item"
+                android:padding="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/diamond" />
+
+            <TextView
+                android:id="@+id/textView31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/mypage_margin_176dp"
+                android:layout_marginTop="@dimen/start_margin_16dp"
+                android:text="ID"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="170dp"
+                android:layout_marginTop="8dp"
+                android:text="Lv."
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+            <TextView
+                android:id="@+id/textView33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="180dp"
+                android:layout_marginTop="8dp"
+                android:text="P"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
+            <TextView
+                android:id="@+id/mypage_p"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:text="mypage_p"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView33"
+                app:layout_constraintStart_toEndOf="@+id/textView33" />
+
+            <TextView
+                android:id="@+id/mypage_id"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:text="mypage_id"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView31"
+                app:layout_constraintStart_toEndOf="@+id/textView31" />
+
+            <TextView
+                android:id="@+id/mypage_lv"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:text="mypage_lv"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView32"
+                app:layout_constraintStart_toEndOf="@+id/textView32" />
+        </android.support.constraint.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="384dp"
+            android:layout_height="142dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="106dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/borderright"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/delivery_cnt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@drawable/bordertop"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="40dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="배송조회" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="106dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/borderright"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/comment_cnt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@drawable/bordertop"
+                    android:gravity="center"
+                    android:text="4"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="40dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="구매후기" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="106dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/like_cnt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@drawable/borderbottom"
+                    android:gravity="center"
+                    android:text="5"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="40dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="찜한상품" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layouts"
+        android:layout_width="match_parent"
+        android:layout_height="164dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        android:elevation="0dp">
+
+        <Button
+            android:id="@+id/delete_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/borderbottom"
+            android:text="구매목록"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/version_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/borderbottom"
+            android:elevation="0dp"
+            android:padding="10dp"
+            android:text="취소/교환/반품 내역"
+            android:layout_weight="1"
+            app:layout_constraintTop_toBottomOf="@+id/delete_btn" />
+
+        <Button
+            android:id="@+id/query_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bordernone"
+            android:text="환경설정"
+            android:layout_weight="1"
+            app:layout_constraintTop_toBottomOf="@id/version_button" />
+    </LinearLayout>
+
+
+
+</android.support.constraint.ConstraintLayout>

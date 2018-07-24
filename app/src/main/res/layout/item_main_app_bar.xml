@@ -4,29 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:elevation="0dp"
-        android:background="@null">
+        android:background="@null"
+        app:elevation="0dp">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_alignParentTop="true"
-            app:theme="@style/AppTheme.NoActionBar"
-            app:elevation="0dp">
+            app:elevation="0dp"
+            app:theme="@style/AppTheme.NoActionBar">
 
             <TextView
                 android:id="@+id/toolbartext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/campton_lightdemo"
                 android:layout_gravity="center"
+                android:fontFamily="@font/campton_lightdemo"
                 android:text="@string/app_name"
                 android:textSize="25dp"
                 android:textStyle="bold" />
@@ -37,13 +37,19 @@
     <FrameLayout
         android:id="@+id/fragment_board_container"
         android:layout_width="match_parent"
-        android:layout_height="620dp">
-
-        <!--<include-->
-            <!--layout="@layout/item_main_content"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="500dp" />-->
-
+        android:layout_height="match_parent"
+        android:layout_weight="1">
     </FrameLayout>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/main_bnv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:itemBackground="@color/colorWhite"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:layout_behavior="tech.thdev.app.view.BottomNavigationBehavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/menu_bottom_navigation" />
 
 </LinearLayout>

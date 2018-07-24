@@ -1,6 +1,8 @@
 package com.example.user.mytem.ui;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -10,7 +12,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -25,13 +26,16 @@ public class MainActivity extends AppCompatActivity
 
     private ActionBar actionBar;
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    private TextView textView;
     private BackPressCloseHandler backPressCloseHandler;
 
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.main_bnv);
+        BottomNavigationViewHelper.removeShiftMode(navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -64,6 +68,34 @@ public class MainActivity extends AppCompatActivity
 
         backPressCloseHandler = new BackPressCloseHandler(this);
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.action_one://검색
+
+                    return true;
+                case R.id.action_two://공유
+
+                    return true;
+                case R.id.action_three://QR코드
+
+                    return true;
+                case R.id.action_four://리뷰
+
+                    return true;
+                case R.id.action_five://마이페이지
+                    Intent boardIntent = new Intent(MainActivity.this, BottomMypageActivity.class);
+                    startActivity(boardIntent);
+                    // toolbarText.setText("HOME");
+                    return true;
+            }
+            return false;
+        }
+    };
 
     @Override
     public void onBackPressed() {

@@ -1,6 +1,5 @@
 package com.example.user.mytem.model;
 
-import android.widget.ImageView;
 
 import com.example.user.mytem.R;
 import com.example.user.mytem.singleton.Post;
@@ -66,6 +65,8 @@ public class PostModel {
     public void correctPost( String postType, String url, String title, String contents, String postKey, int number, int price, int price2, int priceA, int priceB, String detail) {
         databaseReference.child(postType).
                 child(postKey).setValue(Post.newPost(title, number, price, price2, priceA, priceB, contents, url, detail));
+
+
 
     }//수정
 

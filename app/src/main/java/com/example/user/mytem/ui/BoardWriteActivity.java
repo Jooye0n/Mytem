@@ -31,8 +31,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.user.mytem.R;
 import com.example.user.mytem.model.PostModel;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -159,7 +162,8 @@ public class BoardWriteActivity extends AppCompatActivity {
         postModel = new PostModel();
 
 
-        if (reWriteContents != null && reWriteTitle != null) {
+
+        if (reWriteContents != null && reWriteTitle != null) {//수정 한 경우
             titleEditText.setText(reWriteTitle);
             contentsEditText.setText(reWriteContents);
             board_spinner.setVisibility(View.GONE);
@@ -170,7 +174,6 @@ public class BoardWriteActivity extends AppCompatActivity {
             priceBEditText.setText(String.valueOf(reWritePriceB));
             numEditText.setText(String.valueOf(reWriteNum));
             rewrite = true;
-
         }
 
 
