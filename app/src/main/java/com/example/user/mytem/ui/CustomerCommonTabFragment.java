@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 
 import com.example.user.mytem.R;
 import com.example.user.mytem.model.CUserModel;
@@ -24,6 +25,9 @@ import com.google.firebase.database.Query;
 public abstract class CustomerCommonTabFragment extends Fragment {
     private RecyclerView recyclerView;
     private ProgressDialog progressDialog;
+    private CheckBox checkBox;
+    private Boolean check = false;
+
     @Nullable
     @Override
     public View onCreateView( LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,6 +42,7 @@ public abstract class CustomerCommonTabFragment extends Fragment {
         linearLayoutManager.scrollToPositionWithOffset(0, 0);
         recyclerView.setLayoutManager(linearLayoutManager);
 
+        checkBox = view.findViewById(R.id.checkBox);
         setAdapter(getRef());
 
         return view;
@@ -99,8 +104,47 @@ public abstract class CustomerCommonTabFragment extends Fragment {
                 progressDialog.dismiss();
             }
         });
+        recyclerView.setAdapter(userModel.setAdapterNoneCheck(query, getPostType()));
+    }
 
-        recyclerView.setAdapter(userModel.setAdapter(query, getPostType()));
+    @Override
+    public void onPrepareOptionsMenu( Menu menu) {///////////////쓰기 안보이게 (사용자는 작성할 수 없다.)도 control가능
+        super.onPrepareOptionsMenu(menu);
+
+        //아이콘 바꿔서 추가 말고 고객 등급 변경으로 수정
+        MenuItem item3  = menu.findItem(R.id.menu_write);
+        item3.setIcon(R.drawable.diamond);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected( final MenuItem item ) {
+        switch (item.getItemId()){
+            case android.R.id.home:{ //toolbar의 back키 눌렀을 때 동작
+                getActivity().finish();
+                return true;
+            }
+            case R.id.menu_write: { //고객등급변경 버튼 누른경우 -> 코드 줄일 수 있을것 같다
+                if(check == false) {//check박스가 생긴 상태로 변경되었음
+                    item.setIcon(R.drawable.close);
+
+                    CUserModel userModel = new CUserModel(getPostType());
+                    userModel.setOnDataChangedListener(new OnDataChangedListener() {
+                        @Override
+                        public void onDataChanged() {
+                            progressDialog.dismiss();
+                        }
+                    });
+                    recyclerView.setAdapter(userModel.setAdapterCheck(getRef(), getPostType()));
+                    check = true;
+                }else { //check박스가 다시 사라진다.
+                    item.setIcon(R.drawable.diamond);
+                    setAdapter(getRef());
+                    check = false;
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void showProgressDialog() {
@@ -109,5 +153,4 @@ public abstract class CustomerCommonTabFragment extends Fragment {
         progressDialog.setMessage("Loading..");
         progressDialog.show();
     }
-
 }

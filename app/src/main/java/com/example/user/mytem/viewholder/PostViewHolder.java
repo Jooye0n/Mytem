@@ -67,6 +67,10 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         urlImageView = itemView.findViewById(R.id.imageButton);//사진
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
+        Log.i("실행되는지보려고","8");
+
+
+
 
         //selectStore();
 
@@ -83,29 +87,16 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
                             if (Objects.equals(post.getAuthorUid(), "관리자")) {
                                 mDatabase.child(postType).child(dataRefKey).removeValue();//firebase에서 삭제
                                 // Create a storage reference from our app
-                                FirebaseStorage storage = FirebaseStorage.getInstance();
-                                StorageReference storageRef = storage.getReference();
-                                // Create a reference to the file to delete
-                                StorageReference desertRef = storageRef.child("albumImages/" +titleTextView.getText().toString()+ ".jpg");
-
-                                // Delete the file
-                                desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Log.v("사진삭제성공",titleTextView.getText().toString()+".jpg");
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception exception) {
-                                        Log.v("사진삭제실패",titleTextView.getText().toString()+".jpg");
-                                    }
-                                });
+                                delectStoragePhoto();
 
 
                             } else {
                                 Snackbar.make(numberTextView, "권한이 없습니다", Snackbar.LENGTH_SHORT).show();//작성자가 아닌데 삭제시도하는경우->혹시나
                             }
                         } else if (item.getItemId() == R.id.popup_rewrite) {///////////////////////////////////////////수정
+                            delectStoragePhoto();
+                            Log.i("실행되는지보려고","7");
+
                             Intent intent = new Intent(context, BoardWriteActivity.class);
                             intent.putExtra("CURRENT_BOARD_TAB", BoardTabFragment.getCurrentTab()-1);
                             intent.putExtra("BOARD_TITLE", post.getTitle());
@@ -129,9 +120,11 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         itemView.setOnClickListener(this);
     }
 
+
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public void onClick(View v) {//////등록된 상품 하나를 선택한 경우 상세 dialog 띄우기
+    public void onClick(View v) { //////등록된 상품 하나를 선택한 경우 상세 dialog 띄우기
         android.app.FragmentManager fragmentManager = ((Activity) context).getFragmentManager();
 
         Bundle arguments = new Bundle();
@@ -167,15 +160,39 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         //FirebaseDatabase database = FirebaseDatabase.getInstance();
         //DatabaseReference mDatabase = database.getReference();
 
-        // image loading
+        // 안쓰면 각 post마다 이미지가 아예 없다
         StorageReference mStorageRef;
         mStorageRef = FirebaseStorage.getInstance().getReference().child("albumImages/" +titleTextView.getText().toString()+ ".jpg");
         Log.v("로그",titleTextView.getText().toString());//정상출력됨
         Glide.with(context).using(new FirebaseImageLoader()).load(mStorageRef).diskCacheStrategy(DiskCacheStrategy.ALL).into(urlImageView);
-
-
-
-
-
     }
+
+    public void delectStoragePhoto() {
+        Log.i("실행되는지보려고","4");
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        // Create a reference to the file to delete
+        StorageReference desertRef = storageRef.child("albumImages/" +titleTextView.getText().toString()+ ".jpg");
+
+        // Delete the file
+        desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.i("실행되는지보려고","5");
+
+                Log.v("사진삭제성공",titleTextView.getText().toString()+".jpg");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Log.i("실행되는지보려고","6");
+
+                Log.v("사진삭제실패",titleTextView.getText().toString()+".jpg");
+            }
+        });
+    }
+
+
 }

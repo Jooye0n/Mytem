@@ -95,6 +95,7 @@ public class CreateActicity extends AppCompatActivity {
 
                     //다시
                     Handler handler = new Handler();
+                    //recyclerView.getAdapter().notify();
                     handler.postDelayed(new Runnable() {
                         public void run() {
                                 progressDialog.dismiss();
@@ -180,16 +181,12 @@ public class CreateActicity extends AppCompatActivity {
 
     private void updateUI( FirebaseUser user) {
         if (user != null) {
-//            login.setVisibility(View.VISIBLE);
-//            create.setVisibility(View.VISIBLE);
 
             Toast.makeText(CreateActicity.this,
                     "기입 사항을 다시 확인하세요",
                     Toast.LENGTH_LONG).show();
         } else {
-
-//            login.setVisibility(View.VISIBLE);
-//            create.setVisibility(View.VISIBLE);
+//
         }
     }
 
@@ -241,10 +238,14 @@ public class CreateActicity extends AppCompatActivity {
         }
     }
 
+
     public void sendCreate() {//firebase등록
         Log.v("로그", "샌드");
 
         if (isValidEmail(editTextEmail.getText().toString()) && isValidPasswd(editTextPassword.getText().toString())) {
+            final ProgressDialog progressDialog = new ProgressDialog(CreateActicity.this, R.style.AlertDialogCustom);
+            progressDialog.setMessage("확인중...");
+            progressDialog.show();
             sendPost();
 
 
@@ -261,10 +262,12 @@ public class CreateActicity extends AppCompatActivity {
                                 Log.d(TAG, "회원가입성공");
                                 Toast.makeText(CreateActicity.this, "회원가입성공.",
                                         Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
                             } else {
                                 Log.d(TAG, "회원가입실패");
                                 Toast.makeText(CreateActicity.this, "회원가입실패.",
                                         Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
                                 //보통 이메일이 이미 존재하거나, 이메일 형식이아니거나, 비밀번호가 6자리 이상이 아닐 때 발생 
                             }
                         }

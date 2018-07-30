@@ -19,4 +19,7 @@
     <color name="textcolor">#4b4545</color>
     <color name="iconcolor">#7A7C80</color>
     <color name="postcolor">#f1f1f1</color>
+    <color name="navback">#b9cbd4</color>
+    <color name="iconcolor2">#0088CF</color>
+    <color name="selecbottom">#093952</color>
 </resources>

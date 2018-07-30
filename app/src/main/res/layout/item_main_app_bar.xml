@@ -9,8 +9,8 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
+        android:layout_height="56dp"
+        android:background="@drawable/bottombackground"
         app:elevation="0dp">
 
         <android.support.v7.widget.Toolbar
@@ -19,17 +19,9 @@
             android:layout_height="56dp"
             android:layout_alignParentTop="true"
             app:elevation="0dp"
-            app:theme="@style/AppTheme.NoActionBar">
+            app:theme="@style/DrawerArrowStyle">
 
-            <TextView
-                android:id="@+id/toolbartext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/campton_lightdemo"
-                android:text="@string/app_name"
-                android:textSize="25dp"
-                android:textStyle="bold" />
+
 
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
@@ -37,19 +29,40 @@
     <FrameLayout
         android:id="@+id/fragment_board_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="363dp"
         android:layout_weight="1">
+
     </FrameLayout>
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/main_bnv"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:itemBackground="@color/colorWhite"
-        app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@drawable/selector"
-        app:layout_behavior="tech.thdev.app.view.BottomNavigationBehavior"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/menu_bottom_navigation" />
+        android:layout_height="50dp">
+
+        <ImageButton
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:clickable="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/bottombackground"
+            tools:ignore="MissingConstraints" />
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/main_bnv"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginStart="0dp"
+            app:itemIconTint="@drawable/selector"
+            app:itemTextColor="@drawable/selector"
+            app:layout_behavior="tech.thdev.app.view.BottomNavigationBehavior"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/menu_bottom_navigation"
+            tools:ignore="MissingConstraints">
+
+        </android.support.design.widget.BottomNavigationView>
+    </android.support.constraint.ConstraintLayout>
 
 </LinearLayout>

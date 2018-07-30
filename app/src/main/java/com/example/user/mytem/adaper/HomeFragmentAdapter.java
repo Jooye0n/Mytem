@@ -4,15 +4,9 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-
-import com.example.user.mytem.R;
 import com.example.user.mytem.ui.HomeDinamisFragment;
 
 import java.util.List;
-
-/**
- * Created by putuguna on 21/03/17.
- */
 
 public class HomeFragmentAdapter extends FragmentStatePagerAdapter {
     private Context ctx;

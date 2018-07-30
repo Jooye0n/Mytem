@@ -51,8 +51,8 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:backgroundTint="@color/colorAccent"
-            android:background="@drawable/customreviewbg">
+            android:background="@drawable/customreviewbg"
+            android:backgroundTint="@color/colorAccent">
 
             <ImageView
                 android:id="@+id/diamond"
@@ -71,11 +71,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/mypage_margin_176dp"
-                android:layout_marginTop="@dimen/start_margin_16dp"
+                android:layout_marginTop="8dp"
                 android:text="ID"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/mypage_name" />
 
             <TextView
                 android:id="@+id/textView32"
@@ -125,6 +125,18 @@
                 android:text="mypage_lv"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView32"
                 app:layout_constraintStart_toEndOf="@+id/textView32" />
+
+            <TextView
+                android:id="@+id/mypage_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/mypage_margin_176dp"
+                android:layout_marginTop="10dp"
+                android:text="mypage_name"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </android.support.constraint.ConstraintLayout>
 
         <LinearLayout
@@ -157,7 +169,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="배송조회" />
+                    android:text="배송조회"
+                    android:textStyle="bold"/>
 
 
             </LinearLayout>
@@ -185,7 +198,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="구매후기" />
+                    android:text="구매후기"
+                    android:textStyle="bold"/>
 
 
             </LinearLayout>
@@ -212,7 +226,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="찜한상품" />
+                    android:text="찜한상품"
+                    android:textStyle="bold"/>
 
 
             </LinearLayout>
@@ -222,13 +237,13 @@
     <LinearLayout
         android:id="@+id/layouts"
         android:layout_width="match_parent"
-        android:layout_height="164dp"
+        android:layout_height="163dp"
         android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:elevation="0dp"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        android:elevation="0dp">
+        tools:layout_editor_absoluteX="8dp"
+        tools:ignore="MissingConstraints">
 
         <Button
             android:id="@+id/delete_btn"
@@ -244,20 +259,20 @@
             android:id="@+id/version_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:background="@drawable/borderbottom"
             android:elevation="0dp"
             android:padding="10dp"
             android:text="취소/교환/반품 내역"
-            android:layout_weight="1"
             app:layout_constraintTop_toBottomOf="@+id/delete_btn" />
 
         <Button
             android:id="@+id/query_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:background="@drawable/bordernone"
             android:text="환경설정"
-            android:layout_weight="1"
             app:layout_constraintTop_toBottomOf="@id/version_button" />
     </LinearLayout>
 

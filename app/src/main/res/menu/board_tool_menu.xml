@@ -9,17 +9,17 @@
         app:showAsAction="ifRoom" />
 
     <!--<item-->
-        <!--android:id="@+id/menu_filter"-->
-        <!--android:icon="@drawable/filter"-->
-        <!--android:iconTint="@color/colorWhite"-->
-        <!--android:orderInCategory="0"-->
-        <!--android:title="@string/filter"-->
-        <!--android:visible="false"-->
-        <!--app:showAsAction="ifRoom" />-->
+    <!--android:id="@+id/menu_filter"-->
+    <!--android:icon="@drawable/filter"-->
+    <!--android:iconTint="@color/colorWhite"-->
+    <!--android:orderInCategory="0"-->
+    <!--android:title="@string/filter"-->
+    <!--android:visible="false"-->
+    <!--app:showAsAction="ifRoom" />-->
 
     <item
         android:id="@+id/menu_search"
-        android:icon="@drawable/magnifier"
+        android:icon="@drawable/magnifier_top"
         android:iconifiedByDefault="false"
         android:orderInCategory="50"
         android:title="@string/search"

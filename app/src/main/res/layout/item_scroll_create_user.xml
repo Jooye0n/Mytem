@@ -207,7 +207,7 @@
             android:layout_height="37dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="28dp"
-            android:text="@string/_"
+            android:text="@string/bar"
             android:textSize="36sp"
             app:layout_constraintStart_toEndOf="@+id/rrn"
             app:layout_constraintTop_toBottomOf="@+id/phoneM" />

@@ -89,10 +89,6 @@ public class BoardWriteActivity extends AppCompatActivity {
 
     //카메라켜기
     boolean photo = false;
-//    public static String select ="";
-//    private String absoultePath;
-//    private FirebaseDatabase database = FirebaseDatabase.getInstance();
-//    private DatabaseReference databaseReference = database.getReference();
     private StorageReference storageRef;
 
 
@@ -157,13 +153,9 @@ public class BoardWriteActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         board_spinner.setAdapter(adapter);
 
-       //postModel = new PostModel((String) board_spinner.getSelectedItem());
-       // postModel = new PostModel(setPriceRange(Integer.parseInt(priceEditText.getText().toString())));
         postModel = new PostModel();
 
-
-
-        if (reWriteContents != null && reWriteTitle != null) {//수정 한 경우
+        if (reWriteContents != null && reWriteTitle != null) {
             titleEditText.setText(reWriteTitle);
             contentsEditText.setText(reWriteContents);
             board_spinner.setVisibility(View.GONE);
@@ -174,6 +166,12 @@ public class BoardWriteActivity extends AppCompatActivity {
             priceBEditText.setText(String.valueOf(reWritePriceB));
             numEditText.setText(String.valueOf(reWriteNum));
             rewrite = true;
+
+            StorageReference mStorageRef;
+            mStorageRef = FirebaseStorage.getInstance().getReference().child("albumImages/" +titleEditText.getText().toString()+ ".jpg");
+            Log.v("로그",titleEditText.getText().toString());//정상출력됨
+            Glide.with(this).using(new FirebaseImageLoader()).load(mStorageRef).diskCacheStrategy(DiskCacheStrategy.ALL).into(inputimg);//원래의 이미지 로드
+
         }
 
 
@@ -183,33 +181,15 @@ public class BoardWriteActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (isTextInputError())
                     return;
-                UploadTask uploadTask;
                 if(photoURI!=null){
-
-                    //StorageReference riversRef = storageRef.child("albumImages/"+photoURI.getLastPathSegment());
                     photo = true;
-                   // uploadTask = riversRef.putFile(photoURI);
-                    // temp_uri = uploadTask.getSnapshot().getDownloadUrl();
-                    // Register observers to listen for when the download is done or if it fails
-//                    uploadTask.addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception exception) {
-//                            // Handle unsuccessful uploads
-//                        }
-//                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                        @Override
-//                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                            // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-//                            //temp_uri = taskSnapshot.getDownloadUrl();
-//                            //Uri downloadUrl = taskSnapshot.getDownloadUrl();
-//                        }
-//                    });
                 }
                 else{
                     photo = false;
                 }
                 sendPost();
-                makeConfirmDialog();
+                makeConfirmDialog();//수정시 업로드는 성공했음
+                //수정 완료 시 recyclerview 새로고침 해야한다.
             }
         });
 
@@ -222,29 +202,8 @@ public class BoardWriteActivity extends AppCompatActivity {
         });
     }
 
-    TextWatcher watcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            if(!TextUtils.isEmpty(charSequence.toString()) && !charSequence.toString().equals(change)){
-                change = decimalFormat.format(Double.parseDouble(charSequence.toString().replaceAll(",","")));
-                priceEditText.setText(change);
-                priceEditText.setSelection(change.length());
-            }
-        }
-
-        @Override
-        public void afterTextChanged(Editable editable) {
-
-        }
-    };
-
     public void onClickButton(View view ) {
-        Log.v("알림", "다이얼로그 > 앨범선택 선택");
+        Log.v("알림", "사진 추가 버튼 누름");
         makeDialog();
     }
 
@@ -281,38 +240,13 @@ public class BoardWriteActivity extends AppCompatActivity {
 
     //사진 찍기 클릭
     public void takePhoto(){
-//        // 촬영 후 이미지 가져옴
-//        String state = Environment.getExternalStorageState();
-//
-//        if(Environment.MEDIA_MOUNTED.equals(state)){
-//            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//            if(intent.resolveActivity(getPackageManager())!=null){
-//                File photoFile = null;
-//                try{
-//                    photoFile = createImageFile();
-//                }catch (IOException e){
-//                    e.printStackTrace();
-//                }
-//                if(photoFile!=null){
-//                    Uri providerURI = FileProvider.getUriForFile(this,getPackageName(),photoFile);
-//                    imgUri = providerURI;
-//                    intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, providerURI);
-//                    startActivityForResult(intent, FROM_CAMERA);
-//                }
-//            }
-//        }else{
-//            Log.v("알림", "저장공간에 접근 불가능");
-//            return;
-//        }
+
         Intent intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
-        //String url = "tmp_" + String.valueOf(System.currentTimeMillis()) + "jpg";//바꿔야될듯 -> 확인하기(파일명 시간아니다)
-       // photoURI = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), url));
-        //intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
         startActivityForResult(intent, FROM_CAMERA);
     }
 
     //앨범 선택 클릭
-    public void selectAlbum(){
+    public void selectAlbum() {
         //앨범에서 이미지 가져옴
         //앨범 열기
         Intent intent = new Intent(Intent.ACTION_PICK);
@@ -320,7 +254,6 @@ public class BoardWriteActivity extends AppCompatActivity {
 
         intent.setType("image/*");
         startActivityForResult(intent, FROM_ALBUM);
-
     }
 
     @Override
@@ -344,7 +277,7 @@ public class BoardWriteActivity extends AppCompatActivity {
                 break;
             }
             case FROM_CAMERA : {
-                //카메라 촬영
+                //카메라 촬영z
                 try{
                     Log.v("알림", "FROM_CAMERA 처리");
                     galleryAddPic();
@@ -358,24 +291,7 @@ public class BoardWriteActivity extends AppCompatActivity {
     }
 
 
-//    public File createImageFile() throws IOException{
-//        String imgFileName = System.currentTimeMillis() + ".jpg";
-//        File imageFile= null;
-//        File storageDir = new File(Environment.getExternalStorageDirectory() + "/Pictures", "ireh");
-//
-//        if(!storageDir.exists()){
-//            //없으면 만들기
-//            Log.v("알림","storageDir 존재 x " + storageDir.toString());
-//            storageDir.mkdirs();
-//        }
-//        Log.v("알림","storageDir 존재함 " + storageDir.toString());
-//        imageFile = new File(storageDir,imgFileName);
-//        mCurrentPhotoPath = imageFile.getAbsolutePath();
-//
-//        return imageFile;
-//    }
-
-    public void galleryAddPic(){
+    public void galleryAddPic() {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         File f = new File(mCurrentPhotoPath);
         Uri contentUri = Uri.fromFile(f);
@@ -448,9 +364,6 @@ public class BoardWriteActivity extends AppCompatActivity {
         alert.show();
     }
 
-
-
-
     @Override
     public boolean onOptionsItemSelected( MenuItem item ) {
         switch (item.getItemId()){
@@ -493,8 +406,6 @@ public class BoardWriteActivity extends AppCompatActivity {
        return posttype;
 
     }
-
-
 
     public void sendPost() {
         if (rewrite) {//게시글 수정->사진수정 추가해야한다.

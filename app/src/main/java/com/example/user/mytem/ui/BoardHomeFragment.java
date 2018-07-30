@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -43,11 +44,13 @@ public class BoardHomeFragment extends Fragment implements ViewPager.OnPageChang
     private List<String> listItem = new ArrayList<>();
     private HomeFragmentAdapter homeFragmentAdapter;
     private ProgressDialog progressDialog;
+    private boolean onstart = false;
 
     public BoardHomeFragment() {}
 
     @Override
     public View onCreateView( LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState ) {
+        Log.i("onStart", "onCreateView첫 실행");
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.board_recycler_view_home);
         setHasOptionsMenu(true);
@@ -67,9 +70,28 @@ public class BoardHomeFragment extends Fragment implements ViewPager.OnPageChang
         viewPager.startAutoScroll(); //Auto Scroll 시작
         setData(getContext());
 
+        onstart = true;
+        Log.i("onStart", "onCreateView나중 실행");
         return view;
     }
 
+    @Override
+    public void onStart() {
+        Log.i("onStart", "onstart실행");
+        super.onStart();
+       if(onstart == true) {
+           homeFragmentAdapter = new HomeFragmentAdapter(getContext(), getActivity().getSupportFragmentManager(), listItem);
+           viewPager.setAdapter(homeFragmentAdapter);
+           viewPager.setCurrentItem(0);
+           for (int i=1; i<mDotCount; i++) {
+               mDots[i].setBackgroundResource(R.drawable.nonselected_item);
+           }
+           mDots[0].setBackgroundResource(R.drawable.selected_item);
+           onstart = false;
+       }
+
+
+    }
     @Override
     public void onCreateOptionsMenu( final Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);

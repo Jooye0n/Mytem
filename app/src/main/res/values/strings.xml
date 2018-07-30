@@ -28,7 +28,7 @@
     <string name="phone_h">핸드폰 번호 입력</string>
     <string name="email_h">이메일 주소 입력</string>
     <string name="doubleck">중복확인</string>
-    <string name="_">-</string>
+    <string name="bar">-</string>
     <string name="star">******</string>
     <string name="email">e-mail</string>
     <string name="title_board_e"> </string>
@@ -52,6 +52,20 @@
     <string name="createmanager">관리자추가</string>
     <string name="customerlist">고객목록</string>
     <string name="managerlist">관리자목록</string>
+    <string name="tab_1">패션 | 잡화</string>
+    <string name="tab_2">헤어 | 메이크업</string>
+    <string name="tab_3">주방 용품</string>
+    <string name="tab_4">생활 용품</string>
+    <string name="tab_5">헬스 | 건강</string>
+    <string name="tab_6">식품</string>
+    <string name="tab_7">가전 | 디지털</string>
+    <string name="tab_8">자동차 용품</string>
+    <string name="tab_9">출산 | 유아동</string>
+    <string name="tab_10">홈인테리어</string>
+    <string name="tab_11">반려동물 용품</string>
+    <string name="tab_12">문구 | 오피스</string>
+    <string name="tab_13">문화</string>
+    <string name="tab_14">여행</string>
     <string-array name="board_spinner">
         <item>생산&amp;제조</item>
         <item>VERSACE</item>

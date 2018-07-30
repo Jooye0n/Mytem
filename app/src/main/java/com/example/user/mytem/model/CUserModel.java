@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.example.user.mytem.R;
 import com.example.user.mytem.singleton.CUser;
-import com.example.user.mytem.singleton.SUser;
 import com.example.user.mytem.viewholder.CustomerPostViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
@@ -87,7 +86,7 @@ public class CUserModel {
                 push().setValue(CUser.newUser(userName, upassword, uemail, uphone, urrn, urrn2));
     }
 
-    public FirebaseRecyclerAdapter setAdapter( Query query, final String postType) {
+    public FirebaseRecyclerAdapter setAdapterNoneCheck( Query query, final String postType) {
 
         FirebaseRecyclerAdapter<CUser, CustomerPostViewHolder> adapter = new FirebaseRecyclerAdapter<CUser, CustomerPostViewHolder>(CUser.class, R.layout.list_item_customer,
                 CustomerPostViewHolder.class, query) {
@@ -95,7 +94,21 @@ public class CUserModel {
             protected void populateViewHolder( CustomerPostViewHolder viewHolder, CUser model, int position ) {
                 DatabaseReference postRef = getRef(position);//postion에 해당하는 ref를 가져와서
                 String postKey = postRef.getKey();//key를 찾은후
-                viewHolder.bindPost(model, postKey);//post를 하나씩 할당
+                viewHolder.bindPostNoneCheck(model, postKey);//post를 하나씩 할당
+            }
+        };
+        return adapter;
+    }
+
+    public FirebaseRecyclerAdapter setAdapterCheck( Query query, final String postType) {
+
+        FirebaseRecyclerAdapter<CUser, CustomerPostViewHolder> adapter = new FirebaseRecyclerAdapter<CUser, CustomerPostViewHolder>(CUser.class, R.layout.list_item_customer,
+                CustomerPostViewHolder.class, query) {
+            @Override
+            protected void populateViewHolder( CustomerPostViewHolder viewHolder, CUser model, int position ) {
+                DatabaseReference postRef = getRef(position);//postion에 해당하는 ref를 가져와서
+                String postKey = postRef.getKey();//key를 찾은후
+                viewHolder.bindPostCheck(model, postKey);//post를 하나씩 할당
             }
         };
         return adapter;

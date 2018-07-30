@@ -25,6 +25,7 @@ public class BottomMypageActivity extends AppCompatActivity {
     private TextView mypageId;
     private TextView mypagePoint;
     private TextView mypageLevel;
+    private TextView mypageName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class BottomMypageActivity extends AppCompatActivity {
         mypageId = findViewById(R.id.mypage_id);
         mypageLevel = findViewById(R.id.mypage_lv);
         mypagePoint = findViewById(R.id.mypage_p);
+        mypageName = findViewById(R.id.mypage_name);
 
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -68,7 +70,7 @@ public class BottomMypageActivity extends AppCompatActivity {
             recentPostsQuery = databaseReference.child("CUser").orderByChild("uemail").equalTo(s);
             Log.v("recentPostsQuery",recentPostsQuery.toString());
             findData(recentPostsQuery);
-            //전부찾기
+            //전부찾아보기
         }
 
     }
@@ -79,6 +81,7 @@ public class BottomMypageActivity extends AppCompatActivity {
             public void onDataChange( DataSnapshot dataSnapshot ) {
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     mypageLevel.setText(snapshot.child("userType").getValue(String.class));
+                    mypageName.setText(snapshot.child("userName").getValue(String.class));
                 }
             }
 
@@ -94,7 +97,7 @@ public class BottomMypageActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected( MenuItem item ) {
         switch (item.getItemId()){
             case android.R.id.home:{
-                this.finish();
+                finish();
                 return true;
             }
         }

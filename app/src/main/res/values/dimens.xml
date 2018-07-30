@@ -13,4 +13,6 @@
     <dimen name="start_margin_16dp">16dp</dimen>
     <dimen name="create_start_margin_125dp">125dp</dimen>
     <dimen name="mypage_margin_176dp">176dp</dimen>
+    <dimen name="nav_width_251dp">251dp</dimen>
+    <dimen name="nav_heigh_23dp">23dp</dimen>
 </resources>

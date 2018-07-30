@@ -8,14 +8,14 @@
         android:enabled="true"
         android:icon="@drawable/magnifier"
         android:title="검색"
-        app:showAsAction="ifRoom|withText" />
+        app:showAsAction="ifRoom|withText"/>
 
     <item
         android:id="@+id/action_two"
         app:showAsAction="ifRoom|withText"
         android:enabled="true"
         android:icon="@drawable/ic_menu_send"
-        android:title="공유" />
+        android:title="공유"/>
 
     <item
         android:id="@+id/action_three"

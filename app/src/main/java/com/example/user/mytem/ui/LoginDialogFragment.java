@@ -4,8 +4,11 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
@@ -43,8 +46,6 @@ public class LoginDialogFragment extends DialogFragment {
         super.onCreate(savedInstanceState);
        // setContentView(R.layout.fragment_login_dialog);
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_login_dialog,null);
-
-
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -125,7 +126,7 @@ public class LoginDialogFragment extends DialogFragment {
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
+        // Check if user is signed in (user != null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         showProgressDialog();
         updateUI(currentUser);
@@ -179,7 +180,16 @@ public class LoginDialogFragment extends DialogFragment {
             TextView navHeaderTextView = getActivity().findViewById(R.id.nav_sub_header333);
             navHeaderTextView.setText(currentUser.getEmail());//네비게이션 바의 헤더 부분 로그인 완료 시 UIupdate
             TextView navHead = getActivity().findViewById(R.id.nav_sub_header2);
-            navHead.setText(currentUser.getDisplayName()+"님");
+            navHead.setVisibility(View.VISIBLE);
+            navHead.setText(currentUser.getDisplayName()+"님");//이메일 이름 업데이트
+
+            navHead.setTextColor(Color.parseColor("#072972"));
+            navHead.setPaintFlags(navHead.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);//밑줄긋기(링크)
+
+            FloatingActionButton noticeFloatingActionButton = getActivity().findViewById(R.id.notice_floating);
+            TextView noticeCount = getActivity().findViewById(R.id.notice_count);
+            noticeFloatingActionButton.setVisibility(View.VISIBLE);
+            noticeCount.setVisibility(View.VISIBLE);//로그인이 안된 상태면
 
         } else {//로그인 실패시의 UI업데이트
 //            mStatusTextView.setText(R.string.signed_out);
