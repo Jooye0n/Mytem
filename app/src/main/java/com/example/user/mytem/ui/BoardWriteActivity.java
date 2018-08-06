@@ -103,19 +103,6 @@ public class BoardWriteActivity extends AppCompatActivity {
         storageRef = storage.getReference();
         //StorageReference storageReference = storage.getReferenceFromUrl("gs://mytem-c93ac.appspot.com").child("albumImages");
 
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//뒤로가기 추가
-
-        toolbarText = findViewById(R.id.toolbartext);
-        final Toolbar toolbartext = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbartext);//툴바 t변경
-
-        actionBar = getSupportActionBar();
-        actionBar.setDisplayShowCustomEnabled(true); //커스터마이징 하기 위해 필요
-        actionBar.setDisplayShowTitleEnabled(false);
-
         currentPosition = getIntent().getExtras().getInt("CURRENT_BOARD_TAB");
         String reWriteTitle = getIntent().getExtras().getString("BOARD_TITLE");
         String reWriteContents = getIntent().getExtras().getString("BOARD_CONTENTS");

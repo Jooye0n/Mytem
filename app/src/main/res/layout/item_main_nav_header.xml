@@ -1,676 +1,781 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="bottom"
     android:orientation="vertical"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark"
-    tools:layout_editor_absoluteY="25dp">
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="102dp"
-        android:background="@color/navback"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <Button
-            android:id="@+id/nav_login_btn"
-            android:layout_width="167dp"
-            android:layout_height="34dp"
-            android:layout_margin="5dp"
-            android:background="@drawable/customreviewbg2"
-            android:backgroundTint="@color/iconcolor2"
-            android:text="로그인/회원가입"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/nav_setting_btn"
-            android:layout_width="33dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="56dp"
-            android:backgroundTint="@color/iconcolor2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/nav_login_btn"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/setting" />
-
-
-    </android.support.constraint.ConstraintLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout4"
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/navback"
+        android:gravity="bottom"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="77dp"
+            android:background="@color/navback"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/nav_login_btn"
+                android:layout_width="167dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="@dimen/start_margin_16dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/customreviewbg2"
+                android:backgroundTint="@color/iconcolor2"
+                android:text="로그인/회원가입"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/nav_setting_btn"
+                android:layout_width="33dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="25dp"
+                android:backgroundTint="@color/iconcolor2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/nav_login_btn"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.483"
+                app:srcCompat="@drawable/setting" />
+
+
+        </android.support.constraint.ConstraintLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="257dp"
+            android:background="@color/navback"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+            <LinearLayout
+                android:layout_width="@dimen/nav_width_251dp"
+                android:layout_height="93dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/myPoint"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="58dp"
+                        android:layout_weight="1"
+                        android:paddingEnd="15dp"
+                        android:paddingStart="15dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        app:srcCompat="@drawable/menu_mypoint" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="MY 포인트"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="13dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/myClass"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="58dp"
+                        android:layout_weight="1"
+                        android:paddingEnd="15dp"
+                        android:paddingStart="15dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        app:srcCompat="@drawable/menu_mygrade" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="MY 등급"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="13dp" />
+                </LinearLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/myNotice"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:elevation="0dp"
+                    android:orientation="vertical">
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/notice_floating"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        app:backgroundTint="@color/iconcolor2"
+                        app:elevation="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.848"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.12" />
+
+                    <ImageView
+                        android:id="@+id/imageView6"
+                        android:layout_width="match_parent"
+                        android:layout_height="58dp"
+                        android:layout_weight="1"
+                        android:paddingEnd="18dp"
+                        android:paddingStart="18dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        app:layout_constraintBottom_toTopOf="@+id/textView21"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/menu_bell" />
+
+                    <TextView
+                        android:id="@+id/textView21"
+                        android:layout_width="match_parent"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="MY 알림"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="13dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/notice_count"
+                        android:layout_width="10dp"
+                        android:layout_height="14dp"
+                        android:layout_marginEnd="13dp"
+                        android:layout_marginTop="10dp"
+                        android:text="1"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+                </android.support.constraint.ConstraintLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/nav_sub_header_name"
+                android:layout_width="242dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/nav_header_vertical_spacing"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/nav_sub_header_email"
+                android:layout_width="@dimen/nav_width_251dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="로그인이 필요한 서비스입니다."
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout57"
+                android:layout_width="237dp"
+                android:layout_height="29dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="0dp">
+
+                <LinearLayout
+                    android:id="@+id/nav_btn_cart"
+                    android:layout_width="113dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/customreviewbg2"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="11dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/category_clothing" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="장바구니"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="12dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/nav_btn_buy"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/customreviewbg2"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="7dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/category_beauty" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="구매목록"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="12dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
             android:layout_width="@dimen/nav_width_251dp"
-            android:layout_height="93dp"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal">
+            android:layout_height="23dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp">
 
             <LinearLayout
-                android:id="@+id/myPoint"
-                android:layout_width="match_parent"
+                android:layout_width="127dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="58dp"
+                    android:layout_width="11dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:paddingEnd="15dp"
-                    android:paddingStart="15dp"
-                    android:textColor="@color/colorPrimaryDark"
-                    app:srcCompat="@drawable/menu_mypoint" />
+                    app:srcCompat="@drawable/category_clothing" />
 
                 <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="MY 포인트"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="13dp" />
+                    android:text="@string/tab_1"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="12dp" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/myClass"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="match_parent"
-                    android:layout_height="58dp"
+                    android:layout_width="32dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:paddingEnd="15dp"
-                    android:paddingStart="15dp"
-                    android:textColor="@color/colorPrimaryDark"
-                    app:srcCompat="@drawable/menu_mygrade" />
+                    app:srcCompat="@drawable/category_beauty" />
 
                 <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="MY 등급"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="13dp" />
+                    android:text="@string/tab_2"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="12dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/iconcolor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout6"
+            android:layout_width="@dimen/nav_width_251dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/view3"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp">
+
+            <LinearLayout
+                android:layout_width="127dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/category_kitchen" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/tab_3"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="12dp" />
             </LinearLayout>
 
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/myNotice"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:elevation="0dp"
-                android:orientation="vertical">
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/notice_floating"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    app:backgroundTint="@color/iconcolor2"
-                    app:elevation="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.848"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.12" />
+                android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="match_parent"
-                    android:layout_height="58dp"
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:paddingEnd="18dp"
-                    android:paddingStart="18dp"
+                    app:srcCompat="@drawable/category_kitchen" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/tab_4"
                     android:textColor="@color/colorPrimaryDark"
-                    app:layout_constraintBottom_toTopOf="@+id/textView21"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/menu_bell" />
+                    android:textSize="12dp" />
+            </LinearLayout>
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/textView21"
-                    android:layout_width="match_parent"
-                    android:layout_height="26dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="MY 알림"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="13dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent" />
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/iconcolor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
+            tools:ignore="MissingConstraints" />
 
-                <TextView
-                    android:id="@+id/notice_count"
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="@dimen/nav_width_251dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/view2"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp">
+
+            <LinearLayout
+                android:layout_width="127dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
                     android:layout_width="10dp"
-                    android:layout_height="14dp"
-                    android:layout_marginEnd="13dp"
-                    android:layout_marginTop="10dp"
-                    android:text="1"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
-            </android.support.constraint.ConstraintLayout>
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/category_health" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/tab_5"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/category_food" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:text="@string/tab_6"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="12dp" />
+            </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/nav_sub_header2"
-            android:layout_width="242dp"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/nav_header_vertical_spacing"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/colorPrimaryDark" />
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/iconcolor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll6" />
 
-        <TextView
-            android:id="@+id/nav_sub_header333"
+        <LinearLayout
+            android:id="@+id/ll4"
             android:layout_width="@dimen/nav_width_251dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view7"
+            tools:ignore="MissingConstraints">
+
+            <LinearLayout
+                android:layout_width="127dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="21dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/category_kitchen" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/tab_7"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/category_car" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/tab_8"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="12dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/iconcolor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll4" />
+
+        <LinearLayout
+            android:id="@+id/ll5"
+            android:layout_width="@dimen/nav_width_251dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/view5"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp">
+
+            <LinearLayout
+                android:layout_width="127dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="21dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/category_baby" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/tab_9"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/category_interior" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/tab_10"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="12dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/iconcolor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll5" />
+
+        <LinearLayout
+            android:id="@+id/ll6"
+            android:layout_width="@dimen/nav_width_251dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/view6"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp">
+
+            <LinearLayout
+                android:layout_width="127dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/category_pet" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/tab_11"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="23dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/category_office" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/tab_12"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="12dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view7"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/iconcolor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+        <LinearLayout
+            android:id="@+id/ll7"
+            android:layout_width="@dimen/nav_width_251dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/view1"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp">
+
+            <LinearLayout
+                android:layout_width="127dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="13dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/category_culture" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:text="@string/tab_13"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="13dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/category_culture" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:text="@string/tab_14"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="12dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view13"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/iconcolor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll7" />
+
+        <View
+            android:id="@+id/view14"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="128dp"
+            android:background="@color/iconcolor"
+            app:layout_constraintBottom_toTopOf="@+id/constraintevent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintevent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="로그인이 필요한 서비스입니다."
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/colorPrimaryDark" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        android:layout_width="@dimen/nav_width_251dp"
-        android:layout_height="23dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp">
-
-        <LinearLayout
-            android:layout_width="127dp"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view13"
+            app:layout_constraintVertical_bias="1.0">
 
             <ImageView
-                android:layout_width="11dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/category_clothing" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/tab_1"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="12dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+                android:id="@+id/eventview1"
+                android:layout_width="260dp"
+                android:layout_height="125dp"
+                android:layout_marginTop="@dimen/start_margin_16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/home1" />
 
             <ImageView
-                android:layout_width="32dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/category_beauty" />
+                android:id="@+id/eventview2"
+                android:layout_width="260dp"
+                android:layout_height="125dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/eventview1"
+                app:srcCompat="@drawable/home2" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/tab_2"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="12dp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <View
-        android:id="@+id/view3"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:background="@color/iconcolor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout6"
-        android:layout_width="@dimen/nav_width_251dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/view3"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp">
-
-        <LinearLayout
-            android:layout_width="127dp"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="5dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/category_kitchen" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/tab_3"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="12dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="5dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/category_kitchen" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/tab_4"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="12dp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <View
-        android:id="@+id/view2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_centerInParent="true"
-        android:background="@color/iconcolor"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
-        tools:ignore="MissingConstraints" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="@dimen/nav_width_251dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/view2"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp">
-
-        <LinearLayout
-            android:layout_width="127dp"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="10dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/category_health" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/tab_5"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="12dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="11dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/category_food" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:text="@string/tab_6"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="12dp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <View
-        android:id="@+id/view1"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_centerInParent="true"
-        android:background="@color/iconcolor"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll6" />
-
-    <LinearLayout
-        android:id="@+id/ll4"
-        android:layout_width="@dimen/nav_width_251dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view7"
-        tools:ignore="MissingConstraints">
-
-        <LinearLayout
-            android:layout_width="127dp"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="21dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/category_kitchen" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/tab_7"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="12dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="15dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/category_car" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/tab_8"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="12dp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <View
-        android:id="@+id/view5"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_centerInParent="true"
-        android:background="@color/iconcolor"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll4" />
-
-    <LinearLayout
-        android:id="@+id/ll5"
-        android:layout_width="@dimen/nav_width_251dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/view5"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp">
-
-        <LinearLayout
-            android:layout_width="127dp"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="21dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/category_baby" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/tab_9"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="12dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="15dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/category_interior" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/tab_10"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="12dp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <View
-        android:id="@+id/view6"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_centerInParent="true"
-        android:background="@color/iconcolor"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll5" />
-
-    <LinearLayout
-        android:id="@+id/ll6"
-        android:layout_width="@dimen/nav_width_251dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/view6"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp">
-
-        <LinearLayout
-            android:layout_width="127dp"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="28dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/category_pet" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/tab_11"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="12dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="23dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/category_office" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/tab_12"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="12dp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <View
-        android:id="@+id/view7"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_centerInParent="true"
-        android:background="@color/iconcolor"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
-
-    <LinearLayout
-        android:id="@+id/ll7"
-        android:layout_width="@dimen/nav_width_251dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/view1"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp">
-
-        <LinearLayout
-            android:layout_width="127dp"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="13dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/category_culture" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:text="@string/tab_13"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="12dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="13dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/category_culture" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:text="@string/tab_14"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="12dp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <View
-        android:id="@+id/view13"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_centerInParent="true"
-        android:background="@color/iconcolor"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll7" />
-
-    <View
-        android:id="@+id/view14"
-        android:layout_width="1dp"
-        android:layout_height="0dp"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="128dp"
-        android:background="@color/iconcolor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
-</android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>
 

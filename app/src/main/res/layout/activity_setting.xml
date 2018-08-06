@@ -102,7 +102,7 @@
     <LinearLayout
         android:id="@+id/manager_linearlayout"
         android:layout_width="match_parent"
-        android:layout_height="162dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -123,14 +123,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="고객목록" />
+            android:text="관리자목록" />
 
         <Button
             android:id="@+id/manager_manlist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="관리자목록" />
+            android:text="고객목록" />
+
+        <Button
+            android:id="@+id/post_write"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="상품 추가" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

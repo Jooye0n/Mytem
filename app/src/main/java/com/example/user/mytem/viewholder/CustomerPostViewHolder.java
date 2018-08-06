@@ -91,6 +91,10 @@ public class CustomerPostViewHolder extends RecyclerView.ViewHolder implements V
         ((Activity) context).overridePendingTransition(R.anim.slide_up_anim, R.anim.no_change);
     }
 
+    public Boolean isCheckedCustomer() {
+        return checkBox.isChecked();
+    }
+
     public void bindPostCheck( final CUser cuser, String postKey) {
         this.user = cuser;
         name.setText(String.valueOf(cuser.getUserName()));

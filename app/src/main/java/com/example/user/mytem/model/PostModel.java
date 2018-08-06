@@ -3,21 +3,17 @@ package com.example.user.mytem.model;
 
 import android.util.Log;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import com.example.user.mytem.R;
 import com.example.user.mytem.singleton.Post;
 import com.example.user.mytem.viewholder.PostViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 public class PostModel {
     private DatabaseReference databaseReference;
@@ -77,8 +73,6 @@ public class PostModel {
         databaseReference.child(postType).
                 child(postKey).setValue(Post.newPost(title, number, price, price2, priceA, priceB, contents, url, detail));
         Log.i("실행되는지보려고","11");
-
-
     }//수정
 
     //원하는 데이터를 얻기 위해 데이터베이스에 정보를 요청(Request)하는 것=쿼리

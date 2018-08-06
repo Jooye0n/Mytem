@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
@@ -15,13 +14,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.user.mytem.R;
+import com.example.user.mytem.model.PostModel;
 import com.example.user.mytem.ui.BoardTabFragment;
 import com.example.user.mytem.ui.BoardWriteActivity;
-import com.example.user.mytem.ui.PostDetailDialogFragment;
+import com.example.user.mytem.ui.BoardDetailActivity;
 import com.example.user.mytem.singleton.Post;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,6 +36,9 @@ import com.google.firebase.storage.StorageReference;
 import java.util.Objects;
 
 public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+    final String POSTTYPE_CART = "장바구니";
+
     private TextView titleTextView;
     private TextView contentsTextView;
     static private ImageView urlImageView;
@@ -43,6 +47,8 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     private TextView priceATextView;
     private TextView priceBTextView;
     private TextView numberTextView;//재고
+    private ImageView cartImageView;
+    private ImageView buyImageView;
 
     private ImageView dropdownButton;
     private String dataRefKey;
@@ -52,6 +58,8 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     private DatabaseReference mDatabase;
     private Post post;
 
+    private PostModel postModel;
+
     public PostViewHolder(View itemView) {
         super(itemView);
 
@@ -59,12 +67,17 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         titleTextView = (TextView) itemView.findViewById(R.id.post_title_text_view);
         contentsTextView = (TextView) itemView.findViewById(R.id.post_contents_text_view);
         numberTextView = (TextView) itemView.findViewById(R.id.post_comment_number);//재고
-        priceTextView = (TextView) itemView.findViewById(R.id.price_textView1);//소비자가
-        price2TextView = (TextView) itemView.findViewById(R.id.price_textView2);
-        priceATextView = itemView.findViewById(R.id.price_textView4);
-        priceBTextView = itemView.findViewById(R.id.price_textView3);
-        dropdownButton = (ImageView) itemView.findViewById(R.id.dropdown_button);//수정삭제
-        urlImageView = itemView.findViewById(R.id.imageButton);//사진
+        priceTextView = (TextView) itemView.findViewById(R.id.post_price_textView1);//소비자가
+        price2TextView = (TextView) itemView.findViewById(R.id.post_price_textView2);
+        priceATextView = itemView.findViewById(R.id.post_price_textView4);
+        priceBTextView = itemView.findViewById(R.id.post_price_textView3);
+        dropdownButton = (ImageView) itemView.findViewById(R.id.post_dropdown_button);//수정삭제
+        urlImageView = itemView.findViewById(R.id.post_imageButton);//사진
+
+        cartImageView = itemView.findViewById(R.id.cart_btn);
+        buyImageView = itemView.findViewById(R.id.buy_btn);
+
+        postModel = new PostModel();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         Log.i("실행되는지보려고","8");
@@ -117,7 +130,16 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
             }
         });
 
-        itemView.setOnClickListener(this);
+        cartImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                postModel.writePost(POSTTYPE_CART, "url", post.getTitle(), post.getContents(), post.getNumber(),
+                        post.getPrice(), post.getPrice2(), post.getPriceA(), post.getPriceB(), post.getDetail());
+                Toast.makeText(context, "장바구니에 추가되었습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        itemView.setOnClickListener(this);//onClick을 말한다.
     }
 
 
@@ -127,14 +149,11 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public void onClick(View v) { //////등록된 상품 하나를 선택한 경우 상세 dialog 띄우기
         android.app.FragmentManager fragmentManager = ((Activity) context).getFragmentManager();
 
-        Bundle arguments = new Bundle();
-        arguments.putString("POST_DATAIL", detail);
-        arguments.putString("POST_TITLE",post.getTitle());
+        Intent intent = new Intent(context,BoardDetailActivity.class);
+        intent.putExtra("POST_DATAIL", detail);
+        intent.putExtra("POST_TITLE",post.getTitle());
+        context.startActivity(intent);
 
-        PostDetailDialogFragment dialog = new PostDetailDialogFragment();
-        dialog.setArguments(arguments);
-
-        dialog.show(fragmentManager, "POST_DATAIL");
         ((Activity) context).overridePendingTransition(R.anim.slide_up_anim, R.anim.no_change);
     }
 

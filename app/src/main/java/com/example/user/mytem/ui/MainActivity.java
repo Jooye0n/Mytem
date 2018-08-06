@@ -31,8 +31,7 @@ import com.example.user.mytem.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
 
     private ActionBar actionBar;
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -53,16 +52,18 @@ public class MainActivity extends AppCompatActivity
         view  bind
          */
 
+        if(CheckAppFirstExecute()==true) { //최초실행인 경우
+            user = null;
+        }
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.main_bnv);
         BottomNavigationViewHelper.removeShiftMode(navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
         View nav_header_view = navigationView.getHeaderView(0);
 
-        TextView nav_header_email_text = (TextView) nav_header_view.findViewById(R.id.nav_sub_header333);
-        TextView nav_header_name_text = (TextView) nav_header_view.findViewById(R.id.nav_sub_header2);
+        TextView nav_header_email_text = (TextView) nav_header_view.findViewById(R.id.nav_sub_header_email);
+        TextView nav_header_name_text = (TextView) nav_header_view.findViewById(R.id.nav_sub_header_name);
 
         myPointLinearLayout = nav_header_view.findViewById(R.id.myPoint);
         myClasstLinearLayout = nav_header_view.findViewById(R.id.myClass);
@@ -74,11 +75,14 @@ public class MainActivity extends AppCompatActivity
         navLoginButton = nav_header_view.findViewById(R.id.nav_login_btn);
         ImageView navSettingButton = nav_header_view.findViewById(R.id.nav_setting_btn);
 
+        LinearLayout cartButton = nav_header_view.findViewById(R.id.nav_btn_cart);
+        LinearLayout buyListButton = nav_header_view.findViewById(R.id.nav_btn_buy);
+
         final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);//뒤로가기버튼만 생성(기능없음)
         actionBar.setDisplayShowCustomEnabled(true); //커스터마이징 하기 위해 필요
         actionBar.setDisplayShowTitleEnabled(false);
 
@@ -94,37 +98,17 @@ public class MainActivity extends AppCompatActivity
 
 
         /*
-        view start
-         */
-
-        //최초 실행 여부 판단하는 구문->앱설치 후 최초 실행시만 실행되는 구문
-        SharedPreferences pref = getSharedPreferences("isFirst", Activity.MODE_PRIVATE);
-        boolean first = pref.getBoolean("isFirst", false);
-        if(first==false){
-            Log.d("Is first Time?", "first");
-            SharedPreferences.Editor editor = pref.edit();
-            editor.putBoolean("isFirst",true);
-            editor.commit();
-            nav_header_email_text.setText("로그인이 필요한 서비스입니다.");
-            nav_header_name_text.setText("");//기능 작동 안됨
-
-        }else{
-            Log.d("Is first Time?", "not first");
-        }
-        //최초 실행 여부 판단하는 구문->앱설치 후 최초 실행시만 실행되는 구문
-
-
-
-
-        /*
         view visibility
          */
 
         noticeFloatingActionButton.setVisibility(View.INVISIBLE);
-        noticeCount.setVisibility(View.INVISIBLE);//로그인이 안된 상태면
+        noticeCount.setVisibility(View.INVISIBLE);
+        navLoginButton.setVisibility(View.VISIBLE);
+        nav_header_name_text.setVisibility(View.GONE);//로그인이 안된 상태면
 
-        if(user != null) { //자동로그인 된 상태라면
+        if(user != null) { //자동로그인 된 상태라면 CheckAppFirstExecute()==true면 최초실행
             nav_header_email_text.setText(user.getEmail());
+            nav_header_name_text.setVisibility(View.VISIBLE);
             nav_header_name_text.setText(user.getDisplayName()+"님");//표시해준다
             nav_header_name_text.setTextColor(Color.parseColor("#072972"));
             nav_header_name_text.setPaintFlags(nav_header_name_text.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);//밑줄(링크)
@@ -181,6 +165,31 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        nav_header_email_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                android.app.FragmentManager fragmentManager = getFragmentManager();
+                LoginDialogFragment dialog = new LoginDialogFragment();
+                dialog.show(fragmentManager, "LoginDialogFragment");
+            }
+        });
+
+        cartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                Intent intent = new Intent(MainActivity.this,NavCartActicity.class);
+                startActivity(intent);
+            }
+        });
+
+        buyListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                Intent intent = new Intent(MainActivity.this,NavShopListActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
         /*
@@ -188,10 +197,54 @@ public class MainActivity extends AppCompatActivity
          */
 
         backPressCloseHandler = new BackPressCloseHandler(this);
-
-
     }
 
+    public boolean CheckAppFirstExecute(){
+        SharedPreferences pref = getSharedPreferences("IsFirst" , Activity.MODE_PRIVATE);
+        boolean isFirst = pref.getBoolean("isFirst", false);
+        if(!isFirst){ //최초 실행시 true 저장
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putBoolean("isFirst", true);
+            editor.commit();
+        }
+
+        return !isFirst;
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View nav_header_view = navigationView.getHeaderView(0);
+
+        TextView nav_header_name_text = (TextView) nav_header_view.findViewById(R.id.nav_sub_header_name);
+        TextView nav_header_email_text = (TextView) nav_header_view.findViewById(R.id.nav_sub_header_email);
+
+        noticeFloatingActionButton.setVisibility(View.INVISIBLE);
+        noticeCount.setVisibility(View.INVISIBLE);
+        navLoginButton.setVisibility(View.VISIBLE);
+        nav_header_email_text.setText("로그인이 필요한 서비스입니다.");
+        nav_header_name_text.setVisibility(View.GONE);//로그인이 안된 상태면
+
+        FirebaseAuth user = FirebaseAuth.getInstance();
+        FirebaseUser user1 = user.getCurrentUser();
+        if(user1 != null) { //자동로그인 된 상태라면
+            nav_header_email_text.setText(user1.getEmail());
+            nav_header_name_text.setVisibility(View.VISIBLE);
+            nav_header_name_text.setText(user1.getDisplayName()+"님");//표시해준다
+            nav_header_name_text.setTextColor(Color.parseColor("#072972"));
+            nav_header_name_text.setPaintFlags(nav_header_name_text.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);//밑줄(링크)
+
+            noticeFloatingActionButton.setVisibility(View.VISIBLE);
+            noticeCount.setVisibility(View.VISIBLE);
+
+            noticeCount.setText("2");//차후에 알림 카운트 개별 변경
+
+            navLoginButton.setVisibility(View.INVISIBLE);
+        }
+
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -238,53 +291,6 @@ public class MainActivity extends AppCompatActivity
         } else {
             backPressCloseHandler.onBackPressed();
         }
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected( MenuItem item ) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_user) {//로그인
-            android.app.FragmentManager fragmentManager = getFragmentManager();
-            LoginDialogFragment dialog = new LoginDialogFragment();
-            dialog.show(fragmentManager, "LoginDialogFragment");
-
-        } else if (id == R.id.nav_basket) {//장바구니
-            Intent intent = new Intent(this, NavCartActicity.class);
-            startActivity(intent);
-
-        } else if (id == R.id.nav_list) {//구매목록
-            Intent intent = new Intent(this, NavShopListActivity.class);
-            startActivity(intent);
-
-        } else if (id == R.id.nav_setting) {//세팅
-            Intent intent = new Intent(this,NavSettingActivity.class);
-            startActivity(intent);
-
-        } else if (id == R.id.nav_logout) {//로그아웃
-            FirebaseAuth user = FirebaseAuth.getInstance();
-            FirebaseUser user1 = user.getCurrentUser();
-            if(user1!=null) {///로그인 된 상태라면 //확인절차
-                FirebaseAuth.getInstance().signOut();
-
-                NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-                View nav_header_view = navigationView.getHeaderView(0);
-                TextView nav_header_email_text = (TextView) nav_header_view.findViewById(R.id.nav_sub_header333);
-                TextView nav_header_name_text = (TextView) nav_header_view.findViewById(R.id.nav_sub_header2);
-                nav_header_email_text.setText("로그인이 필요한 서비스입니다.");
-                nav_header_name_text.setText("");
-                noticeFloatingActionButton.setVisibility(View.INVISIBLE);
-                noticeCount.setVisibility(View.INVISIBLE);//로그인이 안된 상태면
-
-                Toast.makeText(this,user1.getEmail()+"님이 로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 
     public void onClickHeader() {

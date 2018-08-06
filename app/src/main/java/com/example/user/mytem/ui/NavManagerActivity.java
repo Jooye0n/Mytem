@@ -11,20 +11,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.user.mytem.R;
 import com.example.user.mytem.model.OnDataChangedListener;
 import com.example.user.mytem.model.SUserModel;
-import com.example.user.mytem.viewholder.PostViewHolder;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -71,12 +62,12 @@ public class NavManagerActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu( Menu menu ) {
 
 
-        getMenuInflater().inflate(R.menu.board_tool_menu, menu) ;//inflate(R.menu.board_tool_menu, menu);
+        getMenuInflater().inflate(R.menu.customer_tool_menu, menu) ;//inflate(R.menu.board_tool_menu, menu);
 
         MenuItem searchItem = menu.findItem(R.id.menu_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
-        searchView.setQueryHint("제목으로 검색");
+        searchView.setQueryHint("이름으로 검색");
 
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

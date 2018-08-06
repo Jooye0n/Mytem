@@ -134,20 +134,6 @@ public class BoardHomeFragment extends Fragment implements ViewPager.OnPageChang
                 });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_write) {
-            Intent intent = new Intent(getActivity(), BoardWriteActivity.class);
-            intent.putExtra("CURRENT_BOARD_TAB", BoardTabFragment.getCurrentTab()-1);
-            startActivity(intent); }
-//        } else if(item.getItemId() == R.id.menu_filter) {
-//            Intent intent = new Intent(getActivity(), BoardFilterActivity.class);
-//            startActivity(intent);
-//        }
-
-        return true;
-    }
-
     public void setAdapter(Query query) {
         showProgressDialog();
         PostModel postModel = new PostModel(getPostType());

@@ -18,16 +18,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.user.mytem.R;
 import com.example.user.mytem.model.OnDataChangedListener;
 import com.example.user.mytem.model.PostModel;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 
 public abstract class CommonTabFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
@@ -35,10 +30,6 @@ public abstract class CommonTabFragment extends Fragment implements SwipeRefresh
     private ProgressDialog progressDialog;
     private SwipeRefreshLayout swipeRefreshLayout;
 
-    //String newValue = "I like sheep.";
-    //int updateIndex = 3;
-    //data.set(updateIndex, newValue);
-    //adapter.notifyItemChanged(updateIndex);
 
     @Nullable
     @Override
@@ -111,24 +102,6 @@ public abstract class CommonTabFragment extends Fragment implements SwipeRefresh
                 });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_write) {
-            Intent intent = new Intent(getActivity(), BoardWriteActivity.class);
-            intent.putExtra("CURRENT_BOARD_TAB", BoardTabFragment.getCurrentTab()-1);
-            startActivity(intent); }
-//        } else if(item.getItemId() == R.id.menu_filter) {
-//            Intent intent = new Intent(getActivity(), BoardFilterActivity.class);
-//            startActivity(intent);
-//        }
-
-        return true;
-    }
-
-    //String newValue = "I like sheep.";
-    //int updateIndex = 3;
-    //data.set(updateIndex, newValue);
-    //adapter.notifyItemChanged(updateIndex);
 
     public void setAdapter(Query query) {
         Log.i("실행되는지보려고","2");

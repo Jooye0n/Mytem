@@ -177,12 +177,15 @@ public class LoginDialogFragment extends DialogFragment {
             mAuth = FirebaseAuth.getInstance();
             FirebaseUser currentUser = mAuth.getCurrentUser();
 
-            TextView navHeaderTextView = getActivity().findViewById(R.id.nav_sub_header333);
+            TextView navHeaderTextView = getActivity().findViewById(R.id.nav_sub_header_email);
             navHeaderTextView.setText(currentUser.getEmail());//네비게이션 바의 헤더 부분 로그인 완료 시 UIupdate
-            TextView navHead = getActivity().findViewById(R.id.nav_sub_header2);
+            TextView navHead = getActivity().findViewById(R.id.nav_sub_header_name);
             navHead.setVisibility(View.VISIBLE);
             navHead.setText(currentUser.getDisplayName()+"님");//이메일 이름 업데이트
 
+            Button loginButton = getActivity().findViewById(R.id.nav_login_btn)
+;
+            loginButton.setVisibility(View.INVISIBLE);
             navHead.setTextColor(Color.parseColor("#072972"));
             navHead.setPaintFlags(navHead.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);//밑줄긋기(링크)
 

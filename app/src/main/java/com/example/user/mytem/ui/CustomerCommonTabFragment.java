@@ -55,7 +55,7 @@ public abstract class CustomerCommonTabFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu( final Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.board_tool_menu, menu);
+        inflater.inflate(R.menu.customer_tool_menu, menu);
 
 
         MenuItem searchItem = menu.findItem(R.id.menu_search);

@@ -46,6 +46,7 @@ public class NavSettingActivity extends AppCompatActivity {
         Button mancustButton = findViewById(R.id.manager_custlist);//고객목록
         Button manmanagerButton = findViewById(R.id.manager_manlist);//관리자목록
         final Button logoutButton = findViewById(R.id.logout_btn);//로그아웃버튼
+        Button writePostButton = findViewById(R.id.post_write);
 
         modifyButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,15 +114,24 @@ public class NavSettingActivity extends AppCompatActivity {
                 if (user1 != null) {///로그인 된 상태라면 //확인절차
 
                     FirebaseAuth.getInstance().signOut();//로그아웃
+                    Toast.makeText(NavSettingActivity.this,user1.getEmail()+"님이 로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
 
-                    Intent logoutintent = new Intent();
-                    logoutintent.setAction("com.example.user.mytem");
-                    sendBroadcast(logoutintent);//broadcast
                 }
             }
         });
 
+        writePostButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                Intent intent = new Intent(NavSettingActivity.this, BoardWriteActivity.class);
+                intent.putExtra("CURRENT_BOARD_TAB", BoardTabFragment.getCurrentTab()-1);
+                startActivity(intent);
+            }
+        });
+
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected( MenuItem item ) {//toolbar의 back키 눌렀을 때 동작

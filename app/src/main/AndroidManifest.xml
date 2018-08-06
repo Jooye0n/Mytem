@@ -107,6 +107,11 @@
 
         </activity>
 
+        <activity android:name=".ui.BoardDetailActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+
         <activity android:name=".ui.BottomMypageActivity"
             android:screenOrientation="portrait"/>
 
