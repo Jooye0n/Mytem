@@ -10,9 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.user.mytem.R;
-import com.example.user.mytem.adaper.CustomerTabPageAdapter;
+import com.example.user.mytem.adaper.BoardDetailTabPageAdapter;
+import com.example.user.mytem.adaper.BoardTabPageAdapter;
 
-public class CustomerTabFragment extends Fragment {
+public class BoardDetailTabFragment extends Fragment {
 
     private ViewPager mViewPager;
 
@@ -27,18 +28,22 @@ public class CustomerTabFragment extends Fragment {
     public View onCreateView( LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         currentTab=0;
         View view = inflater.inflate(R.layout.common_tab_and_viewpager, container, false);
+//        ((BoardActivity) getActivity()).setToolbarTitle("Board");
+
+//        HorizontalScrollView scrollingView = view.findViewById(R.id.scroll_view);
+//        scrollingView.setHorizontalScrollBarEnabled(false);
 
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.board_tab);
         tabLayout.setupWithViewPager(mViewPager);
 
-        tabLayout.addTab(tabLayout.newTab().setText("A"));
-        tabLayout.addTab(tabLayout.newTab().setText("B"));
-        tabLayout.addTab(tabLayout.newTab().setText("C"));
+        tabLayout.addTab(tabLayout.newTab().setText("상세정보"));
+        tabLayout.addTab(tabLayout.newTab().setText("사용후기"));
+        tabLayout.addTab(tabLayout.newTab().setText("Q&A"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         mViewPager = (ViewPager) view.findViewById(R.id.board_view_pager);
-        CustomerTabPageAdapter customerTabPageAdapter = new CustomerTabPageAdapter(getFragmentManager(), tabLayout.getTabCount());
-        mViewPager.setAdapter(customerTabPageAdapter);
+        BoardDetailTabPageAdapter boardTabPageAdapter = new BoardDetailTabPageAdapter(getFragmentManager(), tabLayout.getTabCount());
+        mViewPager.setAdapter(boardTabPageAdapter);
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -61,3 +66,4 @@ public class CustomerTabFragment extends Fragment {
         return view;
     }
 }
+

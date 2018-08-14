@@ -26,10 +26,10 @@
 
         <EditText
             android:id="@+id/emailM"
-            android:layout_width="193dp"
+            android:layout_width="194dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="4dp"
             android:ems="10"
             android:hint="@string/email_h"
             android:inputType="textEmailAddress"
@@ -101,7 +101,7 @@
             android:layout_height="42dp"
             android:layout_marginEnd="52dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="4dp"
             android:ems="10"
             android:hint="직급 입력"
             android:inputType="textPersonName"
@@ -118,7 +118,7 @@
             android:layout_height="42dp"
             android:layout_marginEnd="40dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="84dp"
             android:ems="10"
             android:hint="@string/name_h"
             android:inputType="textPersonName"
@@ -135,7 +135,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="40dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="4dp"
             android:ems="10"
             android:hint="@string/pw_h"
             android:inputType="textPassword"
@@ -151,7 +151,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="40dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="4dp"
             android:ems="10"
             android:hint="@string/pwck_h"
             android:inputType="textPassword"
@@ -167,7 +167,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="40dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="4dp"
             android:ems="10"
             android:hint="@string/phone_h"
             android:inputType="phone"
@@ -195,12 +195,14 @@
 
         <Button
             android:id="@+id/btn_doubleckM"
-            android:layout_width="52dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="152dp"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginTop="4dp"
             android:text="@string/doubleck"
+            android:textSize="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/levelM" />
 
     </android.support.constraint.ConstraintLayout>
 

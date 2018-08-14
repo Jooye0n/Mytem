@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -46,6 +47,8 @@ public class CreateActicity extends AppCompatActivity {
     private CUserModel userModel;//회원 가입은 전부 CUser
     private FirebaseAuth mAuth;
 
+    private ActionBar actionBar;
+
 
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
@@ -53,9 +56,13 @@ public class CreateActicity extends AppCompatActivity {
         setContentView(R.layout.activity_create_customer);
 
 
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
-        setSupportActionBar(mToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true); //커스터마이징 하기 위해 필요
+        actionBar.setDisplayShowTitleEnabled(false);
 
 
         userModel = new CUserModel();

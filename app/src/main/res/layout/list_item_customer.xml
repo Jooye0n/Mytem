@@ -11,12 +11,23 @@
     android:background="@drawable/customreviewbg2"
     android:padding="8dp">
 
+
+    <ImageButton
+        android:id="@+id/customer_dropdown_button"
+        android:layout_width="23dp"
+        android:layout_height="16dp"
+        android:layout_alignParentEnd="true"
+        android:background="#00ffffff"
+        android:src="@drawable/arrow_down"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/customer_mail_btn"
         android:layout_width="21dp"
         android:layout_height="25dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toStartOf="@+id/checkBox"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/mail" />
@@ -58,19 +69,18 @@
         android:id="@+id/customer_call_btn"
         android:layout_width="22dp"
         android:layout_height="25dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toStartOf="@+id/customer_mail_btn"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/call"
-        />
+        app:srcCompat="@drawable/call" />
 
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="28dp"
         android:layout_height="24dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="16dp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -23,7 +23,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.user.mytem.R;
 import com.example.user.mytem.model.PostModel;
-import com.example.user.mytem.singleton.CUser;
 import com.example.user.mytem.singleton.Post;
 import com.example.user.mytem.ui.BoardDetailActivity;
 import com.example.user.mytem.ui.BoardTabFragment;
@@ -45,7 +44,7 @@ import com.google.firebase.storage.StorageReference;
 import java.text.DecimalFormat;
 import java.util.Objects;
 
-public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class ArrayListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
     private TextView titleTextView;
     private TextView contentsTextView;
@@ -67,16 +66,14 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     private Post post;
     private Boolean check = false;
     private String key;
-    private CUser singleUSer;
 
     private PostModel postModel;
 
     private DecimalFormat decimalFormat = new DecimalFormat("#,###");//원화 단위로 글자를 변경시켜주는 부분(포맷설정)
     private String result = "";
 
-    public PostViewHolder(View itemView) {
+    public ArrayListViewHolder( View itemView) {
         super(itemView);
-
         context = itemView.getContext();
         titleTextView = (TextView) itemView.findViewById(R.id.post_title_text_view);
         contentsTextView = (TextView) itemView.findViewById(R.id.post_contents_text_view);
@@ -86,6 +83,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         priceATextView = itemView.findViewById(R.id.post_price_textView4);
         priceBTextView = itemView.findViewById(R.id.post_price_textView3);
         dropdownButton = (ImageView) itemView.findViewById(R.id.post_dropdown_button);//수정삭제
+        dropdownButton.setVisibility(View.GONE);
         urlImageView = itemView.findViewById(R.id.post_imageButton);//사진
 
         cartImageView = itemView.findViewById(R.id.cart_btn);
@@ -94,11 +92,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         postModel = new PostModel();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        Log.i("실행되는지보려고","8");
-
-
-        //selectStore();
-
+        // 뷰와 인스턴스 연결
 
         priceTextView.addTextChangedListener(new TextWatcher() {//EditText 의 글자 변경을 감지
             @Override
@@ -227,63 +221,10 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
             }
         });
 
-        cartImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick( View view ) {
-                FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                FirebaseUser user = mAuth.getCurrentUser();
-                String s = user.getEmail();
-                Log.i("recentPostsQuery22",s);
-                Query recentPostsQuery;
 
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                recentPostsQuery = databaseReference.child("CUser").orderByChild("uemail").equalTo(s);
-                findDate(recentPostsQuery);
-
-                recentPostsQuery = databaseReference.child("BUser").orderByChild("uemail").equalTo(s);
-                findDate(recentPostsQuery);
-
-                recentPostsQuery = databaseReference.child("AUser").orderByChild("uemail").equalTo(s);
-                findDate(recentPostsQuery);
-
-
-                //전부찾아보기
-
-                if(check == false) {//첫추가
-                   // singleUSer
-                    Toast.makeText(context, "장바구니에 추가되었습니다.", Toast.LENGTH_SHORT).show();
-                } else {//두번째
-//
-//                    postModel.correctCart(singleUSer.getUserType(),key, post.getCount(), post.getTitle(), post.getContents(), dataRefKey, post.getNumber(),
-//                            post.getPrice(), post.getPrice2(), post.getPriceA(), post.getPriceB(), post.getDetail(),
-//                            post.getCategory(), post.getProduction(), post.getOrigin(), post.getBrand(), post.getDelivery1(), post.getDelivery2());
-
-                    Toast.makeText(context, "장바구니에 하나 더 추가되었습니다.", Toast.LENGTH_SHORT).show();
-                }
-                //이미 추가 된 상품인 경우 -> 수정해야한다
-            }
-        });
 
         itemView.setOnClickListener(this);//onClick을 말한다.
     }
-
-    public void findDate(Query recentPostsQuery) {
-        recentPostsQuery.addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                    singleUSer = (snapshot.getValue(CUser.class)); //카테고리에 해당하는 post가져오기
-                }
-            }
-
-            @Override
-            public void onCancelled( DatabaseError databaseError ) {
-                throw databaseError.toException();
-            }
-        });
-    }
-
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -308,6 +249,52 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         context.startActivity(intent);
 
         ((Activity) context).overridePendingTransition(R.anim.slide_up_anim, R.anim.no_change);
+    }
+
+    public void delectStoragePhoto() {
+        Log.i("실행되는지보려고","4");
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        // Create a reference to the file to delete
+        StorageReference desertRef = storageRef.child("albumImages/" +contentsTextView.getText().toString()+ ".jpg");
+
+        // Delete the file
+        desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.i("실행되는지보려고","5");
+
+                Log.v("사진삭제성공",contentsTextView.getText().toString()+".jpg");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Log.i("실행되는지보려고","6");
+
+                Log.v("사진삭제실패",contentsTextView.getText().toString()+".jpg");
+            }
+        });
+    }
+
+    public void bindData(Post model) {
+        // 뷰와 데이터 바인딩
+
+        post = model;
+        numberTextView.setText(String.valueOf(model.getNumber()));
+        priceTextView.setText(String.valueOf(model.getPrice()));
+        price2TextView.setText(String.valueOf(model.getPrice2()));
+        priceATextView.setText(String.valueOf(model.getPriceA()));
+        priceBTextView.setText(String.valueOf(model.getPriceB()));
+        detail = model.getDetail();
+        titleTextView.setText(model.getTitle());
+        contentsTextView.setText(model.getContents());
+
+        StorageReference mStorageRef;
+        mStorageRef = FirebaseStorage.getInstance().getReference().child("albumImages/" +contentsTextView.getText().toString()+ ".jpg");
+        Log.v("로그",contentsTextView.getText().toString());//정상출력됨
+        Glide.with(context).using(new FirebaseImageLoader()).load(mStorageRef).diskCacheStrategy(DiskCacheStrategy.ALL).into(urlImageView);
     }
 
     public void bindPost( final Post model, String postKey, String postType) {
@@ -340,33 +327,5 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         Glide.with(context).using(new FirebaseImageLoader()).load(mStorageRef).diskCacheStrategy(DiskCacheStrategy.ALL).into(urlImageView);
     }
 
-    public void delectStoragePhoto() {
-        Log.i("실행되는지보려고","4");
-
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference();
-        // Create a reference to the file to delete
-        StorageReference desertRef = storageRef.child("albumImages/" +contentsTextView.getText().toString()+ ".jpg");
-
-        // Delete the file
-        desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Log.i("실행되는지보려고","5");
-
-                Log.v("사진삭제성공",contentsTextView.getText().toString()+".jpg");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                Log.i("실행되는지보려고","6");
-
-                Log.v("사진삭제실패",contentsTextView.getText().toString()+".jpg");
-            }
-        });
-    }
-
 
 }
-

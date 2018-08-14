@@ -37,6 +37,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     private TextView priceATextView;
     private TextView priceBTextView;
     private TextView numberTextView;//재고
+    private TextView countTextView;
 
     private String dataRefKey;
     private String postType;
@@ -52,15 +53,15 @@ public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         super(itemView);
 
         context = itemView.getContext();
-        titleTextView = (TextView) itemView.findViewById(R.id.cart_title_text_view);
-        contentsTextView = (TextView) itemView.findViewById(R.id.cart_contents_text_view);
-        numberTextView = (TextView) itemView.findViewById(R.id.cart_comment_number);//재고
+        titleTextView = (TextView) itemView.findViewById(R.id.detail_title);
+        contentsTextView = (TextView) itemView.findViewById(R.id.detail_contents);
         priceTextView = (TextView) itemView.findViewById(R.id.cart_price_textView1);//소비자가
-        price2TextView = (TextView) itemView.findViewById(R.id.cart_price_textView2);
-        priceATextView = itemView.findViewById(R.id.cart_price_textView4);
-        priceBTextView = itemView.findViewById(R.id.cart_price_textView3);
-        urlImageView = itemView.findViewById(R.id.imageButton);//사진
+        price2TextView = (TextView) itemView.findViewById(R.id.detail_price2);
+        priceATextView = itemView.findViewById(R.id.detail_price3);
+        priceBTextView = itemView.findViewById(R.id.major_price);
+        urlImageView = itemView.findViewById(R.id.cart_imageButton);//사진
         checkBox = itemView.findViewById(R.id.checkbox_cart);//checkbox
+        countTextView = itemView.findViewById(R.id.cart_count);//장바구니에 추가한 수량
 
         postModel = new PostModel();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -86,6 +87,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         price2TextView.setText(String.valueOf(model.getPrice2()));
         priceATextView.setText(String.valueOf(model.getPriceA()));
         priceBTextView.setText(String.valueOf(model.getPriceB()));
+        countTextView.setText(String.valueOf(model.getCount()));
         this.dataRefKey = postKey;
         this.postType = postType;
         this.detail = model.getDetail();

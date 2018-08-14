@@ -82,7 +82,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/customTheme" />
 
-        <activity android:name=".ui.NavCartActicity"
+        <activity android:name=".ui.NavCartActivity"
             android:screenOrientation="portrait"
             android:theme="@style/customTheme">
         </activity>
@@ -113,6 +113,9 @@
         </activity>
 
         <activity android:name=".ui.BottomMypageActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.NavCategoryActivity"
             android:screenOrientation="portrait"/>
 
 

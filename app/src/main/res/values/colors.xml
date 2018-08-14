@@ -17,9 +17,11 @@
     <color name="colorBlack">#000000</color>
     <color name="tabSelectedTextColor">#747db3</color>
     <color name="textcolor">#4b4545</color>
-    <color name="iconcolor">#7A7C80</color>
+    <color name="iconcolor">#e4e7ed</color>
+    <color name="tabcolor">#a9abb0</color>
     <color name="postcolor">#f1f1f1</color>
     <color name="navback">#b9cbd4</color>
     <color name="iconcolor2">#0088CF</color>
     <color name="selecbottom">#093952</color>
+    <color name="pricecolor">#172d85</color>
 </resources>

@@ -12,26 +12,33 @@
             android:layout_height="match_parent"
             android:orientation="vertical" >
 
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            app:elevation="0dp">
+
             <android.support.v7.widget.Toolbar
-                android:id="@+id/main_toolbar"
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                app:titleTextColor="@color/colorPrimary"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark">
+                android:layout_height="56dp"
+                android:layout_alignParentTop="true"
+                android:theme="@style/AppTheme.NoActionBar"
+                >
 
                 <TextView
-                    android:id="@+id/toolbar_title"
+                    android:id="@+id/toolbartext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/create"
-                    android:textSize="20sp"
-                    tools:layout_editor_absoluteX="136dp"
-                    tools:layout_editor_absoluteY="15dp" />
+                    android:text="회원가입"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/campton_lightdemo"/>
 
             </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
 
         <FrameLayout
             android:layout_width="match_parent"

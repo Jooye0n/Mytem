@@ -18,6 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 public class PostModel {
     private DatabaseReference databaseReference;
     private OnDataChangedListener onDataChangedListener;
+    final String CART_TYPE = "장바구니";
 
     public void setOnDataChangedListener(OnDataChangedListener listener) {
         this.onDataChangedListener = listener;
@@ -62,18 +63,42 @@ public class PostModel {
 
 
 // String title, int number, int price, int price2, int priceA, int priceB, String contents, String url, String detail
-    public void writePost( String postType, String url, String title, String contents, int number, int price, int price2, int priceA, int priceB,  String detail) {
+    public void writePost( String postType, String url, String title, String contents, int number, int price, int price2, int priceA, int priceB,  String detail,
+                           String category, String production, String origin, String brand, String delivery1, String delivery2) {
         databaseReference.child(postType).
-                push().setValue(Post.newPost(title, number, price, price2, priceA, priceB, contents, url, detail));
+                push().setValue(Post.newPost(title, number, price, price2, priceA, priceB, contents, url, detail,
+                category, production, origin, brand, delivery1, delivery2));
         Log.i("실행되는지보려고","10");
 
     }//post형태의 객체를 등록
 
-    public void correctPost( String postType, String url, String title, String contents, String postKey, int number, int price, int price2, int priceA, int priceB, String detail) {
+//    public void writeCart(String userType, String postType, int count, String title, String contents, int number, int price, int price2, int priceA, int priceB,  String detail,
+//                          String category, String production, String origin, String brand, String delivery1, String delivery2) {
+//        databaseReference.child(userType).child(postType).child(CART_TYPE).
+//                push().setValue(Post.newCart(title, number, price, price2, priceA, priceB, contents, count, detail,
+//                category, production, origin, brand, delivery1, delivery2));
+//
+//        Log.i("실행되는지보려고","10");
+//
+//    }//post형태의 객체를 등록
+
+    public void correctPost( String postType, String url, String title, String contents, String postKey, int number, int price, int price2, int priceA, int priceB, String detail,
+                             String category, String production, String origin, String brand, String delivery1, String delivery2) {
         databaseReference.child(postType).
-                child(postKey).setValue(Post.newPost(title, number, price, price2, priceA, priceB, contents, url, detail));
+                child(postKey).setValue(Post.newPost(title, number, price, price2, priceA, priceB, contents, url, detail
+                ,category, production, origin, brand, delivery1, delivery2));
         Log.i("실행되는지보려고","11");
     }//수정
+
+//    public void correctCart( String userType, String postType, int count, String title, String contents, String postKey, int number, int price, int price2, int priceA, int priceB, String detail,
+//                             String category, String production, String origin, String brand, String delivery1, String delivery2) {
+//        databaseReference.child(userType).child(CART_TYPE).
+//                child(postKey).setValue(Post.newCart(title, number, price, price2, priceA, priceB, contents, count, detail,
+//                category, production, origin, brand, delivery1, delivery2));
+//        Log.i("실행되는지보려고","11");
+//    }//수정
+
+
 
     //원하는 데이터를 얻기 위해 데이터베이스에 정보를 요청(Request)하는 것=쿼리
     public FirebaseRecyclerAdapter setAdapter( Query query, final String postType) {

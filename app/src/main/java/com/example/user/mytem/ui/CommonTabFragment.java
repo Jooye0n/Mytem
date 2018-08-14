@@ -144,7 +144,6 @@ public abstract class CommonTabFragment extends Fragment implements SwipeRefresh
         });
 
         recyclerView.setAdapter(postModel.setAdapter(getRef(), getPostType()));
-
         //새로고침 완료시
         swipeRefreshLayout.setRefreshing(false);
     }

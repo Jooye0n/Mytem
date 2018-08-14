@@ -94,7 +94,7 @@ public class CUserModel {
             protected void populateViewHolder( CustomerPostViewHolder viewHolder, CUser model, int position ) {
                 DatabaseReference postRef = getRef(position);//postion에 해당하는 ref를 가져와서
                 String postKey = postRef.getKey();//key를 찾은후
-                viewHolder.bindPostNoneCheck(model, postKey);//post를 하나씩 할당
+                viewHolder.bindPostNoneCheck(model, postKey, postType);//post를 하나씩 할당
             }
         };
         return adapter;
@@ -108,7 +108,7 @@ public class CUserModel {
             protected void populateViewHolder( CustomerPostViewHolder viewHolder, CUser model, int position ) {
                 DatabaseReference postRef = getRef(position);//postion에 해당하는 ref를 가져와서
                 String postKey = postRef.getKey();//key를 찾은후
-                viewHolder.bindPostCheck(model, postKey);//post를 하나씩 할당
+                viewHolder.bindPostCheck(model, postKey, postType);//post를 하나씩 할당
             }
         };
         return adapter;

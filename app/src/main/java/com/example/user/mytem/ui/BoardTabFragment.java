@@ -27,7 +27,7 @@ public class BoardTabFragment extends Fragment {
     @Override
     public View onCreateView( LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         currentTab=0;
-        View view = inflater.inflate(R.layout.fragment_board, container, false);
+        View view = inflater.inflate(R.layout.common_tab_and_viewpager, container, false);
 //        ((BoardActivity) getActivity()).setToolbarTitle("Board");
 
 //        HorizontalScrollView scrollingView = view.findViewById(R.id.scroll_view);

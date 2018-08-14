@@ -9,7 +9,7 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="45dp"
         android:background="@drawable/bottombackground"
         app:elevation="0dp">
 
@@ -17,7 +17,7 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="45dp"
             android:layout_alignParentTop="true"
             app:elevation="0dp"
             app:theme="@style/DrawerArrowStyle">
@@ -36,20 +36,21 @@
     <FrameLayout
         android:id="@+id/fragment_board_container"
         android:layout_width="match_parent"
-        android:layout_height="363dp"
+        android:layout_height="match_parent"
         android:layout_weight="1">
 
     </FrameLayout>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="45dp">
 
         <ImageButton
             android:id="@+id/imageView4"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:clickable="false"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/bottombackground"
@@ -58,7 +59,7 @@
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/main_bnv"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             app:itemIconTint="@drawable/selector"
             app:itemTextColor="@drawable/selector"
             app:layout_behavior="tech.thdev.app.view.BottomNavigationBehavior"

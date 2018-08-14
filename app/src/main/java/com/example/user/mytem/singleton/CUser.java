@@ -1,5 +1,10 @@
 package com.example.user.mytem.singleton;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class CUser {//일반 user
 
     private String userName;
@@ -9,6 +14,8 @@ public class CUser {//일반 user
     private String uphone;
     private String urrn;
     private String urrn2;
+    //private Map<String,Boolean> cart = new HashMap<>();
+
 
     private CUser() {
         // Default constructor required for calls to DataSnapshot.getValue(Post.class)

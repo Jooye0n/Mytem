@@ -7,18 +7,13 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,17 +34,11 @@ import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
-import java.io.IOException;
-import java.text.DecimalFormat;
-
-import me.iwf.photopicker.PhotoPicker;
 
 public class BoardWriteActivity extends AppCompatActivity {
 
@@ -60,23 +49,27 @@ public class BoardWriteActivity extends AppCompatActivity {
     //UI
     private EditText titleEditText;
     private EditText contentsEditText;
-    private Spinner board_spinner;
+    private Spinner boardCategory;
+    private Spinner boardDelivery;
     private EditText numEditText;
-    private EditText priceEditText;
-    private EditText price2EditText;
-    private EditText priceAEditText;
-    private EditText priceBEditText;
+    private EditText priceEditText;//1
+    private EditText price2EditText;//2
+    private EditText priceAEditText;//3
+    private EditText priceBEditText;//4
     private EditText detailEditText;
     private int currentPosition;
     private boolean rewrite;
     private String postKey;
     private PostModel postModel;
+    private EditText brand;
+    private EditText production;
+    private EditText origin;
+    private EditText delivery2;
     private ActionBar actionBar;
     private TextView toolbarText;
-    private DecimalFormat decimalFormat = new DecimalFormat("#,###");
-    private String change;
 
     private String spinnerItem;
+    private String spinnerItemDetail;
 
     //사진
     private ImageView inputimg;
@@ -126,26 +119,40 @@ public class BoardWriteActivity extends AppCompatActivity {
         detailEditText = (EditText) findViewById(R.id.board_write_detail_edit_text);
         ImageButton writeButton = (ImageButton) findViewById(R.id.board_write_finish);
         ImageButton closeButton = (ImageButton) findViewById(R.id.board_write_close_button);
-        board_spinner = (Spinner) findViewById(R.id.board_spinner);
+        boardCategory = (Spinner) findViewById(R.id.board_spinner);
+        boardDelivery = findViewById(R.id.board_delivery_spinner);
+        brand = findViewById(R.id.board_brand);
+        production = findViewById(R.id.board_production);
+        origin = findViewById(R.id.board_origin);
+        delivery2 = findViewById(R.id.board_delivery);
 
-        board_spinner.post(new Runnable() {
+
+
+        boardCategory.post(new Runnable() {
             @Override
             public void run() {
-                board_spinner.setSelection(currentPosition);
+                boardCategory.setSelection(currentPosition);
             }
         });
-        spinnerItem = (String)board_spinner.getSelectedItem();//spinnerItem 아직 어디에 쓸지 모르겠다
+        spinnerItem = (String) boardCategory.getSelectedItem();//spinnerItem 아직 어디에 쓸지 모르겠다
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(BoardWriteActivity.this, R.array.board_spinner, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        board_spinner.setAdapter(adapter);
+        ArrayAdapter<CharSequence> boardadapter = ArrayAdapter.createFromResource(BoardWriteActivity.this, R.array.board_spinner, android.R.layout.simple_spinner_item);
+        boardadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        boardCategory.setAdapter(boardadapter);
+
+
+
+
+        spinnerItemDetail = (String) boardDelivery.getSelectedItem();//spinnerItem 아직 어디에 쓸지 모르겠다
+        ArrayAdapter<CharSequence> boardadapter2 = ArrayAdapter.createFromResource(BoardWriteActivity.this, R.array.board_delivery_spinner, android.R.layout.simple_spinner_item);
+        boardadapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        boardDelivery.setAdapter(boardadapter2);
 
         postModel = new PostModel();
 
         if (reWriteContents != null && reWriteTitle != null) {
             titleEditText.setText(reWriteTitle);
             contentsEditText.setText(reWriteContents);
-            board_spinner.setVisibility(View.GONE);
             detailEditText.setText(reWriteDetail);
             priceEditText.setText(String.valueOf(reWritePrice));
             price2EditText.setText(String.valueOf(reWritePrice2));
@@ -155,8 +162,8 @@ public class BoardWriteActivity extends AppCompatActivity {
             rewrite = true;
 
             StorageReference mStorageRef;
-            mStorageRef = FirebaseStorage.getInstance().getReference().child("albumImages/" +titleEditText.getText().toString()+ ".jpg");
-            Log.v("로그",titleEditText.getText().toString());//정상출력됨
+            mStorageRef = FirebaseStorage.getInstance().getReference().child("albumImages/" +contentsEditText.getText().toString()+ ".jpg");
+            Log.v("로그",contentsEditText.getText().toString());//정상출력됨
             Glide.with(this).using(new FirebaseImageLoader()).load(mStorageRef).diskCacheStrategy(DiskCacheStrategy.ALL).into(inputimg);//원래의 이미지 로드
 
         }
@@ -188,6 +195,8 @@ public class BoardWriteActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     public void onClickButton(View view ) {
         Log.v("알림", "사진 추가 버튼 누름");
@@ -297,14 +306,15 @@ public class BoardWriteActivity extends AppCompatActivity {
                         //DB에 등록
                         final String cu = mAuth.getUid();
                         //1. 사진을 storage에 저장하고 그 url을 알아내야함
-                        String filename = titleEditText.getText().toString();
+                        String filename = contentsEditText.getText().toString();
                         StorageReference storageRef = storage.getReferenceFromUrl("gs://mytem-c93ac.appspot.com").child("albumImages/" + filename+".jpg");
                         UploadTask uploadTask;
 
                         Uri file = null;
                         if(flag ==0){
                             //사진촬영
-                            file = Uri.fromFile(new File(mCurrentPhotoPath));
+//                            file = Uri.fromFile(new File(mCurrentPhotoPath));
+                            file = photoURI;
                         }else if(flag==1){
                             //앨범선택
                             file = photoURI;
@@ -398,12 +408,20 @@ public class BoardWriteActivity extends AppCompatActivity {
         if (rewrite) {//게시글 수정->사진수정 추가해야한다.
             postModel.correctPost(setPriceRange(Integer.parseInt(priceEditText.getText().toString())),"url", titleEditText.getText().toString(), contentsEditText.getText().toString(),
                     postKey, Integer.parseInt(numEditText.getText().toString()),
-                    Integer.parseInt(priceEditText.getText().toString()), Integer.parseInt(price2EditText.getText().toString()),Integer.parseInt(priceAEditText.getText().toString()),Integer.parseInt(priceBEditText.getText().toString()),detailEditText.getText().toString());
+                    Integer.parseInt(priceEditText.getText().toString()), Integer.parseInt(price2EditText.getText().toString()),Integer.parseInt(priceAEditText.getText().toString()),
+                    Integer.parseInt(priceBEditText.getText().toString()),detailEditText.getText().toString(),
+                    (String) boardCategory.getSelectedItem(), production.getText().toString(), origin.getText().toString(), brand.getText().toString(),
+                    (String) boardDelivery.getSelectedItem(),delivery2.getText().toString()
+                    );
+            //post.getCategory(), post.getProduction(), post.getOrigin(), post.getBrand(), post.getDelivery1(), post.getDelivery2()
 
         } else//게시글 등록
             postModel.writePost(setPriceRange(Integer.parseInt(priceEditText.getText().toString())), "url",titleEditText.getText().toString(),
                     contentsEditText.getText().toString(), Integer.parseInt(numEditText.getText().toString()),
-                    Integer.parseInt(priceEditText.getText().toString()), Integer.parseInt(price2EditText.getText().toString()),Integer.parseInt(priceAEditText.getText().toString()),Integer.parseInt(priceBEditText.getText().toString()),detailEditText.getText().toString());
+                    Integer.parseInt(priceEditText.getText().toString()), Integer.parseInt(price2EditText.getText().toString()),
+                    Integer.parseInt(priceAEditText.getText().toString()),Integer.parseInt(priceBEditText.getText().toString()),detailEditText.getText().toString(),
+                    (String) boardCategory.getSelectedItem(), production.getText().toString(), origin.getText().toString(), brand.getText().toString(),
+                    (String) boardDelivery.getSelectedItem(),delivery2.getText().toString());
     }
 
 }

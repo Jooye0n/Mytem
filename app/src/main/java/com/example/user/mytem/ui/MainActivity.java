@@ -25,7 +25,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.user.mytem.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -78,6 +77,21 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout cartButton = nav_header_view.findViewById(R.id.nav_btn_cart);
         LinearLayout buyListButton = nav_header_view.findViewById(R.id.nav_btn_buy);
 
+        LinearLayout tabFashion = nav_header_view.findViewById(R.id.tab_fashion);
+        LinearLayout tabHair = nav_header_view.findViewById(R.id.tab_hair);
+        LinearLayout tabKitchen = nav_header_view.findViewById(R.id.tab_kitchen);
+        LinearLayout tabLiving = nav_header_view.findViewById(R.id.tab_life);
+        LinearLayout tabHealth = nav_header_view.findViewById(R.id.tab_health);
+        LinearLayout tabFood = nav_header_view.findViewById(R.id.tab_food);
+        LinearLayout tabDigital = nav_header_view.findViewById(R.id. tab_digital);
+        LinearLayout tabCar = nav_header_view.findViewById(R.id. tab_car);
+        LinearLayout tabBaby = nav_header_view.findViewById(R.id.tab_baby);
+        LinearLayout tabHome = nav_header_view.findViewById(R.id.tab_home);
+        LinearLayout tabPet = nav_header_view.findViewById(R.id.tab_pet);
+        LinearLayout tabOffice = nav_header_view.findViewById(R.id.tab_office);
+        LinearLayout tabCulture = nav_header_view.findViewById(R.id.tab_culture);
+        LinearLayout tabTravel = nav_header_view.findViewById(R.id.tab_travel);
+
         final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -94,8 +108,6 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentManager fm = getSupportFragmentManager();
         fm.beginTransaction().add(R.id.fragment_board_container, new BoardTabFragment()).commit();//지금 있는 메인의 fragment에 새로운 BoardTabfragment추가한다.
-
-
 
         /*
         view visibility
@@ -177,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
         cartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick( View view ) {
-                Intent intent = new Intent(MainActivity.this,NavCartActicity.class);
+                Intent intent = new Intent(MainActivity.this,NavCartActivity.class);
                 startActivity(intent);
             }
         });
@@ -190,6 +202,133 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        tabFashion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                Intent intent = new Intent(MainActivity.this, NavCategoryActivity.class);
+                intent.putExtra("TITLE", getResources().getString(R.string.tab_1));
+                startActivity(intent);
+            }
+        });
+
+        tabHair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                Intent intent = new Intent(MainActivity.this, NavCategoryActivity.class);
+                intent.putExtra("TITLE", getResources().getString(R.string.tab_2));
+                startActivity(intent);
+            }
+        });
+
+
+        tabKitchen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                Intent intent = new Intent(MainActivity.this, NavCategoryActivity.class);
+                intent.putExtra("TITLE", getResources().getString(R.string.tab_3));
+                startActivity(intent);
+            }
+        });
+
+        tabLiving.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                Intent intent = new Intent(MainActivity.this, NavCategoryActivity.class);
+                intent.putExtra("TITLE", getResources().getString(R.string.tab_4));
+                startActivity(intent);
+            }
+        });
+
+        tabHealth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                Intent intent = new Intent(MainActivity.this, NavCategoryActivity.class);
+                intent.putExtra("TITLE", getResources().getString(R.string.tab_5));
+                startActivity(intent);
+            }
+        });
+
+        tabFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                Intent intent = new Intent(MainActivity.this, NavCategoryActivity.class);
+                intent.putExtra("TITLE", getResources().getString(R.string.tab_6));
+                startActivity(intent);
+            }
+        });
+
+        tabDigital.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                Intent intent = new Intent(MainActivity.this, NavCategoryActivity.class);
+                intent.putExtra("TITLE", getResources().getString(R.string.tab_7));
+                startActivity(intent);
+            }
+    });
+
+        tabCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                Intent intent = new Intent(MainActivity.this, NavCategoryActivity.class);
+                intent.putExtra("TITLE", getResources().getString(R.string.tab_8));
+                startActivity(intent);
+            }
+        });
+
+        tabBaby.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                Intent intent = new Intent(MainActivity.this, NavCategoryActivity.class);
+                intent.putExtra("TITLE", getResources().getString(R.string.tab_9));
+                startActivity(intent);
+            }
+        });
+
+        tabHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                Intent intent = new Intent(MainActivity.this, NavCategoryActivity.class);
+                intent.putExtra("TITLE", getResources().getString(R.string.tab_10));
+                startActivity(intent);
+            }
+        });
+
+        tabPet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                Intent intent = new Intent(MainActivity.this, NavCategoryActivity.class);
+                intent.putExtra("TITLE", getResources().getString(R.string.tab_11));
+                startActivity(intent);
+            }
+        });
+
+        tabOffice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                Intent intent = new Intent(MainActivity.this, NavCategoryActivity.class);
+                intent.putExtra("TITLE", getResources().getString(R.string.tab_12));
+                startActivity(intent);
+            }
+        });
+
+        tabCulture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                Intent intent = new Intent(MainActivity.this, NavCategoryActivity.class);
+                intent.putExtra("TITLE", getResources().getString(R.string.tab_13));
+                startActivity(intent);
+            }
+        });
+
+        tabTravel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                Intent intent = new Intent(MainActivity.this, NavCategoryActivity.class);
+                intent.putExtra("TITLE", getResources().getString(R.string.tab_14));
+                startActivity(intent);
+            }
+        });
 
 
         /*
@@ -238,7 +377,6 @@ public class MainActivity extends AppCompatActivity {
 
             noticeFloatingActionButton.setVisibility(View.VISIBLE);
             noticeCount.setVisibility(View.VISIBLE);
-
             noticeCount.setText("2");//차후에 알림 카운트 개별 변경
 
             navLoginButton.setVisibility(View.INVISIBLE);
@@ -303,6 +441,17 @@ public class MainActivity extends AppCompatActivity {
             LoginDialogFragment dialog = new LoginDialogFragment();
             dialog.show(fragmentManager, "LoginDialogFragment");
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menu_notify) {
+            Log.v("menu_notify","menu_notify");
+            Intent intent = new Intent(this, BottomMypageActivity.class);
+            intent.putExtra("CURRENT_BOARD_TAB", BoardTabFragment.getCurrentTab());
+            startActivity(intent);
+        }
+        return true;
     }
 
 }
