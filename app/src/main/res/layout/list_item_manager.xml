@@ -15,8 +15,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
         android:background="#00ffffff"
         android:backgroundTint="#ffffff"
         android:src="@drawable/arrow_down"
@@ -26,25 +26,28 @@
     <TextView
         android:id="@+id/postManName"
         android:layout_width="89dp"
-        android:layout_height="18dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:text="name"
-        app:layout_constraintBaseline_toBaselineOf="@+id/postManPlace"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="@color/colorPrimary"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/postManPlace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="place"
-        app:layout_constraintStart_toEndOf="@+id/postManName"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/postManName"
+        app:layout_constraintStart_toEndOf="@+id/postManName" />
 
     <TextView
         android:id="@+id/postManEmail"
-        android:layout_width="194dp"
-        android:layout_height="19dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:text="@string/email"
@@ -53,8 +56,8 @@
 
     <TextView
         android:id="@+id/postManPhone"
-        android:layout_width="183dp"
-        android:layout_height="23dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
@@ -65,8 +68,8 @@
 
     <ImageView
         android:id="@+id/call"
-        android:layout_width="36dp"
-        android:layout_height="33dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="12dp"
         android:layout_marginTop="28dp"
         app:layout_constraintEnd_toStartOf="@+id/mail"
@@ -75,10 +78,10 @@
 
     <ImageView
         android:id="@+id/mail"
-        android:layout_width="37dp"
-        android:layout_height="39dp"
-        android:layout_marginEnd="76dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/mail" />

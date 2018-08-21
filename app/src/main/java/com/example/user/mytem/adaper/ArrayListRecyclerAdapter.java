@@ -13,14 +13,9 @@ import java.util.ArrayList;
 
 public class ArrayListRecyclerAdapter extends RecyclerView.Adapter<ArrayListViewHolder> {
     private ArrayList <Post> list;
-    private OnItemClickListener listener;
 
     public ArrayListRecyclerAdapter( ArrayList <Post> recyclerItems ) {
         this.list = recyclerItems;
-    }
-
-    public void setListener(OnItemClickListener listener) {
-        this.listener = listener;
     }
 
     // 생성자 구현
@@ -33,14 +28,14 @@ public class ArrayListRecyclerAdapter extends RecyclerView.Adapter<ArrayListView
     }
 
     @Override
-    public void onBindViewHolder( ArrayListViewHolder holder, final int position) {
+    public void onBindViewHolder( final ArrayListViewHolder holder, final int position) {
         // holder에 아이템 binding
         // holder의 아이템에 listener 기능 등록
         holder.bindData(list.get(position));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick( View view ) {
-                listener.onItemClick(position);
+               holder.onClick(view);
             }
         });
     }

@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.user.mytem.R;
 import com.example.user.mytem.adaper.CustomerTabPageAdapter;
@@ -35,6 +36,8 @@ public class CustomerTabFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("B"));
         tabLayout.addTab(tabLayout.newTab().setText("C"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        ImageView filter = view.findViewById(R.id.filter);
+        filter.setVisibility(View.GONE);
 
         mViewPager = (ViewPager) view.findViewById(R.id.board_view_pager);
         CustomerTabPageAdapter customerTabPageAdapter = new CustomerTabPageAdapter(getFragmentManager(), tabLayout.getTabCount());

@@ -1,5 +1,6 @@
 package com.example.user.mytem.ui;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +18,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RadioButton;
 
 import com.example.user.mytem.R;
 import com.example.user.mytem.model.OnDataChangedListener;
@@ -29,6 +35,8 @@ public abstract class CommonTabFragment extends Fragment implements SwipeRefresh
     private RecyclerView recyclerView;
     private ProgressDialog progressDialog;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private ImageView filterbtn;
+    private int check = 0;
 
 
     @Nullable
@@ -48,7 +56,66 @@ public abstract class CommonTabFragment extends Fragment implements SwipeRefresh
         recyclerView.setLayoutManager(linearLayoutManager);
         swipeRefreshLayout.setOnRefreshListener(this);
 
-        setAdapter(getRef());
+
+        filterbtn = view.findViewById(R.id.filter);
+        filterbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                final Dialog dialog = new Dialog(getActivity());
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.fragment_filter_dialog);
+                Button ok = dialog.findViewById(R.id.filter_ok);
+                Button no = dialog.findViewById(R.id.filter_cancel);
+                final RadioButton tab1 = dialog.findViewById(R.id.radio1);//등록순
+                final RadioButton tab2 = dialog.findViewById(R.id.radio2);//가격높은순
+                final RadioButton tab3 = dialog.findViewById(R.id.radio3);//재고많은순
+
+
+                View.OnClickListener listener = new View.OnClickListener() {
+                    @Override
+                    public void onClick( View view ) {
+                        dialog.dismiss();
+                    }
+                };
+
+                no.setOnClickListener(listener);
+
+                ok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick( View view ) {
+                        if(tab1.isChecked()) {
+                            setAdapter(getRef());
+                            check = 1;
+                        } else if(tab2.isChecked()) {
+                            setAdapter(getRef().orderByChild("price2"));
+                            check = 2;
+                        } else if(tab3.isChecked()) {
+                            setAdapter(getRef().orderByChild("number"));
+                            check = 3;
+                        }
+
+                        dialog.dismiss();
+                    }
+                });
+
+                WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
+
+                params.width = 900;
+                dialog.getWindow().setAttributes(params);
+                dialog.show();
+            }
+        });
+
+
+        //Query query = getRef().orderByChild("title").startAt(s).endAt(s + "\uf8ff");//입력한 문자열로 시작하는 title의 child만 list로 나열
+        //                setAdapter(query);
+        if(check == 0 || check ==1) {
+            setAdapter(getRef());
+        }else if(check == 2) {
+            setAdapter(getRef().orderByChild("price2"));
+        }else if(check == 3) {
+            setAdapter(getRef().orderByChild("number"));
+        }
         return view;
     }
 
@@ -56,6 +123,7 @@ public abstract class CommonTabFragment extends Fragment implements SwipeRefresh
     public abstract DatabaseReference getRef();
 
     public abstract String getPostType();
+
 
 
 
@@ -142,8 +210,12 @@ public abstract class CommonTabFragment extends Fragment implements SwipeRefresh
                 progressDialog.dismiss();
             }
         });
-
-        recyclerView.setAdapter(postModel.setAdapter(getRef(), getPostType()));
+        if(check == 0 || check == 1)
+            recyclerView.setAdapter(postModel.setAdapter(getRef(), getPostType()));
+        else if(check == 2)
+            recyclerView.setAdapter(postModel.setAdapter(getRef().orderByChild("price2"), getPostType()));
+        else if(check == 3)
+            recyclerView.setAdapter(postModel.setAdapter(getRef().orderByChild("number"), getPostType()));
         //새로고침 완료시
         swipeRefreshLayout.setRefreshing(false);
     }

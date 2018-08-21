@@ -103,7 +103,7 @@ public class LoginDialogFragment extends DialogFragment {
                                     //            mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
                                     Log.d(TAG, "signInWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
-                                    Toast.makeText(getActivity(), user.getEmail()+"님이 로그인 되었습니다.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), user.getDisplayName()+"님이 로그인 되었습니다.", Toast.LENGTH_SHORT).show();
                                     updateUI(user);//로그인 성공 후의 UI업데이트
                                 } else {
                                     // If sign in fails, display a message to the user.

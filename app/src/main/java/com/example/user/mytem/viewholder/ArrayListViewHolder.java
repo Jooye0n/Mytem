@@ -87,7 +87,7 @@ public class ArrayListViewHolder extends RecyclerView.ViewHolder implements View
         urlImageView = itemView.findViewById(R.id.post_imageButton);//사진
 
         cartImageView = itemView.findViewById(R.id.cart_btn);
-        buyImageView = itemView.findViewById(R.id.buy_btn);
+       // buyImageView = itemView.findViewById(R.id.buy_btn);
 
         postModel = new PostModel();
         mDatabase = FirebaseDatabase.getInstance().getReference();

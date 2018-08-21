@@ -23,13 +23,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.user.mytem.R;
-import com.example.user.mytem.model.CUserModel;
 import com.example.user.mytem.model.SUserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class ManagerWriteActivity extends AppCompatActivity {
 
@@ -54,7 +54,7 @@ public class ManagerWriteActivity extends AppCompatActivity {
     @Override
     protected void onCreate( @Nullable Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_manager);
+        setContentView(R.layout.activity_create_manager_category);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -231,6 +231,10 @@ public class ManagerWriteActivity extends AppCompatActivity {
                         public void onComplete( @NonNull Task<AuthResult> task ) {
                             if (task.isSuccessful()) {
                                 Log.d(TAG, "회원가입성공");
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                        .setDisplayName(editTextName.getText().toString()).build();
+                                user.updateProfile(profileUpdates);//이름추가
                                 Toast.makeText(ManagerWriteActivity.this, "회원가입 성공.",
                                         Toast.LENGTH_SHORT).show();
                             } else {

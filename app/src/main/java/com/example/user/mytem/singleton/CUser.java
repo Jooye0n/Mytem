@@ -14,7 +14,6 @@ public class CUser {//일반 user
     private String uphone;
     private String urrn;
     private String urrn2;
-    //private Map<String,Boolean> cart = new HashMap<>();
 
 
     private CUser() {

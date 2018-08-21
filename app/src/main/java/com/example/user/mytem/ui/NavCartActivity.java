@@ -61,51 +61,6 @@ public class NavCartActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu( Menu menu ) {
-
-
-        getMenuInflater().inflate(R.menu.customer_tool_menu, menu) ;//inflate(R.menu.board_tool_menu, menu);
-
-        MenuItem searchItem = menu.findItem(R.id.menu_search);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-
-        searchView.setQueryHint("이름으로 검색");
-
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                Query query = databaseReference.child(CART_POSTTYPE).orderByChild("title").startAt(s).endAt(s + "\uf8ff");
-                setAdapter(query);
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                if (s.length() == 0)
-                    setAdapter(databaseReference.child(CART_POSTTYPE));
-                return true;
-            }
-        });
-
-        MenuItemCompat.setOnActionExpandListener(searchItem,
-                new MenuItemCompat.OnActionExpandListener() {
-                    @Override
-                    public boolean onMenuItemActionCollapse(MenuItem item) {
-                        setAdapter(databaseReference.child(CART_POSTTYPE));
-                        return true;
-                    }
-
-                    @Override
-                    public boolean onMenuItemActionExpand(MenuItem item) {//확장되었을때
-                        return true;
-                    }
-                });
-        return super.onCreateOptionsMenu(menu);
-    }
-
     public void setAdapter(Query query) {
         showProgressDialog();
         CartModel cartModel = new CartModel();
@@ -137,12 +92,8 @@ public class NavCartActivity extends AppCompatActivity {
                 this.finish();
                 return true;
             }
-            case R.id.menu_write: {
-                Intent intent = new Intent(this, ManagerWriteActivity.class);
-                intent.putExtra("POST_REWRITE", false);
-                startActivity(intent);//getIntent().getExtras().getBoolean("POST_REWRITE")
-            }
         }
-        return super.onOptionsItemSelected(item);
+        return false;
     }
+
 }

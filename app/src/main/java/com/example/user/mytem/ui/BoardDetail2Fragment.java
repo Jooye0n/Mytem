@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.user.mytem.R;
 
-public class BoardDetail2Fragment extends Fragment{
+public class BoardDetail2Fragment extends BoardDetailTabFragment{
 
     public BoardDetail2Fragment() {
 

@@ -1,5 +1,7 @@
 package com.example.user.mytem.ui;
 
+import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +10,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,6 +23,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 
@@ -30,6 +34,7 @@ public class BoardDetailActivity extends AppCompatActivity {
     private Button bottom_cart;
     private Button bottom_buy;
     private ImageView mainImg;
+    private ImageView detailImg;
 
     TextView majorPrice;
     TextView firstPrice;
@@ -55,7 +60,7 @@ public class BoardDetailActivity extends AppCompatActivity {
         TextView category = findViewById(R.id.detail_category);
         TextView brand = findViewById(R.id.detail_brand);
         TextView title = findViewById(R.id.detail_title);
-        TextView contents = findViewById(R.id.detail_contents);
+        final TextView contents = findViewById(R.id.detail_contents);
         majorPrice = findViewById(R.id.major_price);
         firstPrice = findViewById(R.id.detail_price1);
         secPrice = findViewById(R.id.detail_price2);
@@ -64,9 +69,13 @@ public class BoardDetailActivity extends AppCompatActivity {
         TextView origin = findViewById(R.id.origin);
         TextView delivery1 = findViewById(R.id.delivery1);
         TextView delivery2 = findViewById(R.id.textView43);
+
         Button request = findViewById(R.id.btn_request);
+        Button request2 = findViewById(R.id.btn_request2);
         Button cart = findViewById(R.id.btn_cart);
+        Button cart2 = findViewById(R.id.btn_cart2);
         Button buy = findViewById(R.id.btn_buy);
+
         mainImg = findViewById(R.id.detail_img);
 
 
@@ -89,6 +98,36 @@ public class BoardDetailActivity extends AppCompatActivity {
         delivery2.setText(getIntent().getExtras().getString("POST_DELIVERY2"));
 
 
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                try {
+                    Intent intent = new Intent (Intent.ACTION_SEND);
+                    intent.setType("message/rfc822");
+                    intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"wndus6165@gmail.com"});
+                    intent.putExtra(Intent.EXTRA_SUBJECT, contents.getText().toString()+"에 협의요청합니다.");
+                    intent.setPackage("com.google.android.gm");
+                    if (intent.resolveActivity(getPackageManager())!=null)
+                        startActivity(intent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        View.OnClickListener cartlistener = new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                Toast.makeText(BoardDetailActivity.this, "장바구니에 추가되었습니다.", Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        request.setOnClickListener(listener);
+        request2.setOnClickListener(listener);
+
+        cart.setOnClickListener(cartlistener);
+        cart2.setOnClickListener(cartlistener);
+
         result = decimalFormat.format(Double.parseDouble(majorPrice.getText().toString().replaceAll(",","")));
         majorPrice.setText(result);
 
@@ -102,16 +141,21 @@ public class BoardDetailActivity extends AppCompatActivity {
         thirPrice.setText(result);
 
         StorageReference mStorageRef;
-        mStorageRef = FirebaseStorage.getInstance().getReference().child("albumImages/" +title.getText().toString()+ ".jpg");
+        mStorageRef = FirebaseStorage.getInstance().getReference().child("albumImages/" +contents.getText().toString()+ ".jpg");
         Log.v("로그",title.getText().toString());//정상출력됨
         Glide.with(this).using(new FirebaseImageLoader()).load(mStorageRef).diskCacheStrategy(DiskCacheStrategy.ALL).into(mainImg);
 
 
+        //fragment로 전달
         FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction().add(R.id.fragment_board_container, new BoardDetailTabFragment()).commit();//지금 있는 메인의 fragment에 새로운 BoardTabfragment추가한다.
+        Fragment fragment = new BoardDetailTabFragment();
+        Bundle data = new Bundle();//Use bundle to pass data
+        data.putString("Contents", contents.getText().toString());
+        data.putString("Detail",getIntent().getExtras().getString("POST_DETAIL"));
+        fragment.setArguments(data);
+        fm.beginTransaction().replace(R.id.fragment_board_container, fragment).commit();//지금 있는 메인의 fragment에 새로운 BoardTabfragment추가한다.
 
     }
-
     @Override
     public boolean onOptionsItemSelected( android.view.MenuItem item ) {
         switch (item.getItemId()){

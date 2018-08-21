@@ -17,8 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_alignParentTop="true"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
+            android:theme="@style/AppTheme.NoActionBar">
 
             <TextView
                 android:id="@+id/toolbartext"
@@ -28,7 +27,7 @@
                 android:fontFamily="@font/campton_lightdemo"
                 android:text="장바구니"
                 android:textSize="22sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>

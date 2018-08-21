@@ -71,14 +71,17 @@ public class BoardWriteActivity extends AppCompatActivity {
     private String spinnerItem;
     private String spinnerItemDetail;
 
-    //사진
+    //사진 -1
     private ImageView inputimg;
+    private ImageView inputimgDetail;
     private int flag=0;
     private Uri imgUri=null;
-    private Uri photoURI=null;
+    private Uri photoURI=null;//메인사진
+    private Uri photoURI2=null;//상세이미지
     private String mCurrentPhotoPath;
     private static final int FROM_CAMERA = 0;
     private static final int FROM_ALBUM = 1;
+    private Boolean isMainImg = false;
 
     //카메라켜기
     boolean photo = false;
@@ -108,6 +111,7 @@ public class BoardWriteActivity extends AppCompatActivity {
         int reWritePriceB = getIntent().getExtras().getInt("BOARD_PRICEB");
 
         inputimg = findViewById(R.id.inputimg);
+        inputimgDetail = findViewById(R.id.inputimg_detail);
 
         titleEditText = (EditText) findViewById(R.id.board_write_title_edit_text);
         contentsEditText = (EditText) findViewById(R.id.board_write_content_edit_text);
@@ -150,7 +154,7 @@ public class BoardWriteActivity extends AppCompatActivity {
 
         postModel = new PostModel();
 
-        if (reWriteContents != null && reWriteTitle != null) {
+        if (reWriteContents != null && reWriteTitle != null) { //수정시
             titleEditText.setText(reWriteTitle);
             contentsEditText.setText(reWriteContents);
             detailEditText.setText(reWriteDetail);
@@ -175,7 +179,7 @@ public class BoardWriteActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (isTextInputError())
                     return;
-                if(photoURI!=null){
+                if(photoURI!=null && photoURI2!=null){ //사진을 가져왔으면
                     photo = true;
                 }
                 else{
@@ -199,6 +203,11 @@ public class BoardWriteActivity extends AppCompatActivity {
 
 
     public void onClickButton(View view ) {
+        if(view==inputimg)
+            isMainImg = true;
+        if(view==inputimgDetail)
+            isMainImg = false;
+
         Log.v("알림", "사진 추가 버튼 누름");
         makeDialog();
     }
@@ -258,14 +267,30 @@ public class BoardWriteActivity extends AppCompatActivity {
         if(resultCode != RESULT_OK){
             return;
         }
+
+        if(isMainImg==true)//메인 이미지인 경우
+            resultPhoto(inputimg, requestCode, data);
+        else//상세 이미지인 경우
+            resultPhoto(inputimgDetail,requestCode, data);
+
+    }
+
+    public void resultPhoto(ImageView view,int requestCode, Intent data) {
         switch (requestCode){
             case FROM_ALBUM : {
                 //앨범에서 가져오기
                 if(data.getData()!=null){
                     try{
-                        photoURI = data.getData();
-                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), photoURI);
-                        inputimg.setImageBitmap(bitmap);
+                        Bitmap bitmap;
+                        if(isMainImg == true) {
+                            photoURI = data.getData();
+                            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), photoURI);
+                        } else //(view.getId() == R.id.inputimg_detail)
+                        {
+                            photoURI2 = data.getData();
+                            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), photoURI2);
+                        }
+                        view.setImageBitmap(bitmap);
                     }catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -277,7 +302,7 @@ public class BoardWriteActivity extends AppCompatActivity {
                 try{
                     Log.v("알림", "FROM_CAMERA 처리");
                     galleryAddPic();
-                    inputimg.setImageURI(imgUri);
+                    view.setImageURI(imgUri);
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -303,24 +328,33 @@ public class BoardWriteActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        //DB에 등록
-                        final String cu = mAuth.getUid();
                         //1. 사진을 storage에 저장하고 그 url을 알아내야함
                         String filename = contentsEditText.getText().toString();
-                        StorageReference storageRef = storage.getReferenceFromUrl("gs://mytem-c93ac.appspot.com").child("albumImages/" + filename+".jpg");
+                        StorageReference storageRef;
+                        StorageReference storageRef2;
+
+                        storageRef = storage.getReferenceFromUrl("gs://mytem-c93ac.appspot.com").child("albumImages/" + filename+".jpg");
+                        storageRef2 = storage.getReferenceFromUrl("gs://mytem-c93ac.appspot.com").child("albumImages/" + filename+"_detail"+".jpg");
+
                         UploadTask uploadTask;
+                        UploadTask uploadTask2;
 
                         Uri file = null;
+                        Uri file2 = null;
+
                         if(flag ==0){
                             //사진촬영
 //                            file = Uri.fromFile(new File(mCurrentPhotoPath));
                             file = photoURI;
+                            file2 = photoURI2;
                         }else if(flag==1){
                             //앨범선택
                             file = photoURI;
+                            file2 = photoURI2;
                         }
 
                         uploadTask = storageRef.putFile(file);
+                        uploadTask2 = storageRef2.putFile(file2);
                         final ProgressDialog progressDialog = new ProgressDialog(BoardWriteActivity.this,R.style.AlertDialogCustom);
                         progressDialog.setMessage("업로드중...");
                         progressDialog.show();
@@ -332,7 +366,6 @@ public class BoardWriteActivity extends AppCompatActivity {
                                 // Handle unsuccessful uploads
                                 Log.v("알림", "사진 업로드 실패");
                                 exception.printStackTrace();
-                                progressDialog.dismiss();
                                 finish();
                                 Toast.makeText(getApplicationContext(), "작성 실패하였습니다.", Toast.LENGTH_SHORT).show();
                             }
@@ -344,6 +377,28 @@ public class BoardWriteActivity extends AppCompatActivity {
                                 String downloadUrl = taskSnapshot.getStorage().getDownloadUrl().toString();
                                 Log.v("알림", "사진 업로드 성공 " + downloadUrl);
                                 progressDialog.dismiss();
+                                finish();
+
+                            }
+                        });
+
+
+                        uploadTask2.addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                // Handle unsuccessful uploads
+                                Log.v("알림", "사진 업로드 실패");
+                                exception.printStackTrace();
+                                finish();
+                                Toast.makeText(getApplicationContext(), "작성 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+
+                                String downloadUrl = taskSnapshot.getStorage().getDownloadUrl().toString();
+                                Log.v("알림", "사진 업로드 성공 " + downloadUrl);
                                 finish();
                                 Toast.makeText(getApplicationContext(), "작성이 완료되었습니다.", Toast.LENGTH_SHORT).show();
 

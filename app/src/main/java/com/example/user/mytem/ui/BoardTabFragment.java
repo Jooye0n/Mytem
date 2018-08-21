@@ -1,15 +1,23 @@
 package com.example.user.mytem.ui;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.example.user.mytem.R;
+import com.example.user.mytem.adaper.BoardDetailTabPageAdapter;
 import com.example.user.mytem.adaper.BoardTabPageAdapter;
 
 
@@ -33,6 +41,10 @@ public class BoardTabFragment extends Fragment {
 //        HorizontalScrollView scrollingView = view.findViewById(R.id.scroll_view);
 //        scrollingView.setHorizontalScrollBarEnabled(false);
 
+        ImageView filterbtn = view.findViewById(R.id.filter);
+        filterbtn.setVisibility(View.GONE);
+
+
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.board_tab);
         tabLayout.setupWithViewPager(mViewPager);
 
@@ -48,7 +60,7 @@ public class BoardTabFragment extends Fragment {
         tabLayout.setVerticalScrollBarEnabled(false);
 
         mViewPager = (ViewPager) view.findViewById(R.id.board_view_pager);
-        BoardTabPageAdapter boardTabPageAdapter = new BoardTabPageAdapter(getFragmentManager(), tabLayout.getTabCount());
+        BoardTabPageAdapter boardTabPageAdapter = new BoardTabPageAdapter(getFragmentManager(), tabLayout.getTabCount(),0);
         mViewPager.setAdapter(boardTabPageAdapter);
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));

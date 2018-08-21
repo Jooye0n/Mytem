@@ -1,5 +1,6 @@
 package com.example.user.mytem.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
@@ -7,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.user.mytem.R;
@@ -72,6 +75,15 @@ public class BottomMypageActivity extends AppCompatActivity {
             findData(recentPostsQuery);
             //전부찾아보기
         }
+
+        LinearLayout cart = findViewById(R.id.mypage_cart);
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View view ) {
+                Intent intent = new Intent(BottomMypageActivity.this, NavCartActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

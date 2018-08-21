@@ -7,6 +7,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Board10000UnderFragment extends CommonTabFragment {
 
     public Board10000UnderFragment() {
+
     }
 
     @Override

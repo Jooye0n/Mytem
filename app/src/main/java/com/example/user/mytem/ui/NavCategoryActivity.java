@@ -127,6 +127,70 @@ public class NavCategoryActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu( Menu menu ) {
+
+
+        getMenuInflater().inflate(R.menu.only_search_menu, menu) ;//inflate(R.menu.board_tool_menu, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.menu_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+
+        searchView.setQueryHint("이름으로 검색");
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                Query query = databaseReference.child(getResources().getString(R.string.tab_two)).orderByChild("contents").startAt(s).endAt(s + "\uf8ff");
+                setAdapter(query);
+
+                query = databaseReference.child(getResources().getString(R.string.tab_three)).orderByChild("contents").startAt(s).endAt(s + "\uf8ff");
+                setAdapter(query);
+
+                query = databaseReference.child(getResources().getString(R.string.tab_four)).orderByChild("contents").startAt(s).endAt(s + "\uf8ff");
+                setAdapter(query);
+
+                query = databaseReference.child(getResources().getString(R.string.tab_five)).orderByChild("contents").startAt(s).endAt(s + "\uf8ff");
+                setAdapter(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                Query query = databaseReference.child(getResources().getString(R.string.tab_two)).orderByChild("contents").startAt(s).endAt(s + "\uf8ff");
+                setAdapter(query);
+
+                query = databaseReference.child(getResources().getString(R.string.tab_three)).orderByChild("contents").startAt(s).endAt(s + "\uf8ff");
+                setAdapter(query);
+
+                query = databaseReference.child(getResources().getString(R.string.tab_four)).orderByChild("contents").startAt(s).endAt(s + "\uf8ff");
+                setAdapter(query);
+
+                query = databaseReference.child(getResources().getString(R.string.tab_five)).orderByChild("contents").startAt(s).endAt(s + "\uf8ff");
+                setAdapter(query);
+                return true;
+            }
+        });
+
+        MenuItemCompat.setOnActionExpandListener(searchItem,
+                new MenuItemCompat.OnActionExpandListener() {
+                    @Override
+                    public boolean onMenuItemActionCollapse(MenuItem item) {
+
+                        return true;
+                    }
+
+                    @Override
+                    public boolean onMenuItemActionExpand(MenuItem item) {//확장되었을때
+                        return true;
+                    }
+                });
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
     private void showProgressDialog() { //진행중을 나타내는상태바
 
         progressDialog = new ProgressDialog(this);

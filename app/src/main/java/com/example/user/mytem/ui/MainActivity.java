@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        View.OnClickListener onClickHeader = new View.OnClickListener() {
+        final View.OnClickListener onClickHeader = new View.OnClickListener() {
             @Override
             public void onClick( View view ) {
                 onClickHeader();
@@ -197,8 +197,15 @@ public class MainActivity extends AppCompatActivity {
         buyListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick( View view ) {
-                Intent intent = new Intent(MainActivity.this,NavShopListActivity.class);
-                startActivity(intent);
+                FirebaseUser user1 = FirebaseAuth.getInstance().getCurrentUser();
+                if(user1!=null) {//로그인 되어있으면
+                    Intent intent = new Intent(MainActivity.this, NavShopListActivity.class);
+                    startActivity(intent);
+                } else {//아니면
+                    android.app.FragmentManager fragmentManager = getFragmentManager();
+                    LoginDialogFragment dialog = new LoginDialogFragment();
+                    dialog.show(fragmentManager, "LoginDialogFragment");
+                }
             }
         });
 
@@ -391,7 +398,8 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.action_one://검색
-
+                    Intent intent = new Intent(MainActivity.this,NavSearchActivity.class);
+                    startActivity(intent);
                     return true;
                 case R.id.action_two://공유
 
@@ -403,19 +411,7 @@ public class MainActivity extends AppCompatActivity {
 
                     return true;
                 case R.id.action_five://마이페이지
-                    FirebaseAuth user = FirebaseAuth.getInstance();
-                    FirebaseUser user1 = user.getCurrentUser();
-                    if(user1!=null) {///로그인 된 상태라면 //확인절차
-                        Intent boardIntent = new Intent(MainActivity.this, BottomMypageActivity.class);
-                        startActivity(boardIntent);
-                        // toolbarText.setText("HOME");
-                        return true;
-                    } else {
-                        android.app.FragmentManager fragmentManager = getFragmentManager();
-                        LoginDialogFragment dialog = new LoginDialogFragment();
-                        dialog.show(fragmentManager, "LoginDialogFragment");
-                        return true;
-                    }
+                    onClickHeader();
             }
             return false;
         }
@@ -446,10 +442,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_notify) {
-            Log.v("menu_notify","menu_notify");
-            Intent intent = new Intent(this, BottomMypageActivity.class);
-            intent.putExtra("CURRENT_BOARD_TAB", BoardTabFragment.getCurrentTab());
-            startActivity(intent);
+            onClickHeader();
         }
         return true;
     }

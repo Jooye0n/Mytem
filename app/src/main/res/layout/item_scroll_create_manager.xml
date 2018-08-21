@@ -26,18 +26,16 @@
 
         <EditText
             android:id="@+id/emailM"
-            android:layout_width="194dp"
+            android:layout_width="193dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="52dp"
             android:layout_marginTop="4dp"
             android:ems="10"
             android:hint="@string/email_h"
             android:inputType="textEmailAddress"
             android:textColor="@color/colorDark"
             android:textColorHint="@color/colorAccent"
-            app:layout_constraintEnd_toStartOf="@+id/btn_doubleckM"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/textView12"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/levelM" />
 
         <TextView
@@ -98,9 +96,8 @@
         <EditText
             android:id="@+id/levelM"
             android:layout_width="193dp"
-            android:layout_height="42dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="52dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:ems="10"
             android:hint="직급 입력"
@@ -108,16 +105,13 @@
             android:textColor="@color/colorDark"
             android:textColorHint="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.918"
-            app:layout_constraintStart_toEndOf="@+id/textView8"
             app:layout_constraintTop_toBottomOf="@+id/nameM" />
 
         <EditText
             android:id="@+id/nameM"
             android:layout_width="193dp"
-            android:layout_height="42dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginLeft="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="52dp"
             android:layout_marginTop="84dp"
             android:ems="10"
             android:hint="@string/name_h"
@@ -125,48 +119,39 @@
             android:textColor="@color/colorDark"
             android:textColorHint="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.771"
-            app:layout_constraintStart_toEndOf="@+id/textView6"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/passwordM"
             android:layout_width="193dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="40dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginEnd="52dp"
             android:layout_marginTop="4dp"
             android:ems="10"
             android:hint="@string/pw_h"
             android:inputType="textPassword"
             android:textColorHint="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.698"
-            app:layout_constraintStart_toEndOf="@+id/textView7"
             app:layout_constraintTop_toBottomOf="@+id/emailM" />
 
         <EditText
             android:id="@+id/passwordM_ck"
             android:layout_width="193dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="40dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginEnd="52dp"
             android:layout_marginTop="4dp"
             android:ems="10"
             android:hint="@string/pwck_h"
             android:inputType="textPassword"
             android:textColorHint="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.75"
-            app:layout_constraintStart_toEndOf="@+id/textView9"
             app:layout_constraintTop_toBottomOf="@+id/passwordM" />
 
         <EditText
             android:id="@+id/phoneM"
             android:layout_width="193dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="40dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginEnd="52dp"
             android:layout_marginTop="4dp"
             android:ems="10"
             android:hint="@string/phone_h"
@@ -174,8 +159,6 @@
             android:textColor="@color/colorDark"
             android:textColorHint="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.718"
-            app:layout_constraintStart_toEndOf="@+id/textView"
             app:layout_constraintTop_toBottomOf="@+id/passwordM_ck" />
 
         <Button

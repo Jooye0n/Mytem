@@ -9,6 +9,8 @@ public class CustomerAFragment extends CustomerCommonTabFragment {
     public DatabaseReference getRef() {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         return databaseReference.child("AUser");
+        //Query query = getRef().orderByChild("title").startAt(s).endAt(s + "\uf8ff");//입력한 문자열로 시작하는 title의 child만 list로 나열
+        //                setAdapter(query);
     }
 
     @Override

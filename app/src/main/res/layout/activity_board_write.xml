@@ -20,12 +20,12 @@
 
             <ImageButton
                 android:id="@+id/board_write_close_button"
-                android:layout_width="wrap_content"
+                android:layout_width="75dp"
                 android:layout_height="78dp"
                 android:background="@android:color/transparent"
                 android:scaleX="0.3"
                 android:scaleY="0.3"
-                android:src="@drawable/close"
+                android:src="@drawable/cancel"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -35,7 +35,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="68dp"
                 android:gravity="center"
                 android:text="@string/write_post"
                 android:textAlignment="center"
@@ -43,7 +42,6 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/board_write_finish"
-                app:layout_constraintHorizontal_bias="0.311"
                 app:layout_constraintStart_toEndOf="@+id/board_write_close_button"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.49" />
@@ -204,7 +202,7 @@
             <EditText
                 android:id="@+id/board_write_price2_edit_text"
                 android:layout_width="159dp"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
                 android:gravity="end"
@@ -218,7 +216,7 @@
             <EditText
                 android:id="@+id/board_write_priceA_edit_text"
                 android:layout_width="159dp"
-                android:layout_height="43dp"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="12dp"
                 android:gravity="end"
@@ -232,7 +230,7 @@
             <EditText
                 android:id="@+id/board_write_priceB_edit_text"
                 android:layout_width="159dp"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
                 android:gravity="end"
@@ -246,7 +244,7 @@
             <EditText
                 android:id="@+id/board_write_price_edit_text"
                 android:layout_width="wrap_content"
-                android:layout_height="43dp"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
                 android:gravity="end"
@@ -362,7 +360,7 @@
             <EditText
                 android:id="@+id/board_production"
                 android:layout_width="159dp"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
                 android:layout_marginTop="4dp"
                 android:gravity="end"
@@ -376,7 +374,7 @@
             <EditText
                 android:id="@+id/board_delivery"
                 android:layout_width="82dp"
-                android:layout_height="41dp"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="108dp"
                 android:layout_marginTop="4dp"
                 android:gravity="end"
@@ -391,7 +389,7 @@
             <EditText
                 android:id="@+id/board_origin"
                 android:layout_width="159dp"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
                 android:layout_marginTop="4dp"
                 android:gravity="end"
@@ -405,7 +403,7 @@
             <EditText
                 android:id="@+id/board_brand"
                 android:layout_width="159dp"
-                android:layout_height="41dp"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
                 android:layout_marginTop="8dp"
                 android:gravity="end"
@@ -563,6 +561,7 @@
                 android:id="@+id/inputimg_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="onClickButton"
                 app:srcCompat="@drawable/__picker_ic_camera_n" />
         </LinearLayout>
 

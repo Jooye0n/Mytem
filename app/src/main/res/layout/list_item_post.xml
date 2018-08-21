@@ -125,10 +125,10 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@id/post_contents_text_view"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:textSize="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buy_btn"
+        app:layout_constraintTop_toBottomOf="@+id/cart_btn"
         tools:text="50" />
 
     <ImageButton
@@ -205,23 +205,16 @@
 
     <ImageView
         android:id="@+id/cart_btn"
-        android:layout_width="33dp"
-        android:layout_height="34dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginTop="60dp"
-        app:layout_constraintEnd_toStartOf="@+id/buy_btn"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/plus_circle" />
-
-    <ImageView
-        android:id="@+id/buy_btn"
-        android:layout_width="33dp"
-        android:layout_height="34dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/customreviewbg"
+        android:backgroundTint="@color/filter"
+        android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/send" />
+        app:srcCompat="@drawable/cart" />
 
     <View
         android:id="@+id/view8"
