@@ -68,7 +68,6 @@ public class CreateActicity extends AppCompatActivity {
         userModel = new CUserModel();
         mAuth = FirebaseAuth.getInstance();
 
-        btnDoubleCk = findViewById(R.id.btn_doubleck);
         editTextName = findViewById(R.id.nameM);
         editTextPassword = findViewById(R.id.passwordM);
         btnCreate = findViewById(R.id.btn_createM);
@@ -88,34 +87,6 @@ public class CreateActicity extends AppCompatActivity {
                     return;
                 sendCreate();
                 finish();
-            }
-        });
-
-        btnDoubleCk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick( View view ) {
-
-                if (!TextUtils.isEmpty(editTextEmail.getText().toString())) {
-                    final ProgressDialog progressDialog = new ProgressDialog(CreateActicity.this, R.style.AlertDialogCustom);
-                    progressDialog.setMessage("확인중...");
-                    progressDialog.show();
-
-                    //다시
-                    Handler handler = new Handler();
-                    //recyclerView.getAdapter().notify();
-                    handler.postDelayed(new Runnable() {
-                        public void run() {
-                                progressDialog.dismiss();
-                                Toast.makeText(CreateActicity.this, "사용가능한 아이디입니다.",
-                                        Toast.LENGTH_SHORT).show();
-                        }
-                    }, 3000); // 3000 milliseconds delay
-
-
-                }  else {
-                    editTextEmail.setError("아이디를 입력해주세요\n");
-                    editTextEmail.requestFocus();
-            }
             }
         });
 
